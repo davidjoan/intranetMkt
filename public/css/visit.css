@@ -1,0 +1,51 @@
+.row {
+    width: 1152px;
+    max-width: 100%;
+    min-width: 900px;
+    margin: 0 auto;
+}
+
+.timer {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flexbox;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    margin: 48px auto;
+    position: relative;
+    -webkit-box-shadow: 0 1px 4px rgba(128, 128, 128, 0.4);
+    -moz-box-shadow: 0 1px 4px rgba(128,128,128,.4);
+    box-shadow: 0 1px 4px rgba(128, 128, 128, 0.4);
+}
+
+.timer .description-container {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flexbox;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.timer .description-container input.input-description {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+}
+
+.timer .button-container .btn-start {
+    -webkit-box-shadow: inset 0 -1px 0 #929292;
+    -moz-box-shadow: inset 0 -1px 0 #929292;
+    box-shadow: inset 0 -1px 0 #929292;
+    background: #929292;
+    border-color: #929292;
+    color: #FFF;
+}

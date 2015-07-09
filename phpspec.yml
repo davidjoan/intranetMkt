@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: IntranetMkt
+        psr4_prefix: IntranetMkt
+        src_path: app
