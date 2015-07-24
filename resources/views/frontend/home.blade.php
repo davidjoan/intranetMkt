@@ -54,7 +54,7 @@
             <!-- small box -->
             <div class="small-box bg-aqua">
                 <div class="inner">
-                    <h3><sup style="font-size: 20px">S/.</sup> 7,000 </h3>
+                    <h3><sup style="font-size: 20px">S/.</sup> {{ $total_amount }} </h3>
                     <p>Gastos</p>
                 </div>
                 <div class="icon">
@@ -67,7 +67,7 @@
             <!-- small box -->
             <div class="small-box bg-yellow">
                 <div class="inner">
-                    <h3>23</h3>
+                    <h3>{{ $total_expenses }}</h3>
                     <p># Gastos</p>
                 </div>
                 <div class="icon">

@@ -246,6 +246,27 @@
                             </tr>
 
 -->
+
+
+                            @if (in_array($expense->expense_type->id, array(10,11,12,13,14)))
+                                @foreach($expense->expense_type->file_formats as $file_format)
+                                    <tr>
+                                        <td><b>{{ $file_format->name }} Original </b></td>
+                                        <td><a class="btn btn-primary" href="/uploads/{{ $file_format->file }}">
+                                                <i class="fa fa-download"></i> Descargar {{ $file_format->name }}</a></td>
+                                    </tr>
+
+                                @endforeach
+                                @foreach($expense->expense_type->file_formats as $file_format)
+                                    <tr>
+                                        <td><b>{{ $file_format->name }} escaneado </b></td>
+                                        <td><a class="btn btn-primary" href="/uploads/{{ $file_format->code }}.pdf">
+                                                <i class="fa fa-download"></i> Descargar {{ $file_format->name }}</a></td>
+                                    </tr>
+
+                                @endforeach
+                            @endif
+
                             @if (in_array($expense->expense_type->id, array(16,17)))
                                 @foreach($expense->expense_type->file_formats as $file_format)
                                     <tr>
@@ -306,6 +327,44 @@
 
 
             </div>
+
+
+        @if (in_array($expense->expense_type->id, array(10,11,12,13,14)))
+            <div class="row">
+            @foreach($expense->expense_type->file_formats as $file_format)
+
+                    <div class="col-md-6">
+
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Subir {{ $file_format->name }}</h3>
+                </div><!-- /.box-header -->
+                <!-- form start -->
+                <form role="form">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="description">Detalle</label>
+                            <input type="text" class="form-control" id="description" placeholder="Detalle">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputFile">Formato Escaneado Image/PDF</label>
+                            <input type="file" id="exampleInputFile">
+                            <p class="help-block">Ejemplo formato11.pdf.</p>
+                        </div>
+
+                    </div><!-- /.box-body -->
+
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Subir</button>
+                    </div>
+                </form>
+            </div><!-- /.box -->
+                        </div>
+
+            @endforeach
+        </div>
+                @endif
 
         @if (in_array($expense->expense_type->id, array(16,17)))
             @foreach($expense->expense_type->file_formats as $file_format)

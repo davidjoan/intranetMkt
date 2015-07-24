@@ -16,6 +16,7 @@
       "jenssegers/date" : "*",
       "simplesoftwareio/simple-qrcode": "1.2.*",
       "barryvdh/laravel-dompdf": "0.6.*",
+	  "bican/roles": "2.1.*",
       "ext-gd": "*"
 	},
 	"require-dev": {
@@ -52,6 +53,7 @@
 		]
 	},
 	"config": {
-		"preferred-install": "dist"
+		"preferred-install": "dist",
+	    "bin-dir": "bin"
 	}
 }

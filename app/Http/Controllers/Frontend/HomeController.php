@@ -20,11 +20,14 @@ use DB;
 
 class HomeController extends Controller{
 
+
+    private $responseFactory;
+
     /**
      * Create a new controller instance.
      * @param ResponseFactory $responseFactory
      */
-    public function __construct(ResponseFactory  $responseFactory)
+    public function __construct(ResponseFactory $responseFactory)
     {
         $this->middleware('auth');
         $this->responseFactory = $responseFactory;
@@ -37,7 +40,12 @@ class HomeController extends Controller{
      */
     public function index()
     {
-        return view('frontend.home');
+        $user = Auth::user();
+        $total_amount   =  number_format(DB::table('expenses')->where('user_id','=',$user->id)->sum('total_amount'), 2, '.', ',');
+        $total_expenses =  DB::table('expenses')->where('user_id','=',$user->id)->count('id');
+
+        //select sum(total_amount) from expenses where user_id = 66;
+        return view('frontend.home', compact('total_amount', 'user','total_expenses'));
     }
 
     public function gastos()
