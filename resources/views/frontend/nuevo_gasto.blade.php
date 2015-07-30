@@ -267,7 +267,6 @@
                                 <td>6371010</td>
                                 <td>Material promocional - impreso</td>
                                 <td>Formato Nro 13</td>
-                                <td></td>
                             </tr>
                             <tr>
                                 <td>Cortesías culturales</td>

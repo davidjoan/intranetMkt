@@ -23,6 +23,7 @@
 <div class="login-box">
     <div class="login-logo">
         <a href="/"><b>Intranet MKT</b></a>
+        <image src="/images/farmindustria.png" />
        <!-- <img src="/images/logo.png" alt="Reflex 360 Icon" itemprop="image">-->
     </div><!-- /.login-logo -->
     <div class="login-box-body">

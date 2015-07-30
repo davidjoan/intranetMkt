@@ -32,6 +32,7 @@
         <hgroup>
             <br><br>
             <h1 itemprop="name">Intranet MKT</h1>
+            <image src="/images/farmindustria.png" />
             <h2 itemprop="description">
                 Esta intranet sirve para registrar y reportar cualquier tipo de gastos correspondiente a un centro de costo por división.
             </h2>
@@ -42,18 +43,141 @@
         <a href="/auth/login" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-download-alt"></span> Ingresar</a>
         <a href="/auth/login" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-book"></span> Documentación</a>
         <a href="/auth/login" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-list"></span> Lanzamientos</a>
-        <a href="/auth/login" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-cloud"></span> Github</a>
+        <a href="https://github.com/davidjoan/intranetMkt" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-cloud"></span> Github</a>
     </div>
 
     <h2>¿Qué hay de nuevo?</h2>
 
-    <p>Intranet MKT LF contiene una serie de herramientas que llevara el control de gestión a otro nivel:</p>
+    <p>Intranet MKT LF contiene una serie de modulos para el correcto control de procesos del area de marketing:</p>
 
     <ul>
         <li>Administración de gastos</li>
-        <li>Formato 11, 12 ,13 y 14</li>
+        <li>Modulo de Presupuestos (En Desarrollo)</li>
 
     </ul>
+
+    <h4 class="box-title">Tabla detallada de tipos de gastos</h4>
+    <table class="table table-bordered table-striped center-table">
+        <tr>
+            <td>Tipo de Gasto</td>
+            <td>Cuenta Contable</td>
+            <td>Descripción Contable</span></td>
+            <td>Formato</td>
+        </tr>
+        <tr>
+            <td>Materiales promocionales
+                impresos</td>
+            <td>6371010</td>
+            <td>Material promocional - impreso</td>
+            <td>Formato Nro 11</td>
+        </tr>
+        <tr>
+            <td>Suministro de
+                recordatorios de la marca</td>
+            <td>6371010</td>
+            <td>Material promocional - impreso</td>
+            <td>Formato Nro 12</td>
+        </tr>
+        <tr>
+            <td>Artículos de utilidad
+                médica</td>
+            <td>6371010</td>
+            <td>Material promocional - impreso</td>
+            <td>Formato Nro 13</td>
+        </tr>
+        <tr>
+            <td>Cortesías culturales</td>
+            <td>6371010</td>
+            <td>Material promocional - impreso</td>
+            <td>Formato Nro 14</td>
+        </tr>
+        <tr>
+            <td>Comidas y refrigerios</td>
+            <td>6371020</td>
+            <td>Gastos de Promoción</td>
+            <td>Formato Nro 15</td>
+        </tr>
+        <tr>
+            <td>Entretenimiento</td>
+            <td>6371020</td>
+            <td>Gastos de Promoción</td>
+            <td>Formato Nro 16</td>
+        </tr>
+        <tr>
+            <td>Recorridos de
+                planta y visitas al sitio</td>
+            <td>6371020</td>
+            <td>Gastos de Promoción</td>
+            <td>Formato Nro 17</td>
+        </tr>
+        <tr>
+            <td>Interacción con
+                pacientes y organizaciones de pacientes</td>
+            <td>6371020</td>
+            <td>Gastos de Promoción</td>
+            <td>Formato Nro 16</td>
+        </tr>
+        <tr>
+            <td>Campañas Medicas</td>
+            <td>6371020</td>
+            <td>Gastos de Promoción</td>
+            <td>Formato Nro 17</td>
+        </tr>
+        <tr>
+            <td>Viajes y alojamientos
+                razonables</td>
+            <td>6371026</td>
+            <td>Capacitación médica</td>
+            <td>Formato Nro 4</td>
+        </tr>
+        <tr>
+            <td>Acuerdos de
+                servicios profesionales</td>
+            <td>6371026</td>
+            <td>Capacitación médica</td>
+            <td>Formato Nro 6, Formato Nro 9</td>
+        </tr>
+        <tr>
+            <td>Patrocinios: Apoyo
+                de asistencia a conferencias educativas</td>
+            <td>6371026</td>
+            <td>Capacitación médica</td>
+            <td>Formato Nro 4, Formato Nro 3</td>
+        </tr>
+        <tr>
+            <td>Subvenciones
+                educativas o científicas</td>
+            <td>6371026</td>
+            <td>Capacitación médica</td>
+            <td>Formato Nro 2</td>
+        </tr>
+        <tr>
+            <td>Reuniones de
+                capacitación y educativas sobre productos organizadas por Abbott</td>
+            <td>6371026</td>
+            <td>Capacitación médica</td>
+            <td>Formato Nro 9</td>
+        </tr>
+        <tr>
+            <td>Contribuciones
+                caritativas</td>
+            <td>6371020</td>
+            <td>Gastos de Promoción</td>
+            <td>Formato Nro 17</td>
+        </tr>
+        <tr>
+            <td>Compra de Electrodomesticos</td>
+            <td>6373008</td>
+            <td>Atenciones a clientes y/o diversos</td>
+            <td>Formato Nro 18</td>
+        </tr>
+        <tr>
+            <td>Compra de Vales</td>
+            <td>6373008</td>
+            <td>Atenciones a clientes y/o diversos</td>
+            <td>Formato Nro 19</td>
+        </tr>
+    </table>
 
     <h2>Licencia</h2>
 
