@@ -41,23 +41,23 @@ class ExpenseTypesTableSeeder extends \Illuminate\Database\Seeder {
         $file_format_20_id = \IntranetMkt\Models\FileFormat::where('code','=', 'F20')->first()->id;
 
 
-        $expenseType1 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_a_id,'code' => '63710101' , 'name' => 'Materiales promocionales impresos'));
-        $expenseType2 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_a_id,'code' => '63710102' , 'name' => 'Suministro de recordatorios de la marca'));
-        $expenseType3 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_a_id,'code' => '63710103' , 'name' => 'Artículos de utilidad médica'));
-        $expenseType4 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_a_id,'code' => '63710104' , 'name' => 'Cortesías culturales'));
-        $expenseType5 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_b_id,'code' => '63710205' , 'name' => 'Comidas y refrigerios'));
-        $expenseType6 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_b_id,'code' => '63710201' , 'name' => 'Entretenimiento'));
-        $expenseType7 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_b_id,'code' => '63710202' , 'name' => 'Recorridos de planta y visitas al sitio'));
-        $expenseType8 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_b_id,'code' => '63710203' , 'name' => 'Interacción con pacientes y organizaciones de pacientes'));
-        $expenseType9 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_b_id,'code' => '63710204' , 'name' => 'Campañas Medicas'));
-        $expenseType10 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_c_id,'code' => '63710261' , 'name' => 'Viajes y alojamientos razonables'));
-        $expenseType11 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_c_id,'code' => '63710262' , 'name' => 'Acuerdos de servicios profesionales'));
-        $expenseType12 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_c_id,'code' => '63710263' , 'name' => 'Patrocinios: Apoyo de asistencia a conferencias educativas'));
-        $expenseType13 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_c_id,'code' => '63710264' , 'name' => 'Subvenciones educativas o científicas'));
-        $expenseType14 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_c_id,'code' => '63710265' , 'name' => 'Reuniones de capacitación y educativas sobre productos organizadas por Abbott'));
-        $expenseType15 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_c_id,'code' => '63710266' , 'name' => 'Contribuciones caritativas'));
-        $expenseType16 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_d_id,'code' => '63730081' , 'name' => 'Compra de Electrodomesticos'));
-        $expenseType17 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_d_id,'code' => '63730082' , 'name' => 'Compra de Vales'));
+        $expenseType1 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_a_id,'code' => '63710101' , 'name' => 'Materiales promocionales impresos','description' => 'MPI'));
+        $expenseType2 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_a_id,'code' => '63710102' , 'name' => 'Suministro de recordatorios de la marca','description' => 'SRM'));
+        $expenseType3 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_a_id,'code' => '63710103' , 'name' => 'Artículos de utilidad médica','description' => 'AUM'));
+        $expenseType4 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_a_id,'code' => '63710104' , 'name' => 'Cortesías culturales','description' => 'CCU'));
+        $expenseType5 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_b_id,'code' => '63710205' , 'name' => 'Comidas y refrigerios','description' => 'CRE'));
+        $expenseType6 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_b_id,'code' => '63710201' , 'name' => 'Entretenimiento', 'description' => 'ENT'));
+        $expenseType7 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_b_id,'code' => '63710202' , 'name' => 'Recorridos de planta y visitas al sitio', 'description' => 'RPV'));
+        $expenseType8 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_b_id,'code' => '63710203' , 'name' => 'Interacción con pacientes y organizaciones de pacientes', 'description' => 'IPO'));
+        $expenseType9 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_b_id,'code' => '63710204' , 'name' => 'Campañas Medicas', 'description' => 'CME'));
+        $expenseType10 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_c_id,'code' => '63710261' , 'name' => 'Viajes y alojamientos razonables', 'description' => 'VAR'));
+        $expenseType11 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_c_id,'code' => '63710262' , 'name' => 'Acuerdos de servicios profesionales','description' => 'ASP'));
+        $expenseType12 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_c_id,'code' => '63710263' , 'name' => 'Patrocinios: Apoyo de asistencia a conferencias educativas', 'description' => 'ACE'));
+        $expenseType13 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_c_id,'code' => '63710264' , 'name' => 'Subvenciones educativas o científicas','description' => 'SEC'));
+        $expenseType14 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_c_id,'code' => '63710265' , 'name' => 'Reuniones de capacitación y educativas sobre productos organizadas por Abbott', 'description' => 'RCE'));
+        $expenseType15 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_c_id,'code' => '63710266' , 'name' => 'Contribuciones caritativas','description' => 'CCA'));
+        $expenseType16 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_d_id,'code' => '63730081' , 'name' => 'Compra de Electrodomesticos','description' => 'CEL'));
+        $expenseType17 = \IntranetMkt\Models\ExpenseType::create(array('book_account_id' => $book_accoount_d_id,'code' => '63730082' , 'name' => 'Compra de Vales','description' => 'CVa'));
 
         $expenseType1->file_formats()->attach($file_format_11_id);
         $expenseType2->file_formats()->attach($file_format_12_id);

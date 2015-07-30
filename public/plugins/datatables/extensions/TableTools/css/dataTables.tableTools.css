@@ -335,3 +335,7 @@ div.DTTT_collection a.DTTT_button {
 	line-height: 20px;
 }
 
+
+table.dataTable tbody tr.selected {
+	background-color: #B0BED9;
+}

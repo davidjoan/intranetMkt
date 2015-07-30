@@ -16,8 +16,12 @@ class CreateUsersTable extends Migration {
         {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('code',10)->unique();
+            $table->integer('division_id',false, true)->nullable();
+            $table->string('code',10);
             $table->string('name',100);
+            $table->string('responsible',200)->nullable();
+            $table->string('manager',200)->nullable();
+            $table->string('cost_center_type',10);
             $table->string('description')->nullable();
             $table->timestamps();
         });
@@ -71,8 +75,6 @@ class CreateUsersTable extends Migration {
             $table->engine = 'InnoDB';
             $table->integer('division_id')->unsigned();
             $table->integer('user_id')->unsigned();
-
-            $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('division_id')->references('id')->on('divisions')->onDelete('cascade');

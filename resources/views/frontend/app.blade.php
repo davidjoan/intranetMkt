@@ -9,7 +9,7 @@
     <title>Intranet MKT</title>
 
 
-    @section('includes.css')
+    @section("includes.css")
     <!-- Bootstrap 3.3.2 -->
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Font Awesome Icons -->
@@ -88,7 +88,6 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="{{ url('/frontend/usuarios/form') }}" class="btn btn-default btn-flat">Perfil</a>
                                 </div>
                                 <div class="pull-right">
                                     <a href="{{ url('/auth/logout') }}" class="btn btn-default btn-flat">Cerrar Sesión</a>
@@ -118,16 +117,6 @@
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
-            <!-- search form -->
-            <form action="#" method="get" class="sidebar-form">
-                <div class="input-group">
-                    <input type="text" name="q" class="form-control typeahead" placeholder="Buscar..."/>
-              <span class="input-group-btn">
-                <button type='submit' name='seach' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-              </span>
-                </div>
-            </form>
-            <!-- /.search form -->
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu">
                 <li class="header">MENU PRINCIPAL</li>
@@ -147,7 +136,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
 
-        @section('header')
+        @section("header")
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
@@ -164,7 +153,7 @@
                     <!-- Main content -->
             <section class="content">
 
-                @yield('content')
+                @yield("content")
 
             </section><!-- /.content-wrapper -->
 
@@ -178,7 +167,7 @@
     </footer>
 </div><!-- ./wrapper -->
 
-@section('includes.js')
+@section("includes.js")
 
 <script src="/plugins/jQuery/jQuery-2.1.3.min.js"></script>
 <script src="/plugins/touchpunch/jquery.ui.touch-punch.min.js" type="text/javascript"></script>

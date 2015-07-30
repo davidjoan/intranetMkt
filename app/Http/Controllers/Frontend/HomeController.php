@@ -5,10 +5,14 @@
  * Date: 4/06/15
  * Time: 17:00
  */
+use Illuminate\Http\Request;
 use Illuminate\Routing\ResponseFactory;
 use IntranetMkt\Http\Requests;
 use IntranetMkt\Http\Controllers\Controller;
+use IntranetMkt\Models\CostCenter;
 use IntranetMkt\Models\Expense;
+use IntranetMkt\Models\ExpenseAmount;
+use IntranetMkt\Models\ExpenseDetail;
 use IntranetMkt\Models\ExpenseType;
 use IntranetMkt\Models\FileFormat;
 use IntranetMkt\User;
@@ -17,6 +21,7 @@ use Auth;
 use PDF;
 use Excel;
 use DB;
+use Session;
 
 class HomeController extends Controller{
 
@@ -51,10 +56,245 @@ class HomeController extends Controller{
     public function gastos()
     {
         $expense_types = ExpenseType::all();
+
         $user = Auth::user();
         return view('frontend.gastos', compact('expense_types', 'user'));
     }
 
+    /**
+     * @param $expense_id
+     * @param $cost_center_id
+     * @return Response
+     */
+    public function agregar_centro_costo($expense_id, $cost_center_id)
+    {
+        $expense_amount = new ExpenseAmount();
+        $expense_amount->expense_id = $expense_id;
+        $expense_amount->cost_center_id = $cost_center_id;
+
+        $expense_amount->save();
+
+        $expensesAmounts = ExpenseAmount::where('expense_id','=',$expense_id)->get();
+
+        $cantidad = $expensesAmounts->count();
+
+        $acomulado = 0;
+
+        foreach($expensesAmounts as $key => $detail){
+            if($key < ($cantidad-1)){
+                $percent = sprintf('%0.2f',100/$cantidad);
+                $acomulado = $acomulado+$percent;
+                $detail->percent = $percent;
+                $detail->save();
+
+            }else{
+                $detail->percent =100-$acomulado;
+                $detail->save();
+            }
+        }
+
+        return $this->responseFactory->json('ok');
+
+    }
+
+    /**
+     * @param $expense_amount_id
+     * @return Response
+     */
+    public function eliminar_centro_costo($expense_amount_id)
+    {
+        $expense_amount = ExpenseAmount::find($expense_amount_id);
+        $expense_id = $expense_amount->expense_id;
+        $expense_amount->delete();
+
+        $expensesAmounts = ExpenseAmount::where('expense_id','=',$expense_id)->get();
+
+        $cantidad = $expensesAmounts->count();
+        $acomulado = 0;
+
+
+        foreach($expensesAmounts as $key => $detail){
+            if($key < ($cantidad-1)){
+                $percent = sprintf('%0.2f',100/$cantidad);
+                $acomulado = $acomulado+$percent;
+                $detail->percent = $percent;
+                $detail->save();
+
+            }else{
+                $detail->percent =100-$acomulado;
+                $detail->save();
+            }
+        }
+
+        return $this->responseFactory->json('ok');
+
+    }
+
+
+    /**
+     * @param $expense_code
+     * @return \Illuminate\View\View
+     */
+    public function aprobar($expense_code)
+    {
+        $status = 'ok';
+        $user = Auth::user();
+
+        $role_id = $user->role_id;
+        $expense = Expense::where('code','=',$expense_code)->first();
+
+
+        if(in_array($role_id, array(1,2,3)))   //Supervisores, Managers y Asistentes
+        {
+            $expense->approval_1 = 1;
+
+        }elseif(in_array($role_id, array(4))){ //Gerente de Division
+            if($expense->approval_1 == 1){
+                $expense->approval_2 = 1;
+            }else{
+                $status = 'fail';
+            }
+
+
+        }elseif(in_array($role_id, array(5))){ //Control de Gestion
+            if($expense->approval_2 == 1){
+                $expense->approval_3 = 1;
+            }else{
+                $status = 'fail';
+            }
+
+        }elseif(in_array($role_id, array(6))){ // Gerente General
+            if($expense->approval_3 == 1){
+                $expense->approval_4 = 1;
+            }else{
+                $status = 'fail';
+            }
+        }
+
+        $expense->save();
+
+        return $this->responseFactory->json($status);
+    }
+
+    /**
+     * @param $expense_code
+     * @return \Illuminate\View\View
+     */
+    public function desaprobar($expense_code)
+    {
+        $status = 'ok';
+        $user = Auth::user();
+
+
+        $role_id = $user->role_id;
+        $expense = Expense::where('code','=',$expense_code)->first();
+
+
+        if(in_array($role_id, array(1,2,3)))   //Supervisores, Managers y Asistentes
+        {
+            if($expense->approval_2 == 0 && $expense->approval_3 == 0 && $expense->approval_4 == 0){
+                $expense->approval_1 = 0;
+            } else{
+                $status = 'fail';
+            }
+
+        }elseif(in_array($role_id, array(4))){ //Gerente de Division
+            if($expense->approval_3 == 0 && $expense->approval_4 == 0){
+                $expense->approval_2 = 0;
+            } else{
+                $status = 'fail';
+            }
+
+
+        }elseif(in_array($role_id, array(5))){ //Control de Gestion
+            if($expense->approval_4 == 0){
+                $expense->approval_3 = 0;
+            } else{
+                $status = 'fail';
+            }
+        }elseif(in_array($role_id, array(6))){ // Gerente General
+            $expense->approval_4 = 0;
+        }
+
+        $expense->save();
+
+        return $this->responseFactory->json($status);
+    }
+
+
+    /**
+     * @param Request $request
+     * @param $division_id
+     * @return Response
+     */
+    public function cost_center(Request $request, $division_id){
+
+        $query_in = $request->get('query',null,true);
+
+        $cost_centers = DB::table('cost_centers')->where('division_id','=',$division_id)
+            ->where('cost_center_type','=','Producto');
+
+        if(!(is_null($query_in) || $query_in == '')){
+
+            $cost_centers->where('name', 'LIKE','%'.strtoupper($query_in).'%')
+                ->orWhere(function($query) use ($query_in)
+                {
+                    $query->where('code','LIKE','%'.strtoupper($query_in).'%');
+                });
+
+        }
+
+        return $this->responseFactory->json($cost_centers->get());
+    }
+
+    public function cost_center_by_expense($expense_id){
+
+        $cost_centers = Expense::find($expense_id)->cost_centers();
+
+        return $this->responseFactory->json($cost_centers);
+    }
+
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function upload(Request $request){
+
+        $expense_id     = $request->get('expense_id',null,true);
+        $file_format_id = $request->get('file_format_id',null,true);
+        $file           = $request->file('file');
+
+        if(is_file($file)){
+            DB::table('expense_details')->where('expense_id', '=', $expense_id)->where('file_format_id','=',$file_format_id)->delete();
+
+            $expenseDetail = new ExpenseDetail();
+            $expenseDetail->expense_id = $expense_id;
+            $expenseDetail->file_format_id = $file_format_id;
+
+            $extension = $file->getClientOriginalExtension();
+            //Storage::disk('local')->put($expense_id.'_'.$file_format_id.'.'.$extension,  File::get($file));
+            $file->move(public_path().'/uploads/expense_details', $expense_id.'-'.$file_format_id.'.'.$extension);
+
+            $expenseDetail->mime = $file->getClientMimeType();
+            $expenseDetail->original_filename = $file->getClientOriginalName();
+            $expenseDetail->filename = $expense_id.'-'.$file_format_id.'.'.$extension;
+
+            $expenseDetail->save();
+
+            Session::flash('message', 'Se guardo correctamente el Formato');
+
+        }else{
+            Session::flash('message', 'Tiene que adjuntar el archivo');
+
+        }
+
+        return redirect('frontend/detalle/'.$expense_id);
+    }
+
+    /**
+     * @return \Illuminate\View\View
+     */
     public function nuevo_gasto()
     {
         $id = Auth::user()->id;

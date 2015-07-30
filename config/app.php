@@ -148,6 +148,7 @@ return [
         'Zofe\Rapyd\RapydServiceProvider',
         'SimpleSoftwareIO\QrCode\QrCodeServiceProvider',
         'Barryvdh\DomPDF\ServiceProvider',
+		'Illuminate\Html\HtmlServiceProvider',
 
 	],
 
@@ -196,13 +197,13 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
-        'Excel' => 'Maatwebsite\Excel\Facades\Excel',
+        'Excel'     => 'Maatwebsite\Excel\Facades\Excel',
         'Uuid'      => 'Webpatser\Uuid\Uuid',
         'Html'      => 'Illuminate\Html\HtmlFacade',
         'Form'      => 'Illuminate\Html\FormFacade',
         'Carbon'    => 'Carbon\Carbon',
-        'QrCode' => 'SimpleSoftwareIO\QrCode\Facades\QrCode',
-        'PDF' => 'Barryvdh\DomPDF\Facade',
+        'QrCode'    => 'SimpleSoftwareIO\QrCode\Facades\QrCode',
+        'PDF'       => 'Barryvdh\DomPDF\Facade',
 
 	],
 

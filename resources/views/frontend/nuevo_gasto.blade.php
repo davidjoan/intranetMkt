@@ -114,10 +114,8 @@
         <div class="row">
             <div class="btn-group pull-right" style="padding-bottom: 5px">
 <!--
-                    <a type="button" class="btn btn-primary btn-flat" href="#" style="margin-right: 5px;">Visitar </a>
-                    <a type="button" class="btn btn-primary btn-flat" href="{{ url('/frontend/ausencia') }}" style="margin-right: 5px;">Ausencia</a>
-
-
+                <a type="button" class="btn btn-primary btn-flat" href="#" style="margin-right: 5px;">Visitar </a>
+                <a type="button" class="btn btn-primary btn-flat" href="{{ url('/frontend/ausencia') }}" style="margin-right: 5px;">Ausencia</a>
                 <a type="button" class="btn btn-primary btn-flat" href="#{{ url('/frontend/rutas') }}" style="margin-right: 5px;">Ruta</a>
 -->
             </div>
@@ -185,9 +183,20 @@
                         <div class="form-group">
                             <label for="description">Descripción</label>
                             <input type="text" class="form-control" id="description" name="description"
-                                   placeholder="Descripción del Gasto" required  data-error="Descripción Requerida."/>
+                                   placeholder="Descripción del Gasto"  data-error="Descripción Requerida."/>
                             <div class="help-block with-errors"></div>
-
+                        </div>
+                        <div class="form-group">
+                            <label for="estimated_amount">Monto Estimado S/.</label>
+                            <div class="input-group">
+                                <span class="input-group-addon">S/.</span>
+                                <input type="text" class="form-control" name="estimated_amount" id="estimated_amount"
+                                       required
+                                       placeholder="Monto estimado"
+                                       data-error="Monto estimado Requerido."
+                                        />
+                                <span class="input-group-addon">.00</span>
+                            </div>
                         </div>
 
                     </div>

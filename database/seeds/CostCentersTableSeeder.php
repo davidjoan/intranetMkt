@@ -18,10 +18,16 @@ class CostCentersTableSeeder extends \Illuminate\Database\Seeder {
 
             foreach($results as $result)
             {
+                $division = DB::table('divisions')->where('name', '=', $result->division)->first();
+
                 \IntranetMkt\Models\CostCenter::create(array(
 
-                    'code' => $result->code,
-                    'name' => $result->name
+                    'code' => strtoupper($result->code),
+                    'name' => strtoupper($result->name),
+                    'responsible' => strtoupper($result->responsible),
+                    'manager' => strtoupper($result->manager),
+                    'division_id' => $division->id,
+                    'cost_center_type' => strtoupper($result->cost_center_type)
                 ));
             }
         });

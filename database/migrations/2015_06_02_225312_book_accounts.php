@@ -54,7 +54,6 @@ class BookAccounts extends Migration {
             $table->engine = 'InnoDB';
             $table->integer('expense_type_id')->unsigned();
             $table->integer('file_format_id')->unsigned();
-            $table->timestamps();
 
             $table->foreign('expense_type_id')->references('id')->on('expense_types')->onDelete('cascade');
             $table->foreign('file_format_id')->references('id')->on('file_formats')->onDelete('cascade');
@@ -91,6 +90,21 @@ class BookAccounts extends Migration {
             $table->foreign('expense_type_id')->references('id')->on('expense_types');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('division_id')->references('id')->on('divisions');
+        });
+
+        Schema::create('expense_amounts', function(Blueprint $table)
+        {
+            $table->engine = 'InnoDB';
+            $table->increments('id');
+            $table->integer('expense_id')->unsigned();
+            $table->integer('cost_center_id')->unsigned();
+            $table->decimal('percent',12,2)->default(0.0)->nullable();
+            $table->timestamps();
+
+            $table->unique(array('expense_id','cost_center_id'));
+
+            $table->foreign('expense_id')->references('id')->on('expenses')->onDelete('cascade');
+            $table->foreign('cost_center_id')->references('id')->on('cost_centers')->onDelete('cascade');
         });
 
         Schema::create('buy_orders', function(Blueprint $table)

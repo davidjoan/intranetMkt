@@ -1,6 +1,6 @@
-@extends('frontend.app')
+@extends("frontend.app")
 
-@section('includes.css')
+@section("includes.css")
     @parent
     <link href="/plugins/jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
     <!-- fullCalendar -->
@@ -16,12 +16,13 @@
     <link href="/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet" />
     <link href="/plugins/datepicker/datepicker3.css" rel="stylesheet" />
 
+
     <style>
         .datepicker{z-index:1151 !important;}
     </style>
 @stop
 
-@section('includes.js')
+@section("includes.js")
     @parent
     <script src="/plugins/jQueryUI/jquery-ui-1.10.3.min.js" type="text/javascript"></script>
     <script src="/plugins/moment/moment.min.js" type="text/javascript"></script>
@@ -32,9 +33,63 @@
     <script src="/plugins/iCheck/icheck.min.js" type="text/javascript"></script>
     <script src="/plugins/timepicker/bootstrap-timepicker.min.js" type="text/javascript"></script>
     <script src="/js/validator.js" type="text/javascript"></script>
+    <script src="/plugins/typeahead/typeahead.js" type="text/javascript"></script>
+    <script src="/plugins/typeahead/bootstrap3-typeahead.js" type="text/javascript"></script>
 
     <script type="text/javascript">
         var expense_id = {{ $expense->id }};
+        var division_id = {{ $expense->division_id }};
+
+
+        $(function() {
+            var map;
+            var selectioned;
+
+            $("#add_cost_center").click(function(e) {
+                console.log(map);
+                console.log(map[selectioned]);
+
+
+
+
+            });
+            $(".typeahead").typeahead({
+                updater: function(selection){
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/frontend/cost_center/add/"+expense_id+"/"+map[selection],
+                        success: function(data) {
+                            console.log(data);
+                            toastr.success('Su agrego el centro de costo correctamente!');
+
+                            setTimeout(function(){
+                                window.location.href = '/frontend/detalle/'+expense_id;
+                                return false;
+                            },2000);
+
+                        }
+                    });
+
+                },
+
+                source: function (query, process) {
+                    // var $this = this; //get a reference to the typeahead object
+                    return $.get('/frontend/cost_centers/' + division_id+'?query='+query,
+                            function (data) {
+                                //console.log(data);
+                                var options = [];
+                                map = {}; //replace any existing map attr with an empty object
+                                for (i = 0; i < data.length; i++) {
+                                    console.log(data[i]);
+                                    options.push(data[i].name);
+                                    map[data[i].name] = data[i].id;
+                                }
+                                return process(options);
+                            }, 'json');
+                }
+            });
+        });
     </script>
     <script src="/js/target_show.js" type="text/javascript"></script>
 
@@ -65,7 +120,7 @@
 @stop
 
 
-@section('header')
+@section("header")
     <!-- Content Header (Page header)-->
     <section class="content-header">
         <h1>
@@ -80,9 +135,34 @@
     </section>
 @stop
 
-@section('content')
+@section("content")
     <!-- Main content -->
     <section class="content">
+
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-info alert-dismissable">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <i class="fa fa-info-circle"></i>
+                    <strong>Bienvenido a Intranet MKT?</strong>
+                    Esta es una version de prueba, sientete libre de realizar los cambios que sean necesarios.
+                </div>
+            </div>
+        </div>
+        @if(Session::has('message'))
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="alert alert-success alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        {{ Session::get('message')  }}
+                    </div>
+                </div>
+            </div>
+
+        @endif
+
+
 
         <!-- top row -->
         <div class="row">
@@ -157,21 +237,21 @@
                                 <td>
                                     <ul>
                                         <li><b>Gerente División:</b>
-                                            @if ($expense->approval_1 == '1')
-                                                <i class="fa fa-fw fa-check-circle-o"></i>
-                                            @else
-                                                <i class="fa fa-fw fa-circle-o"></i></i>
-                                            @endif
-                                        </li>
-                                        <li><b>Control de Gestión:</b>
                                             @if ($expense->approval_2 == '1')
                                                 <i class="fa fa-fw fa-check-circle-o"></i>
                                             @else
                                                 <i class="fa fa-fw fa-circle-o"></i></i>
                                             @endif
                                         </li>
-                                        <li><b>Gerencia General:</b>
+                                        <li><b>Control de Gestión:</b>
                                             @if ($expense->approval_3 == '1')
+                                                <i class="fa fa-fw fa-check-circle-o"></i>
+                                            @else
+                                                <i class="fa fa-fw fa-circle-o"></i></i>
+                                            @endif
+                                        </li>
+                                        <li><b>Gerencia General:</b>
+                                            @if ($expense->approval_4 == '1')
                                                 <i class="fa fa-fw fa-check-circle-o"></i>
                                             @else
                                                 <i class="fa fa-fw fa-circle-o"></i></i>
@@ -195,6 +275,10 @@
                                 <td><b>Monto: </b></td>
                                 <td>S/. {{{ $expense->total_amount }}}</td>
                             </tr>
+                            <tr>
+                                <td><b>Estimado: </b></td>
+                                <td>S/. {{{ $expense->estimated_amount }}}</td>
+                            </tr>
                         </table>
 
                         <!-- /.row - inside box -->
@@ -216,16 +300,14 @@
             <!-- right col (We are only adding the ID to make the widgets sortable)-->
             <section class="col-lg-6 connectedSortable">
 
-                <!-- TO DO List -->
+
+
+                <!-- Informac List -->
                 <div class="box box-primary">
                     <div class="box-header">
                         <i class="ion ion-clipboard"></i>
-                        <h3 class="box-title">Información de División</h3>
+                        <h3 class="box-title">Información de Formatos</h3>
                         <div class="box-tools pull-right">
-
-
-
-
                         </div>
                     </div>
                     <!-- /.box-header -->
@@ -244,27 +326,18 @@
                                 <td><a class="btn btn-primary" href="/frontend/gastos/reporte/{{ $expense->id }}">
                                         <i class="fa fa-download"></i> Reporte</a></td>
                             </tr>
-
 -->
-
 
                             @if (in_array($expense->expense_type->id, array(10,11,12,13,14)))
                                 @foreach($expense->expense_type->file_formats as $file_format)
                                     <tr>
                                         <td><b>{{ $file_format->name }} Original </b></td>
-                                        <td><a class="btn btn-primary" href="/uploads/{{ $file_format->file }}">
+                                        <td><a class="btn btn-primary" href="/uploads/{{ $file_format->file }}" target="_blank">
                                                 <i class="fa fa-download"></i> Descargar {{ $file_format->name }}</a></td>
                                     </tr>
 
                                 @endforeach
-                                @foreach($expense->expense_type->file_formats as $file_format)
-                                    <tr>
-                                        <td><b>{{ $file_format->name }} escaneado </b></td>
-                                        <td><a class="btn btn-primary" href="/uploads/{{ $file_format->code }}.pdf">
-                                                <i class="fa fa-download"></i> Descargar {{ $file_format->name }}</a></td>
-                                    </tr>
 
-                                @endforeach
                             @endif
 
                             @if (in_array($expense->expense_type->id, array(16,17)))
@@ -274,7 +347,6 @@
                                         <td><a class="btn btn-primary" href="/frontend/gastos/exportar_atencion_xls/{{ $expense->id }}/{{ $file_format->id }}">
                                                 <i class="fa fa-download"></i> Descargar {{ $file_format->name }}</a></td>
                                     </tr>
-
                                 @endforeach
                             @endif
                             @if (in_array($expense->expense_type->id, array(7,9,15)))
@@ -310,6 +382,14 @@
                                 @endforeach
                             @endif
 
+                            @foreach($expense->expense_details as $expense_detail)
+                                <tr>
+                                    <td><b>{{ $expense_detail->file_format->name }} escaneado </b></td>
+                                    <td><a class="btn btn-primary" href="/uploads/expense_details/{{ $expense_detail->filename }}" target="_blank">
+                                            <i class="fa fa-download"></i> Descargar {{ $expense_detail->file_format->name }}</a></td>
+                                </tr>
+                            @endforeach
+
 
 
 
@@ -322,6 +402,56 @@
                 </div>
                 <!-- /.box -->
 
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <i class="ion ion-clipboard"></i>
+                        <h3 class="box-title">Información de Centro de Costo</h3>
+                        <div class="box-tools pull-right">
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+
+                        <div class="box-header with-border">
+                            <input type="text" class="form-control typeahead"
+                                   data-provide="typeahead" STYLE=""
+                                   placeholder="Ingresa el Centro de Costo">
+                        </div>
+                        <br>
+
+
+                        <table class="table table-bordered table-striped">
+                            <tbody><tr>
+                                <th style="width: 10px">#</th>
+                                <th>Centro de Costo</th>
+                                <th>Distribución</th>
+                                <th style="width: 40px">Porcentaje</th>
+                                <th></th>
+                            </tr>
+                            <?php $acomulado = 0 ?>
+                            @foreach($expense->expense_amounts as $key => $expense_amount)
+
+                            <tr>
+                                <td>
+                                    <?php  $acomulado += $expense_amount->percent ?>
+                                    {{ $key+1 }}.</td>
+                                <td>{{ $expense_amount->cost_center->name }}</td>
+                                <td>
+                                    <div class="progress progress-xs">
+                                        <div class="progress-bar progress-bar-success" style="width: {{ $acomulado }}%"></div>
+                                    </div>
+                                </td>
+                                <td><span class="badge bg-success">{{ $expense_amount->percent }}%</span></td>
+                                <td><div class='tools'>
+                                        <i class='fa fa-trash-o' onClick='deleteExpenseAmount({{ $expense_amount->id }},{{ $expense_amount->expense_id }})'></i>
+                                        </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                            </tbody></table>
+                    </div>
+                </div>
+
 
     </section>
 
@@ -329,42 +459,6 @@
             </div>
 
 
-        @if (in_array($expense->expense_type->id, array(10,11,12,13,14)))
-            <div class="row">
-            @foreach($expense->expense_type->file_formats as $file_format)
-
-                    <div class="col-md-6">
-
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Subir {{ $file_format->name }}</h3>
-                </div><!-- /.box-header -->
-                <!-- form start -->
-                <form role="form">
-                    <div class="box-body">
-                        <div class="form-group">
-                            <label for="description">Detalle</label>
-                            <input type="text" class="form-control" id="description" placeholder="Detalle">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="exampleInputFile">Formato Escaneado Image/PDF</label>
-                            <input type="file" id="exampleInputFile">
-                            <p class="help-block">Ejemplo formato11.pdf.</p>
-                        </div>
-
-                    </div><!-- /.box-body -->
-
-                    <div class="box-footer">
-                        <button type="submit" class="btn btn-primary">Subir</button>
-                    </div>
-                </form>
-            </div><!-- /.box -->
-                        </div>
-
-            @endforeach
-        </div>
-                @endif
 
         @if (in_array($expense->expense_type->id, array(16,17)))
             @foreach($expense->expense_type->file_formats as $file_format)
@@ -427,8 +521,8 @@
                             <form action="#" method="post" id="form_attention">
 
                                 <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                                <input name="file_format_id" type="hidden" value='{{ $file_format->id }}' />
-                                <input name="expense_id" type="hidden" value='{{{ $expense->id }}}' />
+                                <input name="file_format_id" type="hidden" value="{{ $file_format->id }}" />
+                                <input name="expense_id" type="hidden" value="{{{ $expense->id }}}" />
 
                                 <div class="modal-body">
 
@@ -551,8 +645,8 @@
                             <form action="#" method="post" id="form_campaign">
 
                                 <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                                <input name="file_format_id" type="hidden" value='{{ $file_format->id }}' />
-                                <input name="expense_id" type="hidden" value='{{{ $expense->id }}}' />
+                                <input name="file_format_id" type="hidden" value="{{ $file_format->id }}" />
+                                <input name="expense_id" type="hidden" value="{{{ $expense->id }}}" />
 
                                 <div class="modal-body">
 
@@ -690,8 +784,8 @@
                             <form action="#" method="post" id="form_entertainment">
 
                                 <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                                <input name="file_format_id" type="hidden" value='{{ $file_format->id }}' />
-                                <input name="expense_id" type="hidden" value='{{{ $expense->id }}}' />
+                                <input name="file_format_id" type="hidden" value="{{ $file_format->id }}" />
+                                <input name="expense_id" type="hidden" value="{{{ $expense->id }}}" />
 
                                 <div class="modal-body">
 
@@ -836,8 +930,8 @@
                             <form action="#" method="post" id="form_note">
 
                                 <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                                <input name="file_format_id" type="hidden" value='{{ $file_format->id }}' />
-                                <input name="expense_id" type="hidden" value='{{{ $expense->id }}}' />
+                                <input name="file_format_id" type="hidden" value="{{ $file_format->id }}" />
+                                <input name="expense_id" type="hidden" value="{{ $expense->id }}" />
 
                                 <div class="modal-body">
 
@@ -935,6 +1029,46 @@
 
     @endif
 
+
+
+                        <div class="row">
+                            @foreach($expense->expense_type->file_formats as $file_format)
+
+                                <div class="col-md-6">
+
+                                    <div class="box box-primary">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">Subir {{ $file_format->name }} Escaneado</h3>
+                                        </div><!-- /.box-header -->
+                                        <!-- form start -->
+                                        {!!  Form::open(array("url"=>"/frontend/upload_format","files"=>true,"role" => "form")) !!}
+
+                                        <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
+                                        <input name="file_format_id" type="hidden" value="{{ $file_format->id }}" />
+                                        <input name="expense_id" type="hidden" value="{{{ $expense->id }}}" />
+
+                                        <div class="box-body">
+                                            <div class="form-group">
+                                                <label for="exampleInputFile">Formato Escaneado Imagen/PDF</label>
+                                                {!!  Form::file("file") !!}
+
+                                                <p class="help-block">Ejemplo formato11.pdf.</p>
+                                            </div>
+
+                                        </div><!-- /.box-body -->
+
+                                        <div class="box-footer">
+                                            <button type="submit" class="btn btn-primary">Subir</button>
+                                        </div>
+                                        {!!  Form::close() !!}
+
+                                    </div><!-- /.box -->
+                                </div>
+
+                            @endforeach
+                        </div>
+
+
     </section>
 
 
@@ -963,21 +1097,33 @@
                                     </div>
                                     <input type="text" class="form-control datepicker" name="application_date"
                                            id="application_date"
-                                           value="{{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$expense->application_date)->format('d/m/Y') }}}"
+                                           value="{{{ \Carbon\Carbon::createFromFormat("Y-m-d H:i:s",$expense->application_date)->format("d/m/Y") }}}"
                                            required />
                                 </div>
                             </div>
 
                             <div class="form-group required">
                                 <label for="name">Nombre</label>
-                                    <input type="text" class="form-control" name="name"
-                                           value="{{{ $expense->name }}}" required />
+                                    <input type="text" class="form-control" name="name" value="{{ $expense->name }}" required />
                             </div>
 
                             <div class="form-group required">
                                 <label for="description">Descripción</label>
                                     <input type="text" class="form-control" name="description"
-                                           value="{{{ $expense->description }}}" required />
+                                           value="{{ $expense->description }}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="estimated_amount">Monto Estimado S/.</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">S/.</span>
+                                    <input type="text" class="form-control" name="estimated_amount" id="estimated_amount"
+                                           required
+                                           value="{{ $expense->estimated_amount }}"
+                                           placeholder="Monto estimado"
+                                           data-error="Monto estimado Requerido."
+                                            />
+                                    <span class="input-group-addon">.00</span>
+                                </div>
                             </div>
 
 
@@ -987,10 +1133,9 @@
                         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i> Cancelar</button>
 
                         <button id="" type="submit" class="btn btn-primary pull-left"><i class="fa fa-save"></i> Grabar</button>
-
                     </div>
                 </form>
             </div>
         </div>
     </div>
-@endsection
+@stop

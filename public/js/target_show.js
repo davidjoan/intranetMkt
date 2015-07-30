@@ -645,3 +645,31 @@ function deleteAttention(id) {
         }
     });
 }
+
+function deleteExpenseAmount(expense_amount_id,expense_id){
+
+    bootbox.confirm("Estas seguro?", function (result) {
+
+        if (result) {
+            $.ajax({
+                type: "GET",
+                url: "/frontend/cost_center/delete/" + expense_amount_id,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    console.log("ok");
+                    setTimeout(function(){
+                        window.location.href = '/frontend/detalle/'+expense_id;
+                    }, 1000);
+
+                    return false;
+
+                },
+                "error": function (result) {
+                    console.log("fail detele");
+                }
+            });
+        }
+    });
+
+}

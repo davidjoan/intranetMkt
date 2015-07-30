@@ -1,29 +1,573 @@
-code,name
-50255,C. C. 50255
-50232,C. C. 50232
-50237,C. C. 50237
-50239,C. C. 50239
-50279,C. C. 50279
-50254,C. C. 50254
-50313,C. C. 50313
-50296,C. C. 50296
-51510,C. C. 51510
-50245,C. C. 50245
-50230,C. C. 50230
-50204,C. C. 50204
-50236,C. C. 50236
-50238,C. C. 50238
-50277,C. C. 50277
-50242,C. C. 50242
-50213,C. C. 50213
-50280,C. C. 50280
-50220,C. C. 50220
-50293,C. C. 50293
-51505,C. C. 51505
-50241,C. C. 50241
-50295,C. C. 50295
-55100,C. C. 55100
-50201,C. C. 50201
-40018,C. C. 40018
-40020,C. C. 40020
-40021,C. C. 40021
+code,name,responsible,manager,division,cost_center_type
+50255,CC. 50255,PAULET MEZA AUREA BEATRIZ FRANCIS,PAULET MEZA AUREA BEATRIZ FRANCIS,Eticos LF,Usuario
+50255,CC. 50255,DELGADO RUIZ CARLOS LIZANDRO,DELGADO RUIZ CARLOS LIZANDRO,Eticos LF,Usuario
+50255,CC. 50255,PETIT AMESQUITA RAFAEL ANTONIO,PETIT AMESQUITA RAFAEL ANTONIO,Eticos LF,Usuario
+50255,CC. 50255,GUERRERO PESANTES FELIPE AUGUSTO,GUERRERO PESANTES FELIPE AUGUSTO,Eticos LF,Usuario
+50232,CC. 50232,ORDOÑEZ TALAVERA OSCAR ALBERTO,ORDOÑEZ TALAVERA OSCAR ALBERTO,Eticos LF,Usuario
+50232,CC. 50232,PANDO VIGO MIGUEL HUGO,PANDO VIGO MIGUEL HUGO,Eticos LF,Usuario
+50232,CC. 50232,MUÑOZ MONETEVERDE,MUÑOZ MONETEVERDE,Eticos LF,Usuario
+50237,CC. 50237,VASQUEZ OYARCE GOLDA LUZ,VASQUEZ OYARCE GOLDA LUZ,Neumobiotics,Usuario
+50237,CC. 50237,GAMARRA ZUAZO RICHARD AMILCAR,GAMARRA ZUAZO RICHARD AMILCAR,Neumobiotics,Usuario
+50237,CC. 50237,JIMENEZ IGLESIAS ERNESTO FABIAN,JIMENEZ IGLESIAS ERNESTO FABIAN,Neumobiotics,Usuario
+50232,CC. 50232,ORDOÑEZ TALAVERA OSCAR ALBERTO,ORDOÑEZ TALAVERA OSCAR ALBERTO,Neumobiotics,Usuario
+50232,CC. 50232,PANDO VIGO MIGUEL HUGO,PANDO VIGO MIGUEL HUGO,Neumobiotics,Usuario
+50232,CC. 50232,MUÑOZ MONETEVERDE,MUÑOZ MONETEVERDE,Neumobiotics,Usuario
+50239,CC. 50239,QUEZADA MALDONADO ETHEL MARIBEL,QUEZADA MALDONADO ETHEL MARIBEL,Gynopharm,Usuario
+50239,CC. 50239,TORRES CULQUI ROGER,TORRES CULQUI ROGER,Gynopharm,Usuario
+50239,CC. 50239,VACANTE SUP GYNO 1,VACANTE SUP GYNO 1,Gynopharm,Usuario
+50239,CC. 50239,ARANDA GONZALES RICHARD MIGUEL,ARANDA GONZALES RICHARD MIGUEL,Gynopharm,Usuario
+50279,CC. 50279,CUYA BRIONES MIRYAN REBECA,CUYA BRIONES MIRYAN REBECA,Cardiopharm,Usuario
+50279,CC. 50279,MASIAS ESPINOZA MARIA PATRICIA,MASIAS ESPINOZA MARIA PATRICIA,Cardiopharm,Usuario
+50254,CC. 50254,CORONADO APONTE LILA MAGDALENA,CORONADO APONTE LILA MAGDALENA,Cardiopharm,Usuario
+50254,CC. 50254,ROBLES ESCALANTE MEGGUI MARIBEL,ROBLES ESCALANTE MEGGUI MARIBEL,Drugtech,Usuario
+50313,CC. 50313,REYNAFARJE REYES JORGE LUIS,REYNAFARJE REYES JORGE LUIS,Drugtech,Usuario
+50254,CC. 50254,CORONADO APONTE LILA MAGDALENA,CORONADO APONTE LILA MAGDALENA,Drugtech,Usuario
+50296,CC. 50296,SUELDO LARRAURI SOCORRO NILDA,SUELDO LARRAURI SOCORRO NILDA,Mediderm,Usuario
+51510,CC. 51510,MONTERO MARCOS ROBERTO MATIAS,MONTERO MARCOS ROBERTO MATIAS,Lafrancol,Usuario
+50245,CC. 50245,ESCURRA SANDOVAL EVA LOURDES,ESCURRA SANDOVAL EVA LOURDES,K2,Usuario
+50245,CC. 50245,FIGGINI MOGOLLON RODRIGO CARMELO,FIGGINI MOGOLLON RODRIGO CARMELO,K2,Usuario
+50230,CC. 50230,SANCHEZ GONZALES GISELLA JEANETTE,SANCHEZ GONZALES GISELLA JEANETTE,Eticos LF,Usuario
+50230,CC. 50230,ARBULU MOSCOSO JORGE JESUS GUILLERMO,ARBULU MOSCOSO JORGE JESUS GUILLERMO,Eticos LF,Usuario
+50230,CC. 50230,MOSCHELLA MONTALVO GINA MARCELA,MOSCHELLA MONTALVO GINA MARCELA,Eticos LF,Usuario
+50230,CC. 50230,MARTINEZ BRUGO JAIME ALBERTO,MARTINEZ BRUGO JAIME ALBERTO,Eticos LF,Usuario
+50204,CC. 50204,UCEDA GARCIA RICARDO JAVIER,UCEDA GARCIA RICARDO JAVIER,Eticos LF,Usuario
+50236,CC. 50236,RIOS CUBA JUAN MARCELO,RIOS CUBA JUAN MARCELO,Neumobiotics,Usuario
+50236,CC. 50236,VACANTE PM NEU 1,VACANTE PM NEU 1,Neumobiotics,Usuario
+50238,CC. 50238,RIVERA LOPEZ JUAN OSWALDO,RIVERA LOPEZ JUAN OSWALDO,Gynopharm,Usuario
+50238,CC. 50238,FERNANDEZ GATES ADRIANA ELIZABETH,FERNANDEZ GATES ADRIANA ELIZABETH,Gynopharm,Usuario
+50277,CC. 50277,VACANTE PM GYNO 1,VACANTE PM GYNO 1,Cardiopharm,Usuario
+50277,CC. 50277,VACANTE PM GYNO 2,VACANTE PM GYNO 2,Cardiopharm,Usuario
+50242,CC. 50242,VILLANUEVA CAMPOS ALDO OSCAR,VILLANUEVA CAMPOS ALDO OSCAR,Drugtech,Usuario
+50242,CC. 50242,MONTOYA CHAVEZ ERIKA ROSARIO,MONTOYA CHAVEZ ERIKA ROSARIO,Drugtech,Usuario
+50213,CC. 50213,VALDEZ YAÑEZ ROSA MILAGROS,VALDEZ YAÑEZ ROSA MILAGROS,Mediderm,Usuario
+50280,CC. 50280,GAVILANO GAVILANO CARLOS AUGUSTO,GAVILANO GAVILANO CARLOS AUGUSTO,K2,Usuario
+50280,CC. 50280,SALCEDO MAURTUA VANESSA ROCIO,SALCEDO MAURTUA VANESSA ROCIO,K2,Usuario
+50220,CC. 50220,ZAVALETA VEGA MARCO ANTONIO,ZAVALETA VEGA MARCO ANTONIO,Genericos,Usuario
+50293,CC. 50293,COLUNGA ZUNIGA WILFREDO MARTIN,COLUNGA ZUNIGA WILFREDO MARTIN,Biomedical,Usuario
+51505,CC. 51505,MARTIN_DE_ROSSI NOVOA CARLOS ALFREDO,MARTIN_DE_ROSSI NOVOA CARLOS ALFREDO,LIA,Usuario
+50230,CC. 50230,ASCANO BALCAZAR ROSA AURORA,ASCANO BALCAZAR ROSA AURORA,Eticos LF,Usuario
+50241,CC. 50241,ARIAS QUINTANA DOMINGA CRISTINA,ARIAS QUINTANA DOMINGA CRISTINA,Eticos LF,Usuario
+50241,CC. 50241,ARIAS QUINTANA DOMINGA CRISTINA,ARIAS QUINTANA DOMINGA CRISTINA,Gynopharm,Usuario
+50279,CC. 50279,SALDARRIAGA ARAGON HEIDY VICTORIA,SALDARRIAGA ARAGON HEIDY VICTORIA,Cardiopharm,Usuario
+50279,CC. 50279,SALDARRIAGA ARAGON HEIDY VICTORIA,SALDARRIAGA ARAGON HEIDY VICTORIA,Drugtech,Usuario
+50236,CC. 50236,MELENDEZ ZUÑIGA MARIELA,MELENDEZ ZUÑIGA MARIELA,Mediderm,Usuario
+50236,CC. 50236,MELENDEZ ZUÑIGA MARIELA,MELENDEZ ZUÑIGA MARIELA,Lafrancol,Usuario
+50280,CC. 50280,SOLANO ZELAYA YAZMIN KARINA,SOLANO ZELAYA YAZMIN KARINA,K2,Usuario
+50200,CC. 50200,GUARDIA SAURRE JORGE GENARO,GUARDIA SAURRE JORGE GENARO,Eticos LF,Usuario
+50236,CC. 50236,ARBOLEDA RIOS GUILLERMO,ARBOLEDA RIOS GUILLERMO,Neumobiotics,Usuario
+50238,CC. 50238,FIESTAS FALLA LIA STANY,FIESTAS FALLA LIA STANY,Gynopharm,Usuario
+50242,CC. 50242,TELLO HUARANCCA LOURDES EDITH,TELLO HUARANCCA LOURDES EDITH,Cardiopharm,Usuario
+50242,CC. 50242,TELLO HUARANCCA LOURDES EDITH,TELLO HUARANCCA LOURDES EDITH,Drugtech,Usuario
+50295,CC. 50295,CERPA ESTREMADOYRO CESAR EDUARDO,CERPA ESTREMADOYRO CESAR EDUARDO,Mediderm,Usuario
+50295,CC. 50295,CERPA ESTREMADOYRO CESAR EDUARDO,CERPA ESTREMADOYRO CESAR EDUARDO,Lafrancol,Usuario
+50280,CC. 50280,CASSINELLI MONTERO MARIANO DANIEL,CASSINELLI MONTERO MARIANO DANIEL,K2,Usuario
+55100,CC. 55100,AGUAYO VASQUEZ JORGE LUIS,AGUAYO VASQUEZ JORGE LUIS,Genericos,Usuario
+55100,CC. 55100,AGUAYO VASQUEZ JORGE LUIS,AGUAYO VASQUEZ JORGE LUIS,Biomedical,Usuario
+55100,CC. 55100,AGUAYO VASQUEZ JORGE LUIS,AGUAYO VASQUEZ JORGE LUIS,LIA,Usuario
+50201,CC. 50201,RENGIFO MOY LUIS RENINGER,RENGIFO MOY LUIS RENINGER,Corporacion,Usuario
+40018,CC. 40018,OSORIO VICTORIA JUAN JONEL,OSORIO VICTORIA JUAN JONEL,Corporacion,Usuario
+40020,CC. 40020,DOMINGUEZ SMITH MAURICIO GASTON,DOMINGUEZ SMITH MAURICIO GASTON,Corporacion,Usuario
+40021,CC. 40021,LUNA TORIBIO JOSE FERNANDO,LUNA TORIBIO JOSE FERNANDO,Corporacion,Usuario
+505560,P.NUEVOS (PARA PRESUPUESTO),Jorge Guardia,Bolsa de nuevos LF,Eticos LF,Producto
+50500,ETICOS GASTOS PROPIOS,Jorge Guardia,Gastos Propios Eticos LF,Eticos LF,Producto
+505999,PROMOCION,Jorge Guardia,Gastos Propios Eticos LF,Eticos LF,Producto
+505599,VARIOS ETICOS LF,Jorge Guardia,Gastos Propios Eticos LF,Eticos LF,Producto
+505020,ALPAZ,Jorge Guardia,Gina Moschella,Eticos LF,Producto
+505035,ASSA-81,Jorge Guardia,Gina Moschella,Eticos LF,Producto
+505065,CINAFLOX,Jorge Guardia,Gina Moschella,Eticos LF,Producto
+505070,CINAFLOX F,Jorge Guardia,Gina Moschella,Eticos LF,Producto
+505125,DOLO-QUIMAGESICO,Jorge Guardia,Gina Moschella,Eticos LF,Producto
+505190,MARVIL,Jorge Guardia,Gina Moschella,Eticos LF,Producto
+505200,MULTIDERM,Jorge Guardia,Gina Moschella,Eticos LF,Producto
+505205,MULTIMYCIN,Jorge Guardia,Gina Moschella,Eticos LF,Producto
+505755,PLEREN,Jorge Guardia,Gina Moschella,Eticos LF,Producto
+505745,TENSODOX,Jorge Guardia,Gina Moschella,Eticos LF,Producto
+505510,VARICOSIN,Jorge Guardia,Gina Moschella,Eticos LF,Producto
+505355,BIOTONUS,Jorge Guardia,Gisella Sanchez,Eticos LF,Producto
+505055,CECET,Jorge Guardia,Gisella Sanchez,Eticos LF,Producto
+505670,NITAXOM,Jorge Guardia,Gisella Sanchez,Eticos LF,Producto
+505665,PROSTERID,Jorge Guardia,Gisella Sanchez,Eticos LF,Producto
+505675,URIPAX,Jorge Guardia,Gisella Sanchez,Eticos LF,Producto
+505285,UROCYCLAR,Jorge Guardia,Gisella Sanchez,Eticos LF,Producto
+505250,THEOLAIR,Jorge Guardia,Gisella Sanchez,Eticos LF,Producto
+505155,FINDEDOL,Jorge Guardia,Gisella Sanchez,Eticos LF,Producto
+505700,BIOGAIA,Jorge Guardia,Jaime Martinez,Eticos LF,Producto
+505800,COLEFLUX,Jorge Guardia,Jaime Martinez,Eticos LF,Producto
+505805,CREON,Jorge Guardia,Jaime Martinez,Eticos LF,Producto
+505840,DUPHALAC,Jorge Guardia,Jaime Martinez,Eticos LF,Producto
+505820,DUSPATALIN,Jorge Guardia,Jaime Martinez,Eticos LF,Producto
+505165,FRUTENZIMA,Jorge Guardia,Jaime Martinez,Eticos LF,Producto
+505710,LEROGIN,Jorge Guardia,Jaime Martinez,Eticos LF,Producto
+505180,LIPEBIN,Jorge Guardia,Jaime Martinez,Eticos LF,Producto
+505475,MAGALDRAX,Jorge Guardia,Jaime Martinez,Eticos LF,Producto
+505740,NETAF,Jorge Guardia,Jaime Martinez,Eticos LF,Producto
+505220,NOCTURA AMP,Jorge Guardia,Jaime Martinez,Eticos LF,Producto
+505810,OGASTRO,Jorge Guardia,Jaime Martinez,Eticos LF,Producto
+505600,ULCEMEX,Jorge Guardia,Jaime Martinez,Eticos LF,Producto
+505315,VI-SYNERAL,Jorge Guardia,Jaime Martinez,Eticos LF,Producto
+505480,ZOMIX,Jorge Guardia,Jaime Martinez,Eticos LF,Producto
+505010,ADONA,Jorge Guardia,Jorge Arbulú,Eticos LF,Producto
+505825,ARTIX,Jorge Guardia,Jorge Arbulú,Eticos LF,Producto
+505780,CAPRIMIDA,Jorge Guardia,Jorge Arbulú,Eticos LF,Producto
+505720,DOLNIX,Jorge Guardia,Jorge Arbulú,Eticos LF,Producto
+505765,DOLO NEURO-VIT,Jorge Guardia,Jorge Arbulú,Eticos LF,Producto
+505130,DUO CVP - K,Jorge Guardia,Jorge Arbulú,Eticos LF,Producto
+505850,ELVENIR,Jorge Guardia,Jorge Arbulú,Eticos LF,Producto
+505725,FLECTADOL,Jorge Guardia,Jorge Arbulú,Eticos LF,Producto
+505770,FLEXA NEUROVIT,Jorge Guardia,Jorge Arbulú,Eticos LF,Producto
+505730,HIPERFLEX,Jorge Guardia,Jorge Arbulú,Eticos LF,Producto
+505750,NEURO-VIT,Jorge Guardia,Jorge Arbulú,Eticos LF,Producto
+505195,MOBIOT,Jorge Guardia,Otros LF,Eticos LF,Producto
+505785,ALIPLEN,Jorge Guardia,Otros LF,Eticos LF,Producto
+505680,ASPIRE,Jorge Guardia,Otros LF,Eticos LF,Producto
+505705,BELLEX,Jorge Guardia,Otros LF,Eticos LF,Producto
+505690,CITOGLUTAL,Jorge Guardia,Otros LF,Eticos LF,Producto
+505080,CODIFARMA,Jorge Guardia,Otros LF,Eticos LF,Producto
+505085,CODIFARMA - R,Jorge Guardia,Otros LF,Eticos LF,Producto
+505605,COLONAID,Jorge Guardia,Otros LF,Eticos LF,Producto
+505830,DICETEL,Jorge Guardia,Otros LF,Eticos LF,Producto
+505120,DIENTRIN,Jorge Guardia,Otros LF,Eticos LF,Producto
+505350,FAN 5,Jorge Guardia,Otros LF,Eticos LF,Producto
+505150,FENSOBAR,Jorge Guardia,Otros LF,Eticos LF,Producto
+505570,GAZZELA,Jorge Guardia,Otros LF,Eticos LF,Producto
+505835,HYTRIN,Jorge Guardia,Otros LF,Eticos LF,Producto
+505735,LEODRIN,Jorge Guardia,Otros LF,Eticos LF,Producto
+505245,QUIMORAL PLUS,Jorge Guardia,Otros LF,Eticos LF,Producto
+505655,RECALM,Jorge Guardia,Otros LF,Eticos LF,Producto
+505300,VAPOFLU,Jorge Guardia,Otros LF,Eticos LF,Producto
+505310,VIAXAL,Jorge Guardia,Otros LF,Eticos LF,Producto
+505620,ARAVIDA,Jorge Guardia,Ricardo Uceda,Eticos LF,Producto
+505760,BEXX,Jorge Guardia,Ricardo Uceda,Eticos LF,Producto
+505635,BONIL,Jorge Guardia,Ricardo Uceda,Eticos LF,Producto
+505045,CADITAR,Jorge Guardia,Ricardo Uceda,Eticos LF,Producto
+505715,LACORYL,Jorge Guardia,Ricardo Uceda,Eticos LF,Producto
+505380,MAXUCAL,Jorge Guardia,Ricardo Uceda,Eticos LF,Producto
+505775,MIO BEXX,Jorge Guardia,Ricardo Uceda,Eticos LF,Producto
+505225,NORFLEX,Jorge Guardia,Ricardo Uceda,Eticos LF,Producto
+505650,TRILAT,Jorge Guardia,Ricardo Uceda,Eticos LF,Producto
+505795,OSEBAN,Jorge Guardia,Ricardo Uceda,Eticos LF,Producto
+514015,AIRUM JAT,Guillermo Arboleda,Vacante Neumobiotics,Neumobiotics,Producto
+514060,CIFLOXIN,Guillermo Arboleda,Vacante Neumobiotics,Neumobiotics,Producto
+514220,RINOMEX,Guillermo Arboleda,Vacante Neumobiotics,Neumobiotics,Producto
+514325,DEXAFAR,Guillermo Arboleda,Vacante Neumobiotics,Neumobiotics,Producto
+514345,CEFABAC,Guillermo Arboleda,Vacante Neumobiotics,Neumobiotics,Producto
+514655,RHINOAIR,Guillermo Arboleda,Vacante Neumobiotics,Neumobiotics,Producto
+514665,AMBROMOX,Guillermo Arboleda,Vacante Neumobiotics,Neumobiotics,Producto
+514675,DERINOX,Guillermo Arboleda,Vacante Neumobiotics,Neumobiotics,Producto
+514680,FLUIDASA,Guillermo Arboleda,Vacante Neumobiotics,Neumobiotics,Producto
+514695,BRONCODERINOX,Guillermo Arboleda,Vacante Neumobiotics,Neumobiotics,Producto
+514705,RINOFILAX,Guillermo Arboleda,Vacante Neumobiotics,Neumobiotics,Producto
+514710,AB AMBROMOX,Guillermo Arboleda,Vacante Neumobiotics,Neumobiotics,Producto
+514715,BRONCOLATUM,Guillermo Arboleda,Vacante Neumobiotics,Neumobiotics,Producto
+514720,BROLUKAT,Guillermo Arboleda,Vacante Neumobiotics,Neumobiotics,Producto
+514730,RICILINA,Guillermo Arboleda,Vacante Neumobiotics,Neumobiotics,Producto
+514740,BIOHELIX,Guillermo Arboleda,Vacante Neumobiotics,Neumobiotics,Producto
+514755,BACTEROL,Guillermo Arboleda,Vacante Neumobiotics,Neumobiotics,Producto
+514760,KLARICID,Guillermo Arboleda,Vacante Neumobiotics,Neumobiotics,Producto
+514765,DAYAMINERAL,Guillermo Arboleda,Vacante Neumobiotics,Neumobiotics,Producto
+514480,NUEVOS GPO 14,Guillermo Arboleda,Bolsa de nuevos Neum,Neumobiotics,Producto
+514045,CALCITON,Guillermo Arboleda,Descontinuados Neum,Neumobiotics,Producto
+514215,PULBRONC,Guillermo Arboleda,Descontinuados Neum,Neumobiotics,Producto
+514255,ZIX,Guillermo Arboleda,Descontinuados Neum,Neumobiotics,Producto
+514350,HEPABIOLLA,Guillermo Arboleda,Descontinuados Neum,Neumobiotics,Producto
+514360,NEOGASOL,Guillermo Arboleda,Descontinuados Neum,Neumobiotics,Producto
+514470,FAN - P,Guillermo Arboleda,Descontinuados Neum,Neumobiotics,Producto
+514475,FAN - 2 P,Guillermo Arboleda,Descontinuados Neum,Neumobiotics,Producto
+514485,ZENDAZOLL,Guillermo Arboleda,Descontinuados Neum,Neumobiotics,Producto
+514530,ANEFER,Guillermo Arboleda,Descontinuados Neum,Neumobiotics,Producto
+514545,RENOTIN,Guillermo Arboleda,Descontinuados Neum,Neumobiotics,Producto
+514550,GAXACIN,Guillermo Arboleda,Descontinuados Neum,Neumobiotics,Producto
+514570,UROSTIN,Guillermo Arboleda,Descontinuados Neum,Neumobiotics,Producto
+514575,RISENDAL,Guillermo Arboleda,Descontinuados Neum,Neumobiotics,Producto
+514580,BIO BACTRO,Guillermo Arboleda,Descontinuados Neum,Neumobiotics,Producto
+514590,ANULACID,Guillermo Arboleda,Descontinuados Neum,Neumobiotics,Producto
+514600,FLOVACIL,Guillermo Arboleda,Descontinuados Neum,Neumobiotics,Producto
+514625,VIPLENA,Guillermo Arboleda,Descontinuados Neum,Neumobiotics,Producto
+514000,NEUMOBIOTICS GASTOS PROPIOS,Guillermo Arboleda,Gastos Propios Neum,Neumobiotics,Producto
+514999,VARIOS,Guillermo Arboleda,Gastos Propios Neum,Neumobiotics,Producto
+514035,BRONPAMOX,Guillermo Arboleda,Juan Rios,Neumobiotics,Producto
+514195,NUMOSOL,Guillermo Arboleda,Juan Rios,Neumobiotics,Producto
+514260,CITOFER,Guillermo Arboleda,Juan Rios,Neumobiotics,Producto
+514275,AB BRONPAMOX,Guillermo Arboleda,Juan Rios,Neumobiotics,Producto
+514425,ZETIX,Guillermo Arboleda,Juan Rios,Neumobiotics,Producto
+514435,SUPRACEF,Guillermo Arboleda,Juan Rios,Neumobiotics,Producto
+514610,KLARIXOL,Guillermo Arboleda,Juan Rios,Neumobiotics,Producto
+514620,VITAVID,Guillermo Arboleda,Juan Rios,Neumobiotics,Producto
+514645,BRONPAX,Guillermo Arboleda,Juan Rios,Neumobiotics,Producto
+514650,LONTADEX,Guillermo Arboleda,Juan Rios,Neumobiotics,Producto
+514660,MOMETASYN,Guillermo Arboleda,Juan Rios,Neumobiotics,Producto
+514670,CLAVUMOX,Guillermo Arboleda,Juan Rios,Neumobiotics,Producto
+514685,QUANTRUM,Guillermo Arboleda,Juan Rios,Neumobiotics,Producto
+514690,TRIMETABOL,Guillermo Arboleda,Juan Rios,Neumobiotics,Producto
+514700,FARMACORTIX,Guillermo Arboleda,Juan Rios,Neumobiotics,Producto
+514725,CEFRALIN,Guillermo Arboleda,Juan Rios,Neumobiotics,Producto
+514735,ADAX,Guillermo Arboleda,Juan Rios,Neumobiotics,Producto
+514745,AEROTECH,Guillermo Arboleda,Juan Rios,Neumobiotics,Producto
+514750,RINOBUDEX,Guillermo Arboleda,Juan Rios,Neumobiotics,Producto
+514135,HELPIN,Guillermo Arboleda,Otros Neumobiotics,Neumobiotics,Producto
+514185,NASILEX,Guillermo Arboleda,Otros Neumobiotics,Neumobiotics,Producto
+514200,ORAZOL,Guillermo Arboleda,Otros Neumobiotics,Neumobiotics,Producto
+514280,CONGESTEX,Guillermo Arboleda,Otros Neumobiotics,Neumobiotics,Producto
+50600,GENERICOS GASTOS PROPIOS,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506005,ACETAZOLAMIDA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506010,ACICLOVIR,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506025,AGUA BIDESTILADA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506030,ALBENDAZOL,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506035,ALOPURINOL,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506040,ALPRAZOLAM,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506045,AMBROXOL,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506050,AMIKACINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506051,CLINDAMICINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506055,AMIODARONA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506060,AMLODIPINO,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506061,SECNIDAZOL,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506065,AMOXICILINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506090,AZITROMICINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506110,BROMAZEPAM,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506125,CAPTOPRIL,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506130,CARBAMAZEPINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506135,CARBONATO DE LITIO,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506140,CEFACLOR,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506145,CEFADROXILO,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506150,CEFALOTINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506155,LACTULOSA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506170,CEFRADINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506195,CINARIZINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506200,CIPROFLOXACINO,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506205,CLARITROMICINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506210,CLEMIZOL PENICILINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506220,CLOBETASOL,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506225,CLONAZEPAM,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506235,CLORURO DE SODIO,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506245,COLCHICINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506250,COMPLEJO B,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506255,DEXAMETASONA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506260,DEXTROSA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506265,DIAZEPAM,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506270,DICLOFENACO,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506275,DICLOXACILINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506280,DIGOXINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506295,DOXICICLINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506300,ENALAPRIL,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506310,ERITROMICINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506315,ESPIRONOLACTONA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506335,FLUCONAZOL,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506340,FLUOXETINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506345,GENTAMICINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506350,GLIBENCIAMIDA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506360,IBUPROFENO,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506370,ISOSORBIDA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506375,ITRACONAZOL,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506385,KETOCONAZOL,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506390,KETOROLACO,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506395,KETOTIFENO,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506405,LANSOPRAZOL,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506415,LINCOMICINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506420,LORATADINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506425,LORAZEPAM,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506430,LOSARTAN,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506435,MELOXICAM,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506445,METAMIZOL SODICO,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506450,METFORMINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506455,METOCLOPRAMIDA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506460,METRONIDAZOL,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506470,NAPROXENO SODICO,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506475,NIFEDIPINO,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506480,NIMODIPINO,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506490,OMEPRAZOL,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506495,PARACETAMOL,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506505,PENTOXIFILINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506515,PIRIDOXINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506525,PIROXICAM,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506530,PREDNISONA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506535,RANITIDINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506540,RISPERIDONA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506550,SERTRALINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506555,SILDENAFIL,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506560,SIMETICONA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506565,SIMVASTATINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506580,TETRACICLINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506605,FAN 6,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506610,BETAMETASONA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506615,FEXOFENADINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506620,CETIRIZINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506625,CEFALEXINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506630,LOVASTATINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506635,GEMFIBROZILO,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506640,ORFENADRINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506645,M.PPTO genericos,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506650,SULTAMICILINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506655,NIMESULIDA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506660,FENAZOPIRIDINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506665,KETOPROFENO,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506670,GABAPENTINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506675,ATORVASTATINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506685,DEFLAZACORT,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506690,TERBINAFINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506695,CLOTRIMAZOL,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506700,DILTIAZEM,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506705,PIRANTEL,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506710,BROMOCRIPTINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506720,ISOCONAZOL,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506725,MINOXIDIL,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506730,AMITRIPTILINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506735,SULFAMETOXAZOL+TRIME,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506740,PANTOPRAZOL,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506745,ACIDO FOLICO,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506750,PIRAZINAMIDA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506755,RIFAMPICINA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506760,FUROSEMIDA,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506765,VERAPAMILO,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506770,FENOBARBITAL,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506775,TRAMADOL,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+506999,PROMOCION,Jorge Aguayo,Marco Zavaleta,Genericos,Producto
+50190,P.NUEVOS,Mariano Cassinelli,Bolsa de Nuevos K2,K2,Producto
+50100,MKT OTC G.P,Mariano Cassinelli,Gastos Propios k2,K2,Producto
+50197,CONTENIDO DE ESTUCHES GPO 1,Mariano Cassinelli,Gastos Propios k2,K2,Producto
+50152,KAUFMANN,Mariano Cassinelli,Carlos Gavilano,K2,Producto
+50154,THIMOLINA LEONARD,Mariano Cassinelli,Carlos Gavilano,K2,Producto
+50157,CARAMELOS MULTIBIOTICOS,Mariano Cassinelli,Carlos Gavilano,K2,Producto
+50165,VITATHON,Mariano Cassinelli,Carlos Gavilano,K2,Producto
+50191,VITACALCIO,Mariano Cassinelli,Carlos Gavilano,K2,Producto
+501040,TIBEX,Mariano Cassinelli,Carlos Gavilano,K2,Producto
+501080,DESINFLAM,Mariano Cassinelli,Carlos Gavilano,K2,Producto
+501120,ANDEAN'S,Mariano Cassinelli,Otros K2,K2,Producto
+501150,ZUVIA,Mariano Cassinelli,Carlos Gavilano,K2,Producto
+501160,OSCILLOCOCCINUM,Mariano Cassinelli,Vanessa Salcedo,K2,Producto
+50110,NATUMED,Mariano Cassinelli,Vanessa Salcedo,K2,Producto
+50115,DIBROLAX,Mariano Cassinelli,Vanessa Salcedo,K2,Producto
+50119,DENCORUB,Mariano Cassinelli,Vanessa Salcedo,K2,Producto
+50120,CEREGEN,Mariano Cassinelli,Vanessa Salcedo,K2,Producto
+50159,BRONCOPULMIN,Mariano Cassinelli,Vanessa Salcedo,K2,Producto
+50164,NOPUCID,Mariano Cassinelli,Vanessa Salcedo,K2,Producto
+50166,BETAVIT C,Mariano Cassinelli,Vanessa Salcedo,K2,Producto
+50186,SANAFITIL,Mariano Cassinelli,Vanessa Salcedo,K2,Producto
+50187,HEMORRODIL,Mariano Cassinelli,Vanessa Salcedo,K2,Producto
+50192,REPELENTE PREMIER,Mariano Cassinelli,Vanessa Salcedo,K2,Producto
+501025,TIOCTAN,Mariano Cassinelli,Vanessa Salcedo,K2,Producto
+501030,ALERMIZOL,Mariano Cassinelli,Vanessa Salcedo,K2,Producto
+501105,BETAVIR,Mariano Cassinelli,Vanessa Salcedo,K2,Producto
+501110,LAFITIL,Mariano Cassinelli,Vanessa Salcedo,K2,Producto
+50156,MUCOBROL,Mariano Cassinelli,Otros K2,K2,Producto
+50160,VITAPLUS,Mariano Cassinelli,Otros K2,K2,Producto
+511000,HEALTH & WELLNESS GP,Mariano Cassinelli,Gastos Propios H&W,K2,Producto
+511005,EMOLAN (H&W),Mariano Cassinelli,Carlos Gavilano,K2,Producto
+511010,FIRST ALLERDEFENSE,Mariano Cassinelli,Carlos Gavilano,K2,Producto
+512000,NUTRITION GASTOS PROPIOS,Mariano Cassinelli,Gastos Propios Nutrition,K2,Producto
+512015,ENSOY,Mariano Cassinelli,Carlos Gavilano,K2,Producto
+512020,ENSOY DB,Mariano Cassinelli,Carlos Gavilano,K2,Producto
+512025,ENSOY NIñOS,Mariano Cassinelli,Carlos Gavilano,K2,Producto
+512030,ENSOY PROTEINAS,Mariano Cassinelli,Carlos Gavilano,K2,Producto
+512035,SUGAFOR,Mariano Cassinelli,Carlos Gavilano,K2,Producto
+512045,BOLSA DE LANZAMIENTOS NUTRITION,Mariano Cassinelli,Carlos Gavilano,K2,Producto
+507030,CARENCIL,Lourdes Tello,Aldo Villanueva,Drugtech,Producto
+507075,ZATRIX,Lourdes Tello,Aldo Villanueva,Drugtech,Producto
+507095,DORMEX,Lourdes Tello,Aldo Villanueva,Drugtech,Producto
+507105,LAFIGIN,Lourdes Tello,Aldo Villanueva,Drugtech,Producto
+507140,BIVADIN,Lourdes Tello,Aldo Villanueva,Drugtech,Producto
+507155,NOVISER,Lourdes Tello,Aldo Villanueva,Drugtech,Producto
+507200,QUETIDIN,Lourdes Tello,Aldo Villanueva,Drugtech,Producto
+507215,MIMETIX,Lourdes Tello,Aldo Villanueva,Drugtech,Producto
+507235,RESOTYL,Lourdes Tello,Aldo Villanueva,Drugtech,Producto
+507250,BIOPSOL,Lourdes Tello,Aldo Villanueva,Drugtech,Producto
+507265,HARDAL,Lourdes Tello,Aldo Villanueva,Drugtech,Producto
+507285,SUMIGRAN,Lourdes Tello,Aldo Villanueva,Drugtech,Producto
+507315,DARPOTT,Lourdes Tello,Aldo Villanueva,Drugtech,Producto
+507320,TOPREL,Lourdes Tello,Aldo Villanueva,Drugtech,Producto
+507345,DINEGAL,Lourdes Tello,Aldo Villanueva,Drugtech,Producto
+507125,PROD.NVOS.PPTO.DRUGTECH,Lourdes Tello,Bolsa de Nuevos Drugtech,Drugtech,Producto
+507090,DINEURIN,Lourdes Tello,Descontinuados Drugtech,Drugtech,Producto
+507035,CEBROCAL,Lourdes Tello,Ericka Montoya,Drugtech,Producto
+507060,NIMOFAR PLUS,Lourdes Tello,Ericka Montoya,Drugtech,Producto
+507110,PAROXET,Lourdes Tello,Ericka Montoya,Drugtech,Producto
+507145,OXICODAL,Lourdes Tello,Ericka Montoya,Drugtech,Producto
+507150,AZYMOL,Lourdes Tello,Ericka Montoya,Drugtech,Producto
+507185,DENORAL,Lourdes Tello,Ericka Montoya,Drugtech,Producto
+507205,PASSIVA,Lourdes Tello,Ericka Montoya,Drugtech,Producto
+507275,ELEVAL,Lourdes Tello,Ericka Montoya,Drugtech,Producto
+507280,ARADIX,Lourdes Tello,Ericka Montoya,Drugtech,Producto
+507290,KOPODEX,Lourdes Tello,Ericka Montoya,Drugtech,Producto
+507295,PREGOBIN,Lourdes Tello,Ericka Montoya,Drugtech,Producto
+507305,DOXET,Lourdes Tello,Ericka Montoya,Drugtech,Producto
+507310,VALNOC,Lourdes Tello,Ericka Montoya,Drugtech,Producto
+507350,DEXIDE,Lourdes Tello,Ericka Montoya,Drugtech,Producto
+507355,BETASERC,Lourdes Tello,Ericka Montoya,Drugtech,Producto
+507360,DEPAKENE,Lourdes Tello,Ericka Montoya,Drugtech,Producto
+507365,LEXAPRO,Lourdes Tello,Ericka Montoya,Drugtech,Producto
+507370,VALCOTE,Lourdes Tello,Ericka Montoya,Drugtech,Producto
+507375,LUVOX,Lourdes Tello,Ericka Montoya,Drugtech,Producto
+50702,DRUGTECH GASTOS PROPIOS,Lourdes Tello,Gastos Propios Drugtech,Drugtech,Producto
+507050,EPIVAL,Lourdes Tello,Descontinuados Drugtech,Drugtech,Producto
+507085,CIBLEX,Lourdes Tello,Descontinuados Drugtech,Drugtech,Producto
+507120,PROLEXA,Lourdes Tello,Descontinuados Drugtech,Drugtech,Producto
+507190,HYDERTAN,Lourdes Tello,Descontinuados Drugtech,Drugtech,Producto
+507195,NOCTURA TAB,Lourdes Tello,Descontinuados Drugtech,Drugtech,Producto
+507240,PROLIX,Lourdes Tello,Descontinuados Drugtech,Drugtech,Producto
+507270,SEDATIVAL,Lourdes Tello,Otros Drugtech,Drugtech,Producto
+508105,BOLSA DE LANZAMIENTOS CARDIOPHARM,Lourdes Tello,Bolsa Nuevos Cardiopharm,Cardiopharm,Producto
+508000,CARDIOMETABOLICS GASTOS PROPIOS,Lourdes Tello,Gastos Propios Cardiopharm,Cardiopharm,Producto
+508005,ACERDIL,Lourdes Tello,Elys Torres,Cardiopharm,Producto
+508020,BETACAR,Lourdes Tello,Elys Torres,Cardiopharm,Producto
+508030,BLOTRIL,Lourdes Tello,Elys Torres,Cardiopharm,Producto
+508035,CARDIOPLUS,Lourdes Tello,Elys Torres,Cardiopharm,Producto
+508040,CLOVEXIL,Lourdes Tello,Elys Torres,Cardiopharm,Producto
+508045,CORDIAX,Lourdes Tello,Elys Torres,Cardiopharm,Producto
+508050,CORODIN,Lourdes Tello,Elys Torres,Cardiopharm,Producto
+508065,EZATOR,Lourdes Tello,Elys Torres,Cardiopharm,Producto
+508080,HIPOVER,Lourdes Tello,Elys Torres,Cardiopharm,Producto
+508085,LIPOTROPIC,Lourdes Tello,Elys Torres,Cardiopharm,Producto
+508090,NITROPACK,Lourdes Tello,Elys Torres,Cardiopharm,Producto
+508110,RITMOCOR,Lourdes Tello,Elys Torres,Cardiopharm,Producto
+508120,TIAZAC,Lourdes Tello,Elys Torres,Cardiopharm,Producto
+508125,ANFIBOL,Lourdes Tello,Elys Torres,Cardiopharm,Producto
+508010,AMLOC,Lourdes Tello,Luis Cieza,Cardiopharm,Producto
+508015,AVAN,Lourdes Tello,Luis Cieza,Cardiopharm,Producto
+508055,CRESADEX,Lourdes Tello,Luis Cieza,Cardiopharm,Producto
+508070,GLIBEMET,Lourdes Tello,Luis Cieza,Cardiopharm,Producto
+508075,GREXA,Lourdes Tello,Luis Cieza,Cardiopharm,Producto
+508095,NORMOLIP,Lourdes Tello,Luis Cieza,Cardiopharm,Producto
+508100,PROBERTAN,Lourdes Tello,Luis Cieza,Cardiopharm,Producto
+508115,SIMIBE,Lourdes Tello,Luis Cieza,Cardiopharm,Producto
+508130,ACTOS,Lourdes Tello,Luis Cieza,Cardiopharm,Producto
+508135,CONTROLIP,Lourdes Tello,Luis Cieza,Cardiopharm,Producto
+508140,BLOPRESS,Lourdes Tello,Luis Cieza,Cardiopharm,Producto
+508145,ISOPTIN,Lourdes Tello,Luis Cieza,Cardiopharm,Producto
+508150,TARKA,Lourdes Tello,Luis Cieza,Cardiopharm,Producto
+508155,RYTMONORM,Lourdes Tello,Luis Cieza,Cardiopharm,Producto
+508025,BLODARTAN,Lourdes Tello,Otros Cardiopharm,Cardiopharm,Producto
+508060,DIAGLINEX,Lourdes Tello,Descontinuados Cardiopharm,Cardiopharm,Producto
+504020,CICLOMEX,Lia Fiestas,Adriana Fernandez,Gynopharm,Producto
+504030,DIXI 35,Lia Fiestas,Adriana Fernandez,Gynopharm,Producto
+504045,FUNZAL TWIN,Lia Fiestas,Adriana Fernandez,Gynopharm,Producto
+504050,MIZONASE,Lia Fiestas,Adriana Fernandez,Gynopharm,Producto
+504055,TINOX,Lia Fiestas,Adriana Fernandez,Gynopharm,Producto
+504060,ZIMAQUIN,Lia Fiestas,Adriana Fernandez,Gynopharm,Producto
+504110,PROGENDO,Lia Fiestas,Adriana Fernandez,Gynopharm,Producto
+504140,VOLUSOL,Lia Fiestas,Adriana Fernandez,Gynopharm,Producto
+504150,FEMIGEN,Lia Fiestas,Adriana Fernandez,Gynopharm,Producto
+504170,EVANGELINE,Lia Fiestas,Adriana Fernandez,Gynopharm,Producto
+504180,NOFERTYL,Lia Fiestas,Adriana Fernandez,Gynopharm,Producto
+504075,M.PPTO GYNOPHARM,Lia Fiestas,Bolsa de Nuevos Gynopharm,Gynopharm,Producto
+504000,GYNOPHARM LF G.P.,Lia Fiestas,Gastos Propios Gynopharm,Gynopharm,Producto
+504005,VI-SYNERAL PRONATAL,Lia Fiestas,Juan Rivera,Gynopharm,Producto
+504015,CLIMATROL,Lia Fiestas,Juan Rivera,Gynopharm,Producto
+504025,CICLIDON,Lia Fiestas,Juan Rivera,Gynopharm,Producto
+504035,ARLETTE,Lia Fiestas,Juan Rivera,Gynopharm,Producto
+504040,EGOGYN,Lia Fiestas,Juan Rivera,Gynopharm,Producto
+504065,FEMELLE,Lia Fiestas,Juan Rivera,Gynopharm,Producto
+504090,CLUVAX,Lia Fiestas,Juan Rivera,Gynopharm,Producto
+504115,CLIMATROL E,Lia Fiestas,Juan Rivera,Gynopharm,Producto
+504120,TESTOVITAL,Lia Fiestas,Juan Rivera,Gynopharm,Producto
+504145,CLINOMAT,Lia Fiestas,Juan Rivera,Gynopharm,Producto
+504160,VACIDOX,Lia Fiestas,Juan Rivera,Gynopharm,Producto
+504175,BELLAFACE,Lia Fiestas,Juan Rivera,Gynopharm,Producto
+504185,GYNCLOX,Lia Fiestas,Juan Rivera,Gynopharm,Producto
+504190,GYNFLU,Lia Fiestas,Juan Rivera,Gynopharm,Producto
+504080,GINODERM,Lia Fiestas,Descontinuados Gynopharm,Gynopharm,Producto
+504125,MILISER,Lia Fiestas,Otros Gynopharm,Gynopharm,Producto
+504130,GINOFLOR,Lia Fiestas,Otros Gynopharm,Gynopharm,Producto
+504135,GYNOESTRIOL,Lia Fiestas,Otros Gynopharm,Gynopharm,Producto
+504155,CABERNEX,Lia Fiestas,Otros Gynopharm,Gynopharm,Producto
+526000,GTOS PROPIOS BIOMEDICAL,Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526005,M.NUEVAS S.T.(PARA PRESUPUESTO),Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526010,BIO SIDUS (BIOFERON/HEMAX/NEUTROMAX),Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526015,LINFONEX,Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526020,CALEOBROL,Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526025,ZEITE,Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526030,GONAPEPTYL,Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526035,ANEFER SUCROSE,Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526040,VORIZOL,Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526045,T-INMUN CAP,Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526050,SIROTAN,Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526055,LOSIRAL,Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526060,TRANSPORINA,Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526065,BIOGRIP,Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526070,ANEFER IV,Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526075,CLOTINAB,Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526080,INSUTROP,Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526085,BLASTOFERON,Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526095,RAPAMUNE,Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526100,REDITUX,Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526105,LEKARNA,Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526110,OXYDONNA,Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526115,PANEMIA,Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+526999,MUESTRAS S.T.,Jorge Aguayo,Wilfredo Colunga,Biomedical,Producto
+527000,MEDIDERMGTOS PROPIOS,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527005,TERFEX,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527010,ALIZAR,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527015,AQUASOLA,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527020,DESTOLIT,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527025,LOPECIA,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527040,NIOFEN,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527045,TRILOXAR,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527050,VADIRAL,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527055,MICORAL,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527060,EMOLAN,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527065,PN PPTO GPO 27,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527070,FUNGEUM,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527075,DOXIAC,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527080,ALERSONA,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527085,GANAXIN,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527090,APOMOR,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527095,TECNOCELL,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527100,T-INMUN UNGñENTO,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527105,PIPLEX,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527110,KAONOL,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527115,CYCLADIN,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527120,MEDIGLOS,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527125,REAGE,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527130,PREDIMED,César Cerpa,Cesar Cerpa,Mediderm,Producto
+527135,PILOCREX,César Cerpa,Cesar Cerpa,Mediderm,Producto
+528000,Atlas Gastos Propios,Lia Fiestas,Vacante Atlas,Atlas,Producto
+528005,Nvos. Presup. Atlas,Lia Fiestas,Vacante Atlas,Atlas,Producto
+528010,DORLAMIDA,Lia Fiestas,Vacante Atlas,Atlas,Producto
+528015,TOBRATLAS,Lia Fiestas,Vacante Atlas,Atlas,Producto
+528020,ERITREARS,Lia Fiestas,Vacante Atlas,Atlas,Producto
+528025,LATLAS,Lia Fiestas,Vacante Atlas,Atlas,Producto
+528030,EPIOFTAL,Lia Fiestas,Vacante Atlas,Atlas,Producto
+528035,CARTEOF,Lia Fiestas,Vacante Atlas,Atlas,Producto
+528040,PREDFINA,Lia Fiestas,Vacante Atlas,Atlas,Producto
+528045,SULOPRED,Lia Fiestas,Vacante Atlas,Atlas,Producto
+528050,NEWLAG,Lia Fiestas,Vacante Atlas,Atlas,Producto
+528055,TIMOBRIM,Lia Fiestas,Vacante Atlas,Atlas,Producto
+528060,LATIER,Lia Fiestas,Vacante Atlas,Atlas,Producto
+528065,BLEFASKIN,Lia Fiestas,Vacante Atlas,Atlas,Producto
+528070,GLAUNOT,Lia Fiestas,Vacante Atlas,Atlas,Producto
+532000,LIA Gastos Propios (Marcas),Carlos Martin de Rossi,Alfredo Martin de Rossi,LIA,Producto
+532005,MEROEFECTIL,Carlos Martin de Rossi,Alfredo Martin de Rossi,LIA,Producto
+532010,AMPI-BIS PLUS,Carlos Martin de Rossi,Alfredo Martin de Rossi,LIA,Producto
+532015,HIDROCORTISONA,Carlos Martin de Rossi,Alfredo Martin de Rossi,LIA,Producto
+532020,ENOXANORTH,Carlos Martin de Rossi,Alfredo Martin de Rossi,LIA,Producto
+532025,HEPARINA,Carlos Martin de Rossi,Alfredo Martin de Rossi,LIA,Producto
+532030,PROD.NVOS.PRES.LIA,Carlos Martin de Rossi,Alfredo Martin de Rossi,LIA,Producto
+532035,SOBRIUS,Carlos Martin de Rossi,Alfredo Martin de Rossi,LIA,Producto
+532040,PIPERACILINA-TAZOBACTAM,Carlos Martin de Rossi,Alfredo Martin de Rossi,LIA,Producto
+532045,REMIFENTANILO,Carlos Martin de Rossi,Alfredo Martin de Rossi,LIA,Producto
+532050,BROMURO DE ROCURONIO,Carlos Martin de Rossi,Alfredo Martin de Rossi,LIA,Producto
+515000,GASTOS PROPIOS LAFRANCOL EN LF,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515005,AMDIPIN,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515010,ATELIT,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515015,ATORLIP,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515025,BONDIGEST,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515030,CAPRINE,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515035,CETIRAX,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515040,CIMOXEN,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515045,CLASINE,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515050,DISGRASIL,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515055,EROXIM,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515060,FLUCISTEIN,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515065,FUNIDE,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515070,FUZOL,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515075,KAZIDE,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515080,KINE,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515085,MELOCAM,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515090,NEDOX,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515095,OGAL,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515100,OSFICAR,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515105,POSTDAY,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515110,SALUFIT,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515115,SEVEDOL,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515120,TROMIX,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515125,VALTAN,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515130,YAX,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto
+515135,ATELIT,César Cerpa,Cesar Cerpa LAF,Lafrancol,Producto

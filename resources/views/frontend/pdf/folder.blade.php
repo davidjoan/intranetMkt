@@ -184,19 +184,19 @@
                                     <table>
                                         <tr>
                                             <td><b>Gerente División:</b></td>
-                                            <td  style="border: 1px solid black;">@if ($expense->approval_1 == '1')
-                                                    OK @else &nbsp;&nbsp;
-                                                @endif</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Control de Gestión:</b></td>
                                             <td  style="border: 1px solid black;">@if ($expense->approval_2 == '1')
                                                     OK @else &nbsp;&nbsp;
                                                 @endif</td>
                                         </tr>
                                         <tr>
-                                            <td><b>Gerencia General:</b></td>
+                                            <td><b>Control de Gestión:</b></td>
                                             <td  style="border: 1px solid black;">@if ($expense->approval_3 == '1')
+                                                    OK @else &nbsp;&nbsp;
+                                                @endif</td>
+                                        </tr>
+                                        <tr>
+                                            <td><b>Gerencia General:</b></td>
+                                            <td  style="border: 1px solid black;">@if ($expense->approval_4 == '1')
                                                     OK @else &nbsp;&nbsp;
                                                 @endif</td>
                                         </tr>

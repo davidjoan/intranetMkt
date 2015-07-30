@@ -23,7 +23,9 @@ class DivisionsTableSeeder extends \Illuminate\Database\Seeder {
         \IntranetMkt\Models\Division::create(array('code' => 'GEN', 'name' => 'Genericos'));
         \IntranetMkt\Models\Division::create(array('code' => 'BIO', 'name' => 'Biomedical'));
         \IntranetMkt\Models\Division::create(array('code' => 'LIA', 'name' => 'LIA'));
-        \IntranetMkt\Models\Division::create(array('code' => 'COR', 'name' => 'Corporación'));
+        \IntranetMkt\Models\Division::create(array('code' => 'COR', 'name' => 'Corporacion'));
+        \IntranetMkt\Models\Division::create(array('code' => 'ATL', 'name' => 'Atlas'));
+
 
 
 

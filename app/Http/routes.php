@@ -51,7 +51,20 @@ Route::group(array('prefix' => 'frontend', 'middleware' => 'auth.basic'), functi
     Route::get('gastos/exportar_campana_xls/{expense_id}/{file_format_id}', 'Frontend\HomeController@export_campaign_xls');
     Route::get('gastos/exportar_atencion_xls/{expense_id}/{file_format_id}', 'Frontend\HomeController@export_attention_xls');
 
+    Route::get('aprobar/{expense_code}', 'Frontend\HomeController@aprobar');
+    Route::get('desaprobar/{expense_code}', 'Frontend\HomeController@desaprobar');
+
+    Route::get('cost_centers/{division_id}', 'Frontend\HomeController@cost_center');
+    Route::get('/expense/cost_centers/{expense_id}', 'Frontend\HomeController@cost_center_by_expense');
+
 
     Route::get('gastos/reporte/{expense_id}', 'Frontend\HomeController@report');
+
+    Route::post('upload_format', 'Frontend\HomeController@upload');
+
+    Route::get('cost_center/add/{expense_id}/{cost_center_id}', 'Frontend\HomeController@agregar_centro_costo');
+    Route::get('cost_center/delete/{expense_amount_id}', 'Frontend\HomeController@eliminar_centro_costo');
+
+
 
 });

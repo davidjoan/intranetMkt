@@ -6,7 +6,7 @@ class CostCenter extends Model {
 
     protected $table = 'cost_centers';
 
-    protected $fillable = ['code','name', 'description'];
+    protected $fillable = ['division_id','code','name','responsible','manager','cost_center_type', 'description'];
 
 
 }

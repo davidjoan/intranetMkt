@@ -32,7 +32,17 @@ class UsersTableSeeder extends \Illuminate\Database\Seeder {
                     'password' => Hash::make('1234')
                 ));
 
-                $data->divisions()->attach($division->id);
+                if(in_array($rol->id, array(1,2,3,4))){
+                    $data->divisions()->attach($division->id);
+
+                }else{
+                    $divisions = \IntranetMkt\Models\Division::all()->sortBy('name');
+                    foreach($divisions as $temp){
+                        $data->divisions()->attach($temp->id);
+                    }
+                }
+
+
             }
         });
     }

@@ -16,6 +16,9 @@ class DatabaseSeeder extends Seeder {
 
         Model::unguard();
 
+        $this->call('DivisionsTableSeeder');
+
+        $this->command->info('Divisions Table Seeded!');
 
         $this->call('CostCentersTableSeeder');
 
@@ -39,9 +42,6 @@ class DatabaseSeeder extends Seeder {
 
         $this->command->info('Roles Table Seeded!');
 
-        $this->call('DivisionsTableSeeder');
-
-        $this->command->info('Divisions Table Seeded!');
 
         $this->call('UsersTableSeeder');
 

@@ -8,7 +8,7 @@ class Expense extends Model {
 
     protected $fillable = ['expense_type_id', 'user_id','division_id','application_date','code','name',
                             'description','approval_a','approval_b','approval_c','approval_d','approval_e',
-                            'total_amount','active'];
+                            'total_amount','estimated_amount','active'];
 
     public function expense_type()
     {
@@ -49,5 +49,17 @@ class Expense extends Model {
     {
         return $this->hasOne('IntranetMkt\Models\SponsorshipApplication', 'expense_id','id');
     }
+
+    public function expense_details()
+    {
+        return $this->hasMany('IntranetMkt\Models\ExpenseDetail', 'expense_id','id');
+    }
+
+    public function expense_amounts()
+    {
+        return $this->hasMany('IntranetMkt\Models\ExpenseAmount', 'expense_id','id');
+    }
+
+
 
 }

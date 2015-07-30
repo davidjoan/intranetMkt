@@ -9,6 +9,7 @@ use IntranetMkt\Models\Division;
 use IntranetMkt\Models\Expense;
 use Carbon;
 use DB;
+use IntranetMkt\User;
 
 class ExpenseController extends Controller {
 
@@ -39,16 +40,32 @@ class ExpenseController extends Controller {
 
         $expenses =  $this->expense->newQuery()->with('division','user','expense_type');
 
+        $user = User::find($user_id);
+
+        if(in_array($user->role_id, array(1,2,3))){
+                $expenses->where('user_id','=', $user_id);
+            $expenses->where('approval_4','=', '0');
+
+        }elseif(in_array($user->role_id, array(4))){ //GD
+            $expenses->where('approval_1','=', '1');
+
+            foreach($user->divisions() as $division){
+                $expenses->where('division_id','=', $division->id);
+
+            }
+        }elseif(in_array($user->role_id, array(5))){ //CG
+
+            $expenses->where('approval_2','=', '1');
+        }elseif(in_array($user->role_id, array(6))){ //CG
+            $expenses->where('approval_3','=', '1');
+        }
+
         if(!(is_null($division_id) || $division_id == '')){
             $expenses->where('division_id','=', $division_id);
         }
 
         if(!(is_null($expense_type_id) || $expense_type_id == '')){
             $expenses->where('expense_type_id','=', $expense_type_id);
-        }
-
-        if(!(is_null($user_id) || $user_id == '')){
-            $expenses->where('user_id','=', $user_id);
         }
 
 
@@ -96,6 +113,7 @@ class ExpenseController extends Controller {
         $approval_5        = $request->get('approval_5',0,true);
         $total_amount      = $request->get('total_amount',0.0,true);
         $active            = $request->get('active',1,true);
+        $estimated_amount  = $request->get('estimated_amount',null,true);
 
         $last_insert_id = DB::getPdo()->lastInsertId();
 
@@ -116,6 +134,7 @@ class ExpenseController extends Controller {
         $expense->approval_4       = $approval_4;
         $expense->approval_5       = $approval_5;
         $expense->total_amount     = $total_amount;
+        $expense->estimated_amount = $estimated_amount;
         $expense->active           = $active;
 
         $expense->save();
@@ -175,7 +194,8 @@ class ExpenseController extends Controller {
         $approval_3        = $request->get('approval_3',null,true);
         $approval_4        = $request->get('approval_4',null,true);
         $approval_5        = $request->get('approval_5',null,true);
-        $total_amount      = $request->get('total_amunt',null,true);
+        $total_amount      = $request->get('total_amount',null,true);
+        $estimated_amount  = $request->get('estimated_amount',null,true);
         $active            = $request->get('active',null,true);
 
 
@@ -231,6 +251,10 @@ class ExpenseController extends Controller {
             $expense->total_amount = $total_amount;
         }
 
+        if(!is_null($estimated_amount)) {
+            $expense->estimated_amount = $estimated_amount;
+        }
+
         if(!is_null($active)) {
             $expense->active = $active;
         }
@@ -253,6 +277,8 @@ class ExpenseController extends Controller {
         DB::table('entertainments')->where('expense_id', '=', $id)->delete();
         DB::table('medical_campaigns')->where('expense_id', '=', $id)->delete();
         DB::table('request_attentions')->where('expense_id', '=', $id)->delete();
+        DB::table('expense_details')->where('expense_id', '=', $id)->delete();
+        DB::table('expense_amounts')->where('expense_id', '=', $id)->delete();
         $this->expense->findOrFail($id)->delete();
 	}
 
