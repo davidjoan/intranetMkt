@@ -41,7 +41,7 @@ Route::group(array('prefix' => 'frontend', 'middleware' => 'auth.basic'), functi
 
     Route::get('home', 'Frontend\HomeController@index');
     Route::get('gastos', 'Frontend\HomeController@gastos');
-    Route::get('formatos', 'Frontend\HomeController@formatos');
+    Route::get('presupuestos', 'Frontend\HomeController@presupuestos');
     Route::get('detalle/{id}', 'Frontend\HomeController@detalle');
     Route::get('nuevo_gasto', 'Frontend\HomeController@nuevo_gasto');
     Route::get('gastos/portada/{expense_id}', 'Frontend\HomeController@portada');

@@ -108,11 +108,10 @@
         <section class="sidebar">
             <!-- Sidebar user panel -->
             <div class="user-panel">
-                <div class="pull-left image">
-                    <img src="{{ (Auth::user()->photo == '')?'/images/avatar.png':'/uploads/user/'.Auth::user()->photo  }}" class="img-circle" alt="User Image" />
-                </div>
                 <div class="pull-left info">
                     <p>{{ Auth::user()->name }}</p>
+                    <p>{{ Auth::user()->role->name }}</p>
+
 
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
@@ -122,9 +121,7 @@
                 <li class="header">MENU PRINCIPAL</li>
                 <li><a href="{{ url('/frontend/home') }}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>
                 <li><a href="{{ url('/frontend/gastos') }}"><i class="ion ion-fw ion-bag"></i> Registro de Gastos</a></li>
-
-
-                <li><a href="{{ url('/frontend/formatos') }}"><i class="fa fa-fw fa-bar-chart-o"></i> Formatos</a></li>
+                <li><a href="{{ url('/frontend/presupuestos') }}"><i class="fa fa-fw fa-money"></i> Presupuestos</a></li>
 
             </ul>
         </section>

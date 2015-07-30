@@ -99,7 +99,7 @@
             <small>Detalle de gasto</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            <li><a href="{{ url('/frontend/home') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
             <li><a href="{{ url('/frontend/gastos') }}"><i class="fa fa-medkit"></i> Gastos</a></li>
             <li class="active"><i class="fa fa-calendar"></i> Nuevo Gasto</li>
         </ol>

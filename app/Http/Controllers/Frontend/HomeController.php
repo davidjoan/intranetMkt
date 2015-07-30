@@ -303,9 +303,9 @@ class HomeController extends Controller{
         return view('frontend.nuevo_gasto', compact('expense_types','user'));
     }
 
-    public function formatos()
+    public function presupuestos()
     {
-        return view('frontend.formatos');
+        return view('frontend.presupuestos');
     }
 
 

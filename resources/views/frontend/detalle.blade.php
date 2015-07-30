@@ -128,7 +128,7 @@
             <small>Detalle de Gasto</small>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="{{ url('/') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
+            <li><a href="{{ url('/frontend/home') }}"><i class="fa fa-dashboard"></i> Inicio</a></li>
             <li><a href="{{ url('/frontend/gastos') }}"><i class="fa fa-medkit"></i> Gastos</a></li>
             <li class="active"><i class="fa fa-calendar"></i> Detalle {{ $expense->name }}</li>
         </ol>
@@ -422,7 +422,7 @@
 
                         <table class="table table-bordered table-striped">
                             <tbody><tr>
-                                <th style="width: 10px">#</th>
+                                <th style="width: 10px">Código</th>
                                 <th>Centro de Costo</th>
                                 <th>Distribución</th>
                                 <th style="width: 40px">Porcentaje</th>
@@ -434,7 +434,7 @@
                             <tr>
                                 <td>
                                     <?php  $acomulado += $expense_amount->percent ?>
-                                    {{ $key+1 }}.</td>
+                                        {{$expense_amount->cost_center->code }}</td>
                                 <td>{{ $expense_amount->cost_center->name }}</td>
                                 <td>
                                     <div class="progress progress-xs">
