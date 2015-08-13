@@ -53,6 +53,38 @@
 
 
             });
+            $(".typeahead2").typeahead({
+                updater: function(selection){
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/frontend/cost_center/add/"+expense_id+"/"+map[selection],
+                        success: function(data) {
+                            console.log(data);
+                        }
+                    });
+
+                    return selection;
+
+                },
+
+                source: function (query, process) {
+                    // var $this = this; //get a reference to the typeahead object
+                    return $.get('/frontend/cost_centers/' + division_id+'?query='+query,
+                            function (data) {
+                                //console.log(data);
+                                var options = [];
+                                map = {}; //replace any existing map attr with an empty object
+                                for (i = 0; i < data.length; i++) {
+                                    console.log(data[i]);
+                                    options.push(data[i].name);
+                                    map[data[i].name] = data[i].id;
+                                }
+                                return process(options);
+                            }, 'json');
+                }
+            });
+
             $(".typeahead").typeahead({
                 updater: function(selection){
 
@@ -943,14 +975,14 @@
 
                                     <div class="form-group">
                                         <label for="cost_center">Centro de Costo</label>
-                                        <input type="text" class="form-control " name="cost_center" id="cost_center" required/>
+                                        <input type="text" class="form-control typeahead2" name="cost_center" id="cost_center" required/>
                                     </div>
 
-
+<!--
                                     <div class="form-group">
                                         <label for="book_account">Cuenta Contable</label>
                                             <input type="text" class="form-control " name="book_account" id="book_account" required/>
-                                    </div>
+                                    </div>-->
 
                                     <div class="checkbox">
                                         <label for="active">

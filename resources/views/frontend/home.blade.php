@@ -1,10 +1,138 @@
 @extends('frontend.app')
 
+@section('includes.css')
+    @parent
+    <link href="/plugins/datatables/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="/plugins/datatables/extensions/TableTools/css/dataTables.tableTools.css" rel="stylesheet" type="text/css" />
+@stop
 
 @section('includes.js')
     @parent
 
-@stop
+    <script src="/plugins/moment/moment.js" type="text/javascript"></script>
+    <script src="/plugins/datatables/jquery.dataTables.js" type="text/javascript"></script>
+    <script src="/plugins/datatables/extensions/TableTools/js/dataTables.tableTools.js" type="text/javascript"></script>
+    <script src="/plugins/datatables/dataTables.bootstrap.js" type="text/javascript"></script>
+    <script type="text/javascript" class="init">
+
+        $(document).ready(function() {
+            //moment.locale('es-PE');
+
+            var table = $('#example').dataTable({
+                'footerCallback': function ( row, data, start, end, display ) {
+                    var api = this.api(), data;
+                    console.log(api);
+
+                    // Remove the formatting to get integer data for summation
+                    var intVal = function ( i ) {
+                        return typeof i === 'string' ?
+                        i.replace(/[\$,]/g, '')*1 :
+                                typeof i === 'number' ?
+                                        i : 0;
+                    };
+
+                    // Total over all pages
+                    total = api
+                            .column( 5 )
+                            .data()
+                            .reduce( function (a, b) {
+                                return intVal(a) + intVal(b);
+                            } );
+
+                    // Total over this page
+                    pageTotal = api
+                            .column( 5, { page: 'current'} )
+                            .data()
+                            .reduce( function (a, b) {
+                                return intVal(a) + intVal(b);
+                            }, 0 );
+
+                    // Update footer
+                    $( api.column( 5 ).footer() ).html(
+                            'S/.'+pageTotal
+                    );
+                },
+                'processing': false,
+                'serverSide': false,
+                'language': {
+                    'url': '/json/i18n/Spanish.json'
+                },
+                "iDisplayLength": 20,
+                'order': [[2, 'asc']]
+            });
+
+            // table.fnFilter("Visitado",8);
+
+            $('#filter_category').change( function() {
+                table.fnFilter(this.value,4);
+            });
+
+            $('#filter_expense_type').change( function() {
+                table.fnFilter(this.value,0);
+            });
+
+            $('#example tbody').on( 'click', 'tr', function () {
+                $(this).toggleClass('selected');
+            } );
+
+            $('#aprobar').click( function () {
+                $( ".selected" ).each(function( index ) {
+                    console.log($( this ).children().eq(1).text() );
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/frontend/aprobar/"+$( this ).children().eq(1).text(),
+                        success: function(data) {
+                            console.log(data);
+                            if(data == 'ok'){
+                                toastr.success('Su Gasto '+$( this ).children().eq(1).text()+'se aprobo correctamente!');
+                            }else{
+                                toastr.success('Su Gasto '+$( this ).children().eq(1).text()+'no se aprobo porque no tiene V.V. anterior!');
+
+                            }
+
+
+                        }
+                    });
+                });
+
+                setTimeout(function(){
+                    window.location.href = '/frontend/home';
+                    return false;
+                },3000);
+
+            } );
+
+            $('#desaprobar').click( function () {
+                $( ".selected" ).each(function( index ) {
+                    console.log($( this ).children().eq(1).text() );
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/frontend/desaprobar/"+$( this ).children().eq(1).text(),
+                        success: function(data) {
+                            console.log(data);
+                            if(data == 'ok'){
+                                toastr.success ('Su Gasto '+$( this ).children().eq(1).text()+'se desaprobo correctamente!');
+                            }else{
+                                toastr.error('Su Gasto '+$( this ).children().eq(1).text()+'no se desaprobo porque ya tiene V.V. posterior!');
+
+                            }
+
+                        }
+                    });
+                });
+
+                setTimeout(function(){
+                    window.location.href = '/frontend/home';
+                    return false;
+                },3000);
+
+            } );
+        });
+    </script>
+    @stop
+
 
 @section('header')
     <!-- Content Header (Page header) -->
@@ -92,37 +220,51 @@
     </div><!-- /.row -->
 
 
-
     <div class="row">
-        <div class="col-lg-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> # Gastos por tipo</h3>
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title"><i class="fa fa-medkit"></i> Resumen de Gastos</h3>
                 </div>
-                <div class="panel-body">
-                    <div id="morris-donut-visit-status"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Gastos por mes</h3>
-                </div>
-                <div class="panel-body">
-                    <div id="morris-donut-client-place"></div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title"><i class="fa fa-long-arrow-right fa-fw"></i> Gastos por C.C.</h3>
-                </div>
-                <div class="panel-body">
-                    <div id="morris-donut-client-type"></div>
-                </div>
-            </div>
+                <div class="box-body table-responsive">
+                    <table id="example" class="display table table-bordered table-striped center-table">
+                        <thead>
+                        <tr>
+                            <th>Mes</th>
+                            <th>Rol</th>
+                            <th>Usuario</th>
+                            <th>Cuenta</th>
+                            <th>Tipo</th>
+                            <th>Monto</th>
+                            <th>Presupuesto</th>
+                            <th>Diferencia</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th colspan="5"></th>
+                                <th style="text-align:right">Total:</th>
+                                <th colspan="2"></th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                        @foreach($reports as $report)
+                            <tr>
+                                <td>{{ date('F', mktime(0, 0, 0, $report->mes, 10)) }}</td>
+                                <td>{{ $report->rol }}</td>
+                                <td>{{ $report->usuario }}</td>
+                                <td>{{ $report->cuenta }}</td>
+                                <td>{{ $report->tipo }}</td>
+                                <td>{{ $report->estimado }}</td>
+                                <td>{{ $report->presupuesto }}</td>
+                                <td>{{ $report->diferencia }}</td>
+
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div><!-- /.box-body -->
+            </div><!-- /.box -->
         </div>
     </div>
 

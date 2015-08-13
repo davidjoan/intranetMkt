@@ -9,6 +9,7 @@ use IntranetMkt\Models\BuyOrder;
 use Carbon;
 use IntranetMkt\Models\Expense;
 use DB;
+use IntranetMkt\Models\ExpenseType;
 
 class BuyOrderController extends Controller {
 
@@ -65,7 +66,7 @@ class BuyOrderController extends Controller {
         $file_format_id    = $request->get('file_format_id',null,true);
         $expense_id        = $request->get('expense_id',null,true);
         $cost_center       = $request->get('cost_center',null,true);
-        $book_account      = $request->get('book_account',null,true);
+        //$book_account      = $request->get('book_account',null,true);
         $code              = $request->get('code',null,true);
         $delivery_date     = $request->get('delivery_date',null,true);
         $inventory         = $request->get('inventory',0,true);
@@ -78,11 +79,12 @@ class BuyOrderController extends Controller {
         $destination       = $request->get('destination',null,true);
 
         $buyOrder = new BuyOrder();
-
+        $expense = Expense::find($expense_id);
+        $expenseType = ExpenseType::find($expense->expense_type_id);
         $buyOrder->file_format_id  = $file_format_id;
         $buyOrder->expense_id      = $expense_id;
         $buyOrder->cost_center     = $cost_center;
-        $buyOrder->book_account    = $book_account;
+        $buyOrder->book_account    = $expenseType->book_account->code;
         $buyOrder->code            = $code;
         $buyOrder->delivery_date   = Carbon::createFromFormat('d/m/Y',$delivery_date);
         $buyOrder->inventory       = ($inventory == 'on')?1:0;
@@ -106,7 +108,7 @@ class BuyOrderController extends Controller {
             $total += $data->estimated_value;
         }
 
-        $expense = Expense::find($expense_id);
+
 
         $expense->total_amount = $total;
         $expense->save();

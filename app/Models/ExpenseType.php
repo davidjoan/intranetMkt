@@ -8,6 +8,11 @@ class ExpenseType extends Model {
 
     protected $fillable = ['book_account_id','code','name','description'];
 
+    public function book_account()
+    {
+        return $this->belongsTo('IntranetMkt\Models\BookAccount');
+    }
+
     public function file_formats()
     {
         return $this->belongsToMany('IntranetMkt\Models\FileFormat');

@@ -49,8 +49,20 @@ class HomeController extends Controller{
         $total_amount   =  number_format(DB::table('expenses')->where('user_id','=',$user->id)->sum('total_amount'), 2, '.', ',');
         $total_expenses =  DB::table('expenses')->where('user_id','=',$user->id)->count('id');
 
+        $reports = DB::select('select
+MONTH(e.application_date) as mes,
+r.name as rol,  u.name as usuario, ba.code as cuenta, et.name as tipo,
+sum(estimated_amount) as estimado, 0 as presupuesto, 0 as diferencia from expenses as e
+inner join expense_types as et on et.id = e.expense_type_id
+inner join book_accounts as ba on ba.id = et.book_account_id
+inner join users as u on u.id = e.user_id
+inner join roles as r on r.id = u.role_id
+group by MONTH(e.application_date), ba.code, et.name,u.name,r.name
+order by MONTH(e.application_date),ba.code, et.name, u.name;');
+
+
         //select sum(total_amount) from expenses where user_id = 66;
-        return view('frontend.home', compact('total_amount', 'user','total_expenses'));
+        return view('frontend.home', compact('total_amount', 'user','total_expenses','reports'));
     }
 
     public function gastos()
