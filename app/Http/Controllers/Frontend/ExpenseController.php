@@ -51,7 +51,6 @@ class ExpenseController extends Controller {
 
             foreach($user->divisions() as $division){
                 $expenses->where('division_id','=', $division->id);
-
             }
         }elseif(in_array($user->role_id, array(5))){ //CG
 
@@ -68,11 +67,8 @@ class ExpenseController extends Controller {
             $expenses->where('expense_type_id','=', $expense_type_id);
         }
 
-
-
         if(!(is_null($query_in) || $query_in == '')){
              $expenses->where('name','LIKE','%'.strtoupper($query_in).'%');
-
         }
         $expenses->orderBy('created_at');
 
@@ -100,6 +96,7 @@ class ExpenseController extends Controller {
 	{
 
         $expense_type_id   = $request->get('expense_type_id',null,true);
+        $cycle_id          = $request->get('cycle_id',null,true);
         $user_id           = $request->get('user_id',null,true);
         $division_id       = $request->get('division_id',null,true);
         $application_date  = $request->get('application_date',null,true);
@@ -122,12 +119,12 @@ class ExpenseController extends Controller {
 
         $expense->expense_type_id  = $expense_type_id;
         $expense->user_id          = $user_id;
+        $expense->cycle_id         = $cycle_id;
         $expense->division_id      = $division_id;
         $expense->application_date = Carbon::createFromFormat('d/m/Y',$application_date);
         $expense->code             = $last_insert_id+1;
         $expense->name             = $name;
         $expense->description      = $description;
-
         $expense->approval_1       = $approval_1;
         $expense->approval_2       = $approval_2;
         $expense->approval_3       = $approval_3;
@@ -184,6 +181,7 @@ class ExpenseController extends Controller {
 	{
         $expense_type_id   = $request->get('expense_type_id',null,true);
         $user_id           = $request->get('user_id',null,true);
+        $cycle_id          = $request->get('cycle_id',null,true);
         $division_id       = $request->get('division_id',null,true);
         $application_date  = $request->get('application_date',null,true);
         $code              = $request->get('code',null,true);
@@ -207,6 +205,10 @@ class ExpenseController extends Controller {
 
         if(!is_null($user_id)){
             $expense->user_id = $user_id;
+        }
+
+        if(!is_null($cycle_id)){
+            $expense->cycle_id = $cycle_id;
         }
 
         if(!is_null($division_id)){

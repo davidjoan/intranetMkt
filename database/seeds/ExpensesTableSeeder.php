@@ -15,6 +15,7 @@ class ExpensesTableSeeder extends \Illuminate\Database\Seeder {
         \IntranetMkt\Models\Expense::create(
             array(
                 'expense_type_id' =>  1,
+                'cycle_id' => 1,
                 'user_id' => 1,
                 'division_id' => 1,
                 'application_date' => '2015-06-20 12:00:00',
@@ -38,6 +39,7 @@ class ExpensesTableSeeder extends \Illuminate\Database\Seeder {
         \IntranetMkt\Models\Expense::create(
             array(
                 'expense_type_id' =>  1,
+                'cycle_id' => 1,
                 'user_id' => 1,
                 'division_id' => 1,
                 'application_date' => '2015-06-20 12:00:00',
@@ -60,6 +62,7 @@ class ExpensesTableSeeder extends \Illuminate\Database\Seeder {
         \IntranetMkt\Models\Expense::create(
             array(
                 'expense_type_id' =>  1,
+                'cycle_id' => 1,
                 'user_id' => 1,
                 'division_id' => 1,
                 'application_date' => '2015-08-20 12:00:00',
@@ -82,6 +85,7 @@ class ExpensesTableSeeder extends \Illuminate\Database\Seeder {
         \IntranetMkt\Models\Expense::create(
             array(
                 'expense_type_id' =>  1,
+                'cycle_id' => 1,
                 'user_id' => 1,
                 'division_id' => 1,
                 'application_date' => '2015-07-20 12:00:00',

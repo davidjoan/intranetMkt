@@ -6,6 +6,6 @@ class BookAccount extends Model {
 
     protected $table = 'book_accounts';
 
-    protected $fillable = ['code','name','description'];
+    protected $fillable = ['code','name','description','active'];
 
 }

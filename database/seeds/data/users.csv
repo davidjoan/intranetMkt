@@ -1,70 +1,61 @@
-rol,division,code,centro_costo,name,username,email
-Supervisor,Eticos LF,301835,50255,PAULET MEZA AUREA BEATRIZ FRANCIS,francispaulet,fpaulet@farmindustria.com.pe
-Supervisor,Eticos LF,325845,50255,DELGADO RUIZ CARLOS LIZANDRO,carlosdelgado,NULL
-Supervisor,Eticos LF,332100,50255,PETIT AMESQUITA RAFAEL ANTONIO,rafaelpetit,NULL
-Supervisor,Eticos LF,395450,50255,GUERRERO PESANTES FELIPE AUGUSTO,felipeguerrero,NULL
-Supervisor,Eticos LF,320795,50232,ORDOÑEZ TALAVERA OSCAR ALBERTO,oscarordones,NULL
-Supervisor,Eticos LF,330915,50232,PANDO VIGO MIGUEL HUGO,miguelpando,NULL
-Supervisor,Eticos LF,null,50232,MUÑOZ MONETEVERDE,luismunoz,NULL
-Supervisor,Neumobiotics,302025,50237,VASQUEZ OYARCE GOLDA LUZ,goldavasquez,NULL
-Supervisor,Neumobiotics,330950,50237,GAMARRA ZUAZO RICHARD AMILCAR,richardgamarra,NULL
-Supervisor,Neumobiotics,310020,50237,JIMENEZ IGLESIAS ERNESTO FABIAN,fabianjimenez,NULL
-Supervisor,Neumobiotics,320795,50232,ORDOÑEZ TALAVERA OSCAR ALBERTO,oscarordones,NULL
-Supervisor,Neumobiotics,330915,50232,PANDO VIGO MIGUEL HUGO,miguelpando,NULL
-Supervisor,Neumobiotics,null,50232,MUÑOZ MONETEVERDE,luismunoz,NULL
-Supervisor,Gynopharm,314415,50239,QUEZADA MALDONADO ETHEL MARIBEL,ethelquezada,NULL
-Supervisor,Gynopharm,317215,50239,TORRES CULQUI ROGER,rogertorres,NULL
-Supervisor,Gynopharm,null,50239,VACANTE SUP GYNO 1,vacantesupgyno1,NULL
-Supervisor,Gynopharm,390203,50239,ARANDA GONZALES RICHARD MIGUEL,miguelaranda,NULL
-Supervisor,Cardiopharm,301765,50279,CUYA BRIONES MIRYAN REBECA,miryancuya,NULL
-Supervisor,Cardiopharm,321400,50279,MASIAS ESPINOZA MARIA PATRICIA,patriciamasias,NULL
-Supervisor,Cardiopharm,302050,50254,CORONADO APONTE LILA MAGDALENA,lilacoronado,NULL
-Supervisor,Drugtech,301480,50254,ROBLES ESCALANTE MEGGUI MARIBEL,megguirobles,NULL
-Supervisor,Drugtech,332440,50313,REYNAFARJE REYES JORGE LUIS,jorgereynafarje,NULL
-Supervisor,Drugtech,302050,50254,CORONADO APONTE LILA MAGDALENA,lilacoronado,NULL
-Supervisor,Mediderm,331575,50296,SUELDO LARRAURI SOCORRO NILDA,nildasueldo,NULL
-Supervisor,Lafrancol,327685,51510,MONTERO MARCOS ROBERTO MATIAS,robertomontero,NULL
-Supervisor,K2,305940,50245,ESCURRA SANDOVAL EVA LOURDES,evaescurra,NULL
-Supervisor,K2,330575,50245,FIGGINI MOGOLLON RODRIGO CARMELO,rodrigofiggini,NULL
-Product Manager,Eticos LF,309710,50230,SANCHEZ GONZALES GISELLA JEANETTE,gisellasanchez,NULL
-Product Manager,Eticos LF,327465,50230,ARBULU MOSCOSO JORGE JESUS GUILLERMO,jorgearbulu,NULL
-Product Manager,Eticos LF,331420,50230,MOSCHELLA MONTALVO GINA MARCELA,ginamoschella,NULL
-Product Manager,Eticos LF,372911,50230,MARTINEZ BRUGO JAIME ALBERTO,jaimemartinez,NULL
-Product Manager,Eticos LF,332450,50204,UCEDA GARCIA RICARDO JAVIER,ricardouceda,NULL
-Product Manager,Neumobiotics,370623,50236,RIOS CUBA JUAN MARCELO,juanrios,NULL
-Product Manager,Neumobiotics,null,50236,VACANTE PM NEU 1,vacantepmneu1,NULL
-Product Manager,Gynopharm,311870,50238,RIVERA LOPEZ JUAN OSWALDO,juanrivera,NULL
-Product Manager,Gynopharm,328590,50238,FERNANDEZ GATES ADRIANA ELIZABETH,adrianafernandez,NULL
-Product Manager,Cardiopharm,null,50277,VACANTE PM GYNO 1,vacantepmgyno1,NULL
-Product Manager,Cardiopharm,null,50277,VACANTE PM GYNO 2,vacantepmgyno2,NULL
-Product Manager,Drugtech,327195,50242,VILLANUEVA CAMPOS ALDO OSCAR,aldovillanueva,NULL
-Product Manager,Drugtech,330705,50242,MONTOYA CHAVEZ ERIKA ROSARIO,erikamontoya,NULL
-Product Manager,Mediderm,325345,50213,VALDEZ YAÑEZ ROSA MILAGROS,milagrosvaldez,NULL
-Product Manager,K2,321440,50280,GAVILANO GAVILANO CARLOS AUGUSTO,carlosgavilano,NULL
-Product Manager,K2,326040,50280,SALCEDO MAURTUA VANESSA ROCIO,vanessasalcedo,NULL
-Product Manager,Genericos,394812,50220,ZAVALETA VEGA MARCO ANTONIO,marcozavaleta,NULL
-Product Manager,Biomedical,311280,50293,COLUNGA ZUNIGA WILFREDO MARTIN,wilfredocolunga,NULL
-Product Manager,LIA,325320,51505,MARTIN_DE_ROSSI NOVOA CARLOS ALFREDO,martinderossi,NULL
-Asistente de Marketing,Eticos LF,300175,50230,ASCANO BALCAZAR ROSA AURORA,rosaascano,NULL
-Asistente de Marketing,Eticos LF,366575,50241,ARIAS QUINTANA DOMINGA CRISTINA,domingaarias,NULL
-Asistente de Marketing,Gynopharm,366575,50241,ARIAS QUINTANA DOMINGA CRISTINA,domingaarias,NULL
-Asistente de Marketing,Cardiopharm,331100,50279,SALDARRIAGA ARAGON HEIDY VICTORIA,heidysaldarriaga,NULL
-Asistente de Marketing,Drugtech,331100,50279,SALDARRIAGA ARAGON HEIDY VICTORIA,heidysaldarriaga,NULL
-Asistente de Marketing,Mediderm,330210,50236,MELENDEZ ZUÑIGA MARIELA,marielamelendez,NULL
-Asistente de Marketing,Lafrancol,330210,50236,MELENDEZ ZUÑIGA MARIELA,marielamelendez,NULL
-Asistente de Marketing,K2,302355,50280,SOLANO ZELAYA YAZMIN KARINA,yazminsolano,NULL
-Gerentes de División,Eticos LF,307620,50200,GUARDIA SAURRE JORGE GENARO,jorgeguardia,jguardia@farmindustria.com.pe
-Gerentes de División,Neumobiotics,326850,50236,ARBOLEDA RIOS GUILLERMO,guillermoarboleda,NULL
-Gerentes de División,Gynopharm,395131,50238,FIESTAS FALLA LIA STANY,liafiestas,NULL
-Gerentes de División,Cardiopharm,373307,50242,TELLO HUARANCCA LOURDES EDITH,lourdestello,NULL
-Gerentes de División,Drugtech,373307,50242,TELLO HUARANCCA LOURDES EDITH,lourdestello,NULL
-Gerentes de División,Mediderm,302020,50295,CERPA ESTREMADOYRO CESAR EDUARDO,cesarcerpa,NULL
-Gerentes de División,Lafrancol,302020,50295,CERPA ESTREMADOYRO CESAR EDUARDO,cesarcerpa,NULL
-Gerentes de División,K2,306425,50280,CASSINELLI MONTERO MARIANO DANIEL,danielcassinelli,NULL
-Gerentes de División,Genericos,397749,55100,AGUAYO VASQUEZ JORGE LUIS,jorgeaguayo,NULL
-Gerentes de División,Biomedical,397749,55100,AGUAYO VASQUEZ JORGE LUIS,jorgeaguayo,NULL
-Gerentes de División,LIA,397749,55100,AGUAYO VASQUEZ JORGE LUIS,jorgeaguayo,NULL
-Control de Gestión,Corporacion,397188,50201,RENGIFO MOY LUIS RENINGER,luisrengifo,lrengifo@farmindustria.com.pe
-Control de Gestión,Corporacion,323090,40018,OSORIO VICTORIA JUAN JONEL,jonelosorio,josorio@farmindustria.com.pe
-Gerente General,Corporacion,308080,40020,DOMINGUEZ SMITH MAURICIO GASTON,mauriciodominguez,mdominguez@farmindustria.com.pe
-Gerente General,Corporacion,306600,40021,LUNA TORIBIO JOSE FERNANDO,joseluna,jluna@farmindustria.com.pe
+"rol","division","code","centro_costo","username","email"
+"Supervisores","Eticos LF","332430","50255","ORREGO EZCURRA MIGUEL HUMBERTO","morrego@farmindustria.com.pe"
+"Supervisores","Eticos LF","325845","50255","DELGADO RUIZ CARLOS LIZANDRO","cdelgado@farmindustria.com.pe"
+"Supervisores","Eticos LF","332100","50255","PETIT AMESQUITA RAFAEL ANTONIO","rpetit@farmindustria.com.pe"
+"Supervisores","Eticos LF","395450","50255","GUERRERO PESANTES FELIPE AUGUSTO","fguerrero@farmindustria.com.pe"
+"Supervisores","Eticos LF-Neumobiotics","320795","50232","ORDOÑEZ TALAVERA OSCAR ALBERTO","oordonez@farmindustria.com.pe"
+"Supervisores","Eticos LF","330915","50232","PANDO VIGO MIGUEL HUGO","mpando@farmindustria.com.pe"
+"Supervisores","Eticos LF-Neumobiotics","334055","50232","AÑORGA ARMESTAR ELIO ARTURO","eanorga@farmindustria.com.pe"
+"Supervisores","Neumobiotics","302025","50237","VASQUEZ OYARCE GOLDA LUZ","gvasquez@farmindustria.com.pe"
+"Supervisores","Neumobiotics","330950","50237","GAMARRA ZUAZO RICHARD AMILCAR","rgamarra@farmindustria.com.pe"
+"Supervisores","Neumobiotics","310020","50237","JIMENEZ IGLESIAS ERNESTO FABIAN","ejimenez@farmindustria.com.pe"
+"Supervisores","Neumobiotics","330915","50232","PANDO VIGO MIGUEL HUGO","mpando@farmindustria.com.pe"
+"Supervisores","Gynopharm","314415","50239","QUEZADA MALDONADO ETHEL MARIBEL","equezada@farmindustria.com.pe"
+"Supervisores","Gynopharm","317215","50239","TORRES CULQUI ROGER","rtorres@farmindustria.com.pe"
+"Supervisores","Gynopharm","329775","50239","BARRERA CORNEJO KETTY MILAGROS","kbarrera@farmindustria.com.pe"
+"Supervisores","Gynopharm","390203","50239","ARANDA GONZALES RICHARD MIGUEL","maranda@farmindustria.com.pe"
+"Supervisores","Cardiopharm","301765","50279","CUYA BRIONES MIRYAN REBECA","mcuya@farmindustria.com.pe"
+"Supervisores","Cardiopharm","321400","50279","MASIAS ESPINOZA MARIA PATRICIA","pmasias@farmindustria.com.pe"
+"Supervisores","Cardiopharm","311545","50254","CARRILLO UBILLUS YESSICA DEL PILAR","ycarrillo@farmindustria.com.pe"
+"Supervisores","Drugtech","301480","50254","ROBLES ESCALANTE MEGGUI MARIBEL","mrobles@farmindustria.com.pe"
+"Supervisores","Drugtech","322775","50254","DIAZ NAVARRO WENDY FABIOLA","wdiaz@farmindustria.com.pe"
+"Supervisores","Drugtech","302050","50254","CORONADO APONTE LILA MAGDALENA","lcoronado@farmindustria.com.pe"
+"Supervisores","Mediderm","325345","50295","VALDEZ YAÑEZ ROSA MILAGROS","mvaldez@farmindustria.com.pe"
+"Supervisores","Lafrancol","327685","51510","MONTERO MARCOS ROBERTO MATIAS","rmontero@farmindustria.com.pe"
+"Supervisores","K2","305940","50245","ESCURRA SANDOVAL EVA LOURDES","eescurra@farmindustria.com.pe"
+"Supervisores","K2","330575","50245","FIGGINI MOGOLLON RODRIGO CARMELO","efiggini@farmindustria.com.pe"
+"Product Manager","Eticos LF","309710","50230","SANCHEZ GONZALES GISELLA JEANETTE","gsanchez@farmindustria.com.pe"
+"Product Manager","Eticos LF","327465","50230","ARBULU MOSCOSO JORGE JESUS GUILLERMO","jarbulu@farmindustria.com.pe"
+"Product Manager","Eticos LF","331420","50230","MOSCHELLA MONTALVO GINA MARCELA","gmoschella@farmindustria.com.pe"
+"Product Manager","Eticos LF","372911","50230","MARTINEZ BRUGO JAIME ALBERTO","jmartinez@farmindustria.com.pe"
+"Product Manager","Eticos LF","332450","50204","UCEDA GARCIA RICARDO JAVIER","juceda@farmindustria.com.pe"
+"Product Manager","Neumobiotics","370623","50236","RIOS CUBA JUAN MARCELO","jrios@farmindustria.com.pe"
+"Product Manager","Neumobiotics","NBTXXX","50236","VACANTE  PM Neumobiotics","vacantepmneumo@farmindustria.com.pe"
+"Product Manager","Gynopharm","311870","50238","RIVERA LOPEZ JUAN OSWALDO","jrivera@farmindustria.com.pe"
+"Product Manager","Gynopharm","328590","50238","FERNANDEZ GATES ADRIANA ELIZABETH","afernandez@farmindustria.com.pe"
+"Product Manager","Cardiopharm","333520","50277","TORRENS QUIÑONES ELYS","etorrens@farmindustria.com.pe"
+"Product Manager","Cardiopharm","CARXXX","50277","VACANTE PM Cardiopharm","vacantepmcardio@farmindustria.com.pe"
+"Product Manager","Drugtech","327195","50242","VILLANUEVA CAMPOS ALDO OSCAR","avillanueva@farmindustria.com.pe"
+"Product Manager","Drugtech","330705","50242","MONTOYA CHAVEZ ERIKA ROSARIO","emontoya@farmindustria.com.pe"
+"Product Manager","K2","321440","50280","GAVILANO GAVILANO CARLOS AUGUSTO","cgavilano@farmindustria.com.pe"
+"Product Manager","K2","326040","50280","SALCEDO MAURTUA VANESSA ROCIO","vsalcedo@farmindustria.com.pe"
+"Product Manager","Genericos","394812","50220","ZAVALETA VEGA MARCO ANTONIO","mzavaleta@farmindustria.com.pe"
+"Product Manager","Biomedical","311280","50293","COLUNGA ZUNIGA WILFREDO MARTIN","wcolunga@farmindustria.com.pe"
+"Product Manager","LIA","325320","51505","MARTIN_DE_ROSSI NOVOA CARLOS ALFREDO","carlosnovoa@farmindustria.com.pe"
+"Asistente de Marketing","Eticos LF","300175","50230","ASCANO BALCAZAR ROSA AURORA","rascano@farmindustria.com.pe"
+"Asistente de Marketing","Gynopharm","366575","50241","ARIAS QUINTANA DOMINGA CRISTINA","darias@farmindustria.com.pe"
+"Asistente de Marketing","Cardiopharm-Drugtech","331100","50279","SALDARRIAGA ARAGON HEIDY VICTORIA","hsaldarriaga@farmindustria.com.pe"
+"Asistente de Marketing","Mediderm-Lafrancol","330210","50236","MELENDEZ ZUÑIGA MARIELA","mmelendez@farmindustria.com.pe"
+"Asistente de Marketing","K2","302355","50280","SOLANO ZELAYA YAZMIN KARINA","ysolano@farmindustria.com.pe"
+"Gerentes de División","Eticos LF","307620","50200","GUARDIA SAURRE JORGE GENARO","jguardia@farmindustria.com.pe"
+"Gerentes de División","Neumobiotics","326850","50236","ARBOLEDA RIOS GUILLERMO","garboleda@farmindustria.com.pe"
+"Gerentes de División","Gynopharm","395131","50238","FIESTAS FALLA LIA STANY","lfiestas@farmindustria.com.pe"
+"Gerentes de División","Cardiopharm","CARYYY","50277","REVES GIHA CARLOS","creves@farmindustria.com.pe"
+"Gerentes de División","Drugtech","373307","50242","TELLO HUARANCCA LOURDES EDITH","ltello@farmindustria.com.pe"
+"Gerentes de División","Mediderm-Lafrancol","302020","50295","CERPA ESTREMADOYRO CESAR EDUARDO","ccerpa@farmindustria.com.pe"
+"Gerentes de División","K2","306425","50280","CASSINELLI MONTERO MARIANO DANIEL","mcassinelli@farmindustria.com.pe"
+"Gerentes de División","Genericos-Biomedical-LIA","397749","55100","AGUAYO VASQUEZ JORGE LUIS","jaguayo@farmindustria.com.pe"
+"Control de Gestión","Corporacion","397188","50201","RENGIFO MOY LUIS RENINGER","lrengifo@farmindustria.com.pe"
+"Control de Gestión","Corporacion","323090","40018","OSORIO VICTORIA JUAN JONEL","josorio@farmindustria.com.pe"
+"Gerente General","Corporacion","308080","40020","DOMINGUEZ SMITH MAURICIO GASTON","mdominguez@farmindustria.com.pe"
+"Gerente General","Corporacion","306600","40021","LUNA TORIBIO JOSE FERNANDO","jluna@farmindustria.com.pe"

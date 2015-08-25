@@ -12,7 +12,7 @@ class RolesTableSeeder extends \Illuminate\Database\Seeder {
 
         DB::table('roles')->delete();
 
-        \IntranetMkt\Models\Role::create(array('code' => 'SP', 'name' => 'Supervisor'));
+        \IntranetMkt\Models\Role::create(array('code' => 'SP', 'name' => 'Supervisores'));
         \IntranetMkt\Models\Role::create(array('code' => 'PM', 'name' => 'Product Manager'));
         \IntranetMkt\Models\Role::create(array('code' => 'AM', 'name' => 'Asistente de Marketing'));
         \IntranetMkt\Models\Role::create(array('code' => 'GD', 'name' => 'Gerentes de División'));

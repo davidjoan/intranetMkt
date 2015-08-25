@@ -8,7 +8,7 @@ class Expense extends Model {
 
     protected $fillable = ['expense_type_id', 'user_id','division_id','application_date','code','name',
                             'description','approval_a','approval_b','approval_c','approval_d','approval_e',
-                            'total_amount','estimated_amount','active'];
+                            'total_amount','estimated_amount','active','cycle_id'];
 
     public function expense_type()
     {

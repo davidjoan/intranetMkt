@@ -32,16 +32,17 @@ class DatabaseSeeder extends Seeder {
 
         $this->command->info('File Formats Table Seeded!');
 
-
         $this->call('ExpenseTypesTableSeeder');
 
         $this->command->info('Expense Types Table Seeded!');
-
 
         $this->call('RolesTableSeeder');
 
         $this->command->info('Roles Table Seeded!');
 
+        $this->call('CyclesTableSeeder');
+
+        $this->command->info('Cycles Table Seeded!');
 
         $this->call('UsersTableSeeder');
 
@@ -55,9 +56,9 @@ class DatabaseSeeder extends Seeder {
 
         $this->command->info('Buy Orders Table Seeded!');
 
+        $this->call('BudgetTableSeeder');
 
-
-
+        $this->command->info('Budget Table Seeded!');
 
     }
 

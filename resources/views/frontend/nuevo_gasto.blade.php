@@ -147,6 +147,16 @@
 
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" id="user_id" name="user_id" value="{{ $user->id }}"/>
+
+                        <div class="form-group">
+                            <label for="cycle_id">Ciclo</label>
+                            <select id="cycle_id" name="cycle_id" class="form-control center">
+                                @foreach ($cycles as $cycle)
+                                    <option value="{{ $cycle->id }}">{{ $cycle->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
                         <div class="form-group">
                             <label for="expense_type_id">Tipo Gasto</label>
                             <select id="expense_type_id" name="expense_type_id" class="form-control center">

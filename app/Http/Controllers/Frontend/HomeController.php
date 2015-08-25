@@ -9,7 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\ResponseFactory;
 use IntranetMkt\Http\Requests;
 use IntranetMkt\Http\Controllers\Controller;
+use IntranetMkt\Models\BookAccount;
 use IntranetMkt\Models\CostCenter;
+use IntranetMkt\Models\Cycle;
 use IntranetMkt\Models\Expense;
 use IntranetMkt\Models\ExpenseAmount;
 use IntranetMkt\Models\ExpenseDetail;
@@ -49,20 +51,61 @@ class HomeController extends Controller{
         $total_amount   =  number_format(DB::table('expenses')->where('user_id','=',$user->id)->sum('total_amount'), 2, '.', ',');
         $total_expenses =  DB::table('expenses')->where('user_id','=',$user->id)->count('id');
 
+        $date = date('Ym');
+
         $reports = DB::select('select
-MONTH(e.application_date) as mes,
-r.name as rol,  u.name as usuario, ba.code as cuenta, et.name as tipo,
-sum(estimated_amount) as estimado, 0 as presupuesto, 0 as diferencia from expenses as e
-inner join expense_types as et on et.id = e.expense_type_id
-inner join book_accounts as ba on ba.id = et.book_account_id
-inner join users as u on u.id = e.user_id
-inner join roles as r on r.id = u.role_id
-group by MONTH(e.application_date), ba.code, et.name,u.name,r.name
-order by MONTH(e.application_date),ba.code, et.name, u.name;');
+d.name as division,
+ba.code as cod_cuenta,
+ba.name as cuenta,
+c.code as ciclo,
+u.name as usuario,
+sum(amount) as monto,
+(select sum(ex.estimated_amount) from expenses as ex
+inner join expense_types as et on et.id = ex.expense_type_id
+
+where ex.cycle_id = c.id and ex.division_id = d.id and ex.user_id = u.id and et.book_account_id = ba.id) planificado
+from budgets as bu
+inner join divisions as d on d.id = bu.division_id
+inner join cost_centers as cc on cc.id = bu.cost_center_id
+inner join book_accounts as ba on ba.id = bu.book_account_id
+inner join cycles as c on c.id = bu.cycle_id
+inner join users u on u.id = bu.user_id
+where u.id = '.$user->id.' and ba.active = 1
+group by
+d.name,
+ba.code,
+ba.name,
+c.code,
+u.name
+order by u.name,ba.id asc;');
+
+        $budget_reports = DB::select('select
+d.name as division,
+c.month as mes,
+sum(amount) as monto,
+(select sum(ex.estimated_amount) from expenses as ex
+where ex.cycle_id = c.id and ex.division_id = d.id) planificado,
+(select sum(ex.total_amount) from expenses as ex
+where ex.cycle_id = c.id and ex.division_id = d.id ) gastado
+from budgets as bu
+inner join divisions as d on d.id = bu.division_id
+inner join cost_centers as cc on cc.id = bu.cost_center_id
+inner join book_accounts as ba on ba.id = bu.book_account_id
+inner join cycles as c on c.id = bu.cycle_id
+inner join users u on u.id = bu.user_id
+where u.id = '.$user->id.' and ba.active = 1
+group by
+d.name,
+c.month
+order by c.id asc;');
+
+        $book_accounts = BookAccount::where('active','=',true)->get();
+
+        $cycles = Cycle::where('code','>=',$date)->take(12)->get();
 
 
         //select sum(total_amount) from expenses where user_id = 66;
-        return view('frontend.home', compact('total_amount', 'user','total_expenses','reports'));
+        return view('frontend.home', compact('total_amount', 'user','total_expenses','reports','book_accounts','cycles','budget_reports'));
     }
 
     public function gastos()
@@ -312,7 +355,10 @@ order by MONTH(e.application_date),ba.code, et.name, u.name;');
         $id = Auth::user()->id;
         $user = User::find($id);
         $expense_types = ExpenseType::all();
-        return view('frontend.nuevo_gasto', compact('expense_types','user'));
+
+        $date = date('Ym', strtotime('+1 month'));
+        $cycles = Cycle::where('code','>=',$date)->take(12)->get();
+        return view('frontend.nuevo_gasto', compact('expense_types','user','cycles'));
     }
 
     public function presupuestos()
