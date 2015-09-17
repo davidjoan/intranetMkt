@@ -35,10 +35,11 @@ class ExpenseController extends Controller {
         $expense_type_id = $request->get('expense_type_id',null,true);
         $division_id   = $request->get('division_id',null,true);
         $user_id     = $request->get('user_id',null,true);
+        $cycle_id     = $request->get('cycle_id',null,true);
 
         $query_in = $request->get('query',null,true);
 
-        $expenses =  $this->expense->newQuery()->with('division','user','expense_type');
+        $expenses =  $this->expense->newQuery()->with('cycle','division','user','expense_type');
 
         $user = User::find($user_id);
 
@@ -65,6 +66,10 @@ class ExpenseController extends Controller {
 
         if(!(is_null($expense_type_id) || $expense_type_id == '')){
             $expenses->where('expense_type_id','=', $expense_type_id);
+        }
+
+        if(!(is_null($cycle_id) || $cycle_id == '')){
+            $expenses->where('cycle_id','=', $cycle_id);
         }
 
         if(!(is_null($query_in) || $query_in == '')){

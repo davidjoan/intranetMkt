@@ -42,51 +42,158 @@ class HomeController extends Controller{
 
     /**
      * Display a listing of the resource.
-     *
+     * @param Request $request
      * @return Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $date = date('Ym');
+
+        $cycle_code = $request->get('cycle_code', null, true);
+
+        $cycle_current = Cycle::where('code','>',$date)->firstOrFail();
+
+        $cycle_code = (is_null($cycle_code))?$cycle_current->code:$cycle_code;
+
         $user = Auth::user();
         $total_amount   =  number_format(DB::table('expenses')->where('user_id','=',$user->id)->sum('total_amount'), 2, '.', ',');
         $total_expenses =  DB::table('expenses')->where('user_id','=',$user->id)->count('id');
 
-        $date = date('Ym');
 
-        $reports = DB::select('select
+
+        $reports = null;
+        $report_cost_center = null;
+        $budget_reports = null;
+        $report_role = array();
+
+        switch($user->role_id)
+        {
+            case 1: //SUPERVISOR
+                $reports = DB::select('
+select
+d.name as division,ba.code as cod_cuenta,ba.name as cuenta,u.name as usuario,c.code as ciclo,
+0 as presupuesto,
+sum(e.total_amount) as gastado
+from expenses as e
+inner join expense_types as et on et.id = e.expense_type_id
+inner join book_accounts as ba on ba.id = et.book_account_id
+inner join users as u on u.id = e.user_id
+inner join cycles as c on c.id = e.cycle_id
+inner join division_user as du on du.user_id = u.id
+inner join divisions as d on d.id = du.division_id
+where u.id = '.$user->id.' and ba.active = 1  and e.approval_1 = 1 and c.code = '.$cycle_code.'
+group by d.name, ba.code, ba.name,u.name,c.code');
+
+
+                $report_role = DB::select("select
+d.name as division,
+c.code as ciclo,
+u.name as rol,
+sum(e.total_amount) as gastado
+from expenses as e
+inner join users as u on u.id = e.user_id
+inner join cycles as c on c.id = e.cycle_id
+inner join roles as r on r.id = u.role_id
+inner join expense_types as et on et.id = e.expense_type_id
+inner join divisions as d on d.id = e.division_id
+where  c.code = '".$cycle_code."' and e.user_id  = '.$user->id.'
+group by d.name,
+c.code,
+u.name
+order by r.name asc;");
+
+
+                break;
+            case 2: //JEFE DE PRODUCTO
+
+                $report_cost_center_total = DB::select("
+                select d.name as division, cc.code as cod_centro,
+cc.name as centro,  sum(b.amount) as presupuesto,
+(select
+sum(e.total_amount*percent/100) as new_amount
+from expense_amounts as ea
+inner join expenses as e on e.id = ea.expense_id
+inner join cost_centers as ccc on ccc.id = ea.cost_center_id
+where ccc.id = cc.id and e.cycle_id = cy.id) as gastado
+from budgets as b
+inner join cost_centers as cc on cc.id = b.cost_center_id
+inner join cycles as cy on cy.id = b.cycle_id
+inner join book_accounts as ba on ba.id = b.book_account_id
+inner join divisions as d on d.id = b.division_id
+where b.user_id = ".$user->id."  and b.amount > 0.5 and  cy.code = '".$cycle_code."' and ba.active = '1'
+group by d.name,cc.code,cc.name
+order by d.name,cc.name;
+");
+
+                $report_role = DB::select("select
+d.name as division,
+c.code as ciclo,
+u.name as rol,
+sum(e.total_amount) as gastado
+from expenses as e
+inner join users as u on u.id = e.user_id
+inner join cycles as c on c.id = e.cycle_id
+inner join roles as r on r.id = u.role_id
+inner join expense_types as et on et.id = e.expense_type_id
+inner join divisions as d on d.id = e.division_id
+where  c.code = '".$cycle_code."' and e.id in (
+select y.expense_id from expense_amounts as y where y.cost_center_id in (
+select x.cost_center_id from budgets as x where x.cycle_id = ".$cycle_current->id." and x.user_id = ".$user->id.")
+)
+group by d.name,
+c.code,
+u.name
+order by r.name asc;");
+
+                $report_cost_center = DB::select('select cy.code as ciclo,ba.name as cuenta, cc.code as cod_centro,
+cc.name as centro,  b.amount as presupuesto,
+(select
+sum(e.total_amount*percent/100) as new_amount
+from expense_amounts as ea
+inner join expenses as e on e.id = ea.expense_id
+inner join expense_types as et on et.id = e.expense_type_id
+inner join cost_centers as ccc on ccc.id = ea.cost_center_id
+where ccc.id = cc.id and e.cycle_id = cy.id and et.book_account_id = ba.id ) as gastado
+from budgets as b
+inner join cost_centers as cc on cc.id = b.cost_center_id
+inner join cycles as cy on cy.id = b.cycle_id
+inner join book_accounts as ba on ba.id = b.book_account_id
+where b.user_id = '.$user->id.'  and b.amount > 0.5 and ba.active = 1 and cy.code = '.$cycle_code.'
+order by cy.code, ba.name,cc.name;');
+
+                //Reporte Cuenta vs presupuesto
+                $reports = DB::select('select
 d.name as division,
 ba.code as cod_cuenta,
 ba.name as cuenta,
 c.code as ciclo,
-u.name as usuario,
-sum(amount) as monto,
-(select sum(ex.estimated_amount) from expenses as ex
+r.name as usuario,
+sum(amount) as presupuesto,
+(select sum(ex.total_amount) from expenses as ex
 inner join expense_types as et on et.id = ex.expense_type_id
-
-where ex.cycle_id = c.id and ex.division_id = d.id and ex.user_id = u.id and et.book_account_id = ba.id) planificado
+where ex.cycle_id = c.id and ex.division_id = d.id and et.book_account_id = ba.id) as gastado
 from budgets as bu
 inner join divisions as d on d.id = bu.division_id
 inner join cost_centers as cc on cc.id = bu.cost_center_id
 inner join book_accounts as ba on ba.id = bu.book_account_id
 inner join cycles as c on c.id = bu.cycle_id
 inner join users u on u.id = bu.user_id
-where u.id = '.$user->id.' and ba.active = 1
+inner join roles as r on r.id = u.role_id
+where bu.user_id = '.$user->id.' and ba.active = 1  and c.code = '.$cycle_code.'
 group by
 d.name,
 ba.code,
 ba.name,
 c.code,
-u.name
+r.name
 order by u.name,ba.id asc;');
 
-        $budget_reports = DB::select('select
+                $budget_reports = DB::select('select
 d.name as division,
 c.month as mes,
-sum(amount) as monto,
-(select sum(ex.estimated_amount) from expenses as ex
-where ex.cycle_id = c.id and ex.division_id = d.id) planificado,
+sum(bu.amount) as presupuesto,
 (select sum(ex.total_amount) from expenses as ex
-where ex.cycle_id = c.id and ex.division_id = d.id ) gastado
+where ex.cycle_id = c.id and ex.division_id = d.id ) as gastado
 from budgets as bu
 inner join divisions as d on d.id = bu.division_id
 inner join cost_centers as cc on cc.id = bu.cost_center_id
@@ -98,22 +205,389 @@ group by
 d.name,
 c.month
 order by c.id asc;');
+                break;
+            case 3: //ASISTENTE DE MARKETING
+                $reports = DB::select('
+select
+d.name as division,ba.code as cod_cuenta,ba.name as cuenta,u.name as usuario,c.code as ciclo,
+sum(e.total_amount) as gastado,
+0 as presupuesto
+from expenses as e
+inner join expense_types as et on et.id = e.expense_type_id
+inner join book_accounts as ba on ba.id = et.book_account_id
+inner join users as u on u.id = e.user_id
+inner join cycles as c on c.id = e.cycle_id
+inner join division_user as du on du.user_id = u.id
+inner join divisions as d on d.id = du.division_id
+where u.id = '.$user->id.' and ba.active = 1  and e.approval_1 = 1  and c.code = '.$cycle_code.'
+group by d.name, ba.code, ba.name,u.name,c.code');
+
+                $report_role = DB::select("select
+d.name as division,
+c.code as ciclo,
+u.name as rol,
+sum(e.total_amount) as gastado
+from expenses as e
+inner join users as u on u.id = e.user_id
+inner join cycles as c on c.id = e.cycle_id
+inner join roles as r on r.id = u.role_id
+inner join expense_types as et on et.id = e.expense_type_id
+inner join divisions as d on d.id = e.division_id
+where  c.code = '".$cycle_code."' and e.user_id  = '.$user->id.'
+group by d.name,
+c.code,
+u.name
+order by r.name asc;");
+
+                break;
+            case 4:   //GERENTE DIVISION
+
+                $report_cost_center_total = DB::select("
+                select d.name as division, cc.code as cod_centro,
+cc.name as centro,  sum(b.amount) as presupuesto,
+(select
+sum(e.total_amount*percent/100) as new_amount
+from expense_amounts as ea
+inner join expenses as e on e.id = ea.expense_id
+inner join cost_centers as ccc on ccc.id = ea.cost_center_id
+where ccc.id = cc.id and e.cycle_id = cy.id
+and e.approval_1 = 1 and e.approval_2 = 1
+) as gastado
+from budgets as b
+inner join cost_centers as cc on cc.id = b.cost_center_id
+inner join cycles as cy on cy.id = b.cycle_id
+inner join book_accounts as ba on ba.id = b.book_account_id
+inner join divisions as d on d.id = b.division_id
+where b.division_id in (select division_id from division_user where user_id = ".$user->id.")
+and b.amount > 0.5 and  cy.code = '".$cycle_code."' and ba.active = '1'
+group by d.name,cc.code,cc.name
+order by cc.name;
+");
+
+
+                $report_role = DB::select("select
+d.name as division,
+c.code as ciclo,
+u.name as rol,
+sum(e.total_amount) as gastado
+from expenses as e
+inner join users as u on u.id = e.user_id
+inner join cycles as c on c.id = e.cycle_id
+inner join roles as r on r.id = u.role_id
+inner join expense_types as et on et.id = e.expense_type_id
+inner join divisions as d on d.id = e.division_id
+where  c.code = '".$cycle_code."'
+and  e.division_id in (select division_id from division_user where user_id = ".$user->id.")
+and e.approval_1 = 1 and e.approval_2 = 1
+group by d.name,
+c.code,
+u.name
+order by r.name asc;");
+
+                $reports = DB::select("select
+d.name as division,
+ba.code as cod_cuenta,
+ba.name as cuenta,
+c.code as ciclo,
+'Empresa' as usuario,
+sum(amount) as presupuesto,
+(select sum(ex.total_amount) from expenses as ex
+inner join expense_types as et on et.id = ex.expense_type_id
+where ex.cycle_id = c.id and ex.division_id = d.id and et.book_account_id = ba.id and ex.approval_1 = 1 and ex.approval_2 = 1) as gastado
+from budgets as bu
+inner join divisions as d on d.id = bu.division_id
+inner join cost_centers as cc on cc.id = bu.cost_center_id
+inner join book_accounts as ba on ba.id = bu.book_account_id
+inner join cycles as c on c.id = bu.cycle_id
+where d.id in (select division_id from division_user where user_id = ".$user->id.") and ba.active = 1
+ and c.code = '".$cycle_code."'
+group by
+d.name,
+ba.code,
+ba.name,
+c.code
+order by ba.id asc;");
+
+                $budget_reports = DB::select("select
+'Empresa' as division,
+c.month as mes,
+sum(bu.amount) as presupuesto,
+(select sum(ex.total_amount) from expenses as ex
+where ex.cycle_id = c.id and ex.approval_1 = 1 and ex.approval_2 = 1) as gastado
+from budgets as bu
+inner join cost_centers as cc on cc.id = bu.cost_center_id
+inner join book_accounts as ba on ba.id = bu.book_account_id
+inner join cycles as c on c.id = bu.cycle_id
+inner join users u on u.id = bu.user_id
+where bu.division_id in (select division_id from division_user where user_id = ".$user->id.") and ba.active = 1
+group by
+c.month
+order by c.id asc;");
+
+
+                $report_cost_center = DB::select("select cy.code as ciclo,
+ba.name as cuenta,
+cc.code as cod_centro,
+cc.name as centro,  b.amount as presupuesto,
+(select
+sum(e.total_amount*percent/100) as new_amount
+from expense_amounts as ea
+inner join expenses as e on e.id = ea.expense_id
+inner join expense_types as et on et.id = e.expense_type_id
+inner join cost_centers as ccc on ccc.id = ea.cost_center_id
+where ccc.id = cc.id and e.cycle_id = cy.id and et.book_account_id = ba.id and  e.approval_1 = 1 and e.approval_2 = 1) as gastado
+from budgets as b
+inner join cost_centers as cc on cc.id = b.cost_center_id
+inner join cycles as cy on cy.id = b.cycle_id
+inner join book_accounts as ba on ba.id = b.book_account_id
+where b.division_id in (select division_id from division_user where user_id = ".$user->id.")   and b.amount > 0.5 and ba.active = 1 and cy.code = '".$cycle_code."'
+order by cy.code, ba.name,cc.name;");
+                break;
+
+            case 5: // CONTROL DE GESTION
+
+
+                $report_cost_center_total = DB::select("
+                select d.name as division, cc.code as cod_centro,
+cc.name as centro,  sum(b.amount) as presupuesto,
+(select
+sum(e.total_amount*percent/100) as new_amount
+from expense_amounts as ea
+inner join expenses as e on e.id = ea.expense_id
+inner join cost_centers as ccc on ccc.id = ea.cost_center_id
+where ccc.id = cc.id and e.cycle_id = cy.id
+and e.approval_1 = 1 and e.approval_2 = 1  and e.approval_3 = 1
+) as gastado
+from budgets as b
+inner join cost_centers as cc on cc.id = b.cost_center_id
+inner join cycles as cy on cy.id = b.cycle_id
+inner join book_accounts as ba on ba.id = b.book_account_id
+inner join divisions as d on d.id = b.division_id
+where b.division_id in (select division_id from division_user where user_id = ".$user->id.")
+and b.amount > 0.5 and  cy.code = '".$cycle_code."' and ba.active = '1'
+group by d.name, cc.code,cc.name
+order by d.name, cc.name;
+");
+
+                $report_role = DB::select("select
+d.name as division,
+c.code as ciclo,
+u.name as rol,
+sum(e.total_amount) as gastado
+from expenses as e
+inner join users as u on u.id = e.user_id
+inner join cycles as c on c.id = e.cycle_id
+inner join roles as r on r.id = u.role_id
+inner join expense_types as et on et.id = e.expense_type_id
+inner join divisions as d on d.id = e.division_id
+where  c.code = '".$cycle_code."'
+and  e.division_id in (select division_id from division_user where user_id = ".$user->id.")
+and e.approval_1 = 1 and e.approval_2 = 1 and e.approval_3 = 1
+group by d.name,
+c.code,
+u.name
+order by r.name asc;");
+
+
+                $reports = DB::select("select
+d.name as division,
+ba.code as cod_cuenta,
+ba.name as cuenta,
+c.code as ciclo,
+'Empresa' as usuario,
+sum(amount) as presupuesto,
+(select sum(ex.total_amount) from expenses as ex
+inner join expense_types as et on et.id = ex.expense_type_id
+where ex.cycle_id = c.id and ex.division_id = d.id and et.book_account_id = ba.id and ex.approval_1 = 1 and ex.approval_2 = 1 and ex.approval_3 = 1) as gastado
+from budgets as bu
+inner join divisions as d on d.id = bu.division_id
+inner join cost_centers as cc on cc.id = bu.cost_center_id
+inner join book_accounts as ba on ba.id = bu.book_account_id
+inner join cycles as c on c.id = bu.cycle_id
+where d.id in (select division_id from division_user where user_id = ".$user->id.") and ba.active = 1
+ and c.code = '".$cycle_code."'
+group by
+d.name,
+ba.code,
+ba.name,
+c.code
+order by ba.id asc;");
+
+                $budget_reports = DB::select("select
+'Empresa' as division,
+sum(bu.amount) as presupuesto,
+(select sum(ex.total_amount) from expenses as ex
+where ex.cycle_id = c.id and ex.approval_1 = 1 and ex.approval_2 = 1) as gastado
+from budgets as bu
+inner join cost_centers as cc on cc.id = bu.cost_center_id
+inner join book_accounts as ba on ba.id = bu.book_account_id
+inner join cycles as c on c.id = bu.cycle_id
+inner join users u on u.id = bu.user_id
+where bu.division_id in (select division_id from division_user where user_id = ".$user->id.") and ba.active = 1
+
+group by
+c.month
+order by c.id asc;");
+
+
+                $report_cost_center = DB::select("select cy.code as ciclo,
+ba.name as cuenta,
+cc.code as cod_centro,
+cc.name as centro,  b.amount as presupuesto,
+(select
+sum(e.total_amount*percent/100) as new_amount
+from expense_amounts as ea
+inner join expenses as e on e.id = ea.expense_id
+inner join expense_types as et on et.id = e.expense_type_id
+inner join cost_centers as ccc on ccc.id = ea.cost_center_id
+where ccc.id = cc.id and e.cycle_id = cy.id and et.book_account_id = ba.id and  e.approval_1 = 1 and e.approval_2 = 1  and e.approval_3 = 1) as gastado
+from budgets as b
+inner join cost_centers as cc on cc.id = b.cost_center_id
+inner join cycles as cy on cy.id = b.cycle_id
+inner join book_accounts as ba on ba.id = b.book_account_id
+where b.division_id in (select division_id from division_user where user_id = ".$user->id.")   and b.amount > 0.5 and ba.active = 1 and cy.code = '".$cycle_code."'
+order by cy.code, ba.name,cc.name;");
+                break;
+
+            case 6:
+
+
+                $report_cost_center_total = DB::select("
+                select d.name as division, cc.code as cod_centro,
+cc.name as centro,  sum(b.amount) as presupuesto,
+(select
+sum(e.total_amount*percent/100) as new_amount
+from expense_amounts as ea
+inner join expenses as e on e.id = ea.expense_id
+inner join cost_centers as ccc on ccc.id = ea.cost_center_id
+where ccc.id = cc.id and e.cycle_id = cy.id
+and e.approval_1 = 1 and e.approval_2 = 1  and e.approval_3 = 1 and e.approval_4 = 1
+) as gastado
+from budgets as b
+inner join cost_centers as cc on cc.id = b.cost_center_id
+inner join cycles as cy on cy.id = b.cycle_id
+inner join book_accounts as ba on ba.id = b.book_account_id
+inner join divisions as d on d.id = b.division_id
+where b.division_id in (select division_id from division_user where user_id = ".$user->id.")
+and b.amount > 0.5 and  cy.code = '".$cycle_code."' and ba.active = '1'
+group by d.name, cc.code,cc.name
+order by d.name, cc.name;
+");
+
+                $report_role = DB::select("select
+d.name as division,
+c.code as ciclo,
+u.name as rol,
+sum(e.total_amount) as gastado
+from expenses as e
+inner join users as u on u.id = e.user_id
+inner join cycles as c on c.id = e.cycle_id
+inner join roles as r on r.id = u.role_id
+inner join expense_types as et on et.id = e.expense_type_id
+inner join divisions as d on d.id = e.division_id
+where  c.code = '".$cycle_code."'
+and  e.division_id in (select division_id from division_user where user_id = ".$user->id.")
+and e.approval_1 = 1 and e.approval_2 = 1 and e.approval_3 = 1
+group by d.name,
+c.code,
+u.name
+order by r.name asc;");
+
+                $reports = DB::select("select
+d.name as division,
+ba.code as cod_cuenta,
+ba.name as cuenta,
+c.code as ciclo,
+'Empresa' as usuario,
+sum(amount) as presupuesto,
+(select sum(ex.total_amount) from expenses as ex
+inner join expense_types as et on et.id = ex.expense_type_id
+where ex.cycle_id = c.id and ex.division_id = d.id and et.book_account_id = ba.id
+and ex.approval_1 = 1 and ex.approval_2 = 1  and ex.approval_3 = 1 and ex.approval_4 = 1) as gastado
+from budgets as bu
+inner join divisions as d on d.id = bu.division_id
+inner join cost_centers as cc on cc.id = bu.cost_center_id
+inner join book_accounts as ba on ba.id = bu.book_account_id
+inner join cycles as c on c.id = bu.cycle_id
+where d.id in (select division_id from division_user where user_id = ".$user->id.") and ba.active = 1
+ and c.code = '".$cycle_code."'
+group by
+d.name,
+ba.code,
+ba.name,
+c.code
+order by ba.id asc;");
+
+                $budget_reports = DB::select("select
+'Empresa' as division,
+sum(amount) as presupuesto,
+(select sum(ex.total_amount) from expenses as ex
+where ex.cycle_id = c.id and ex.approval_1 = 1 and  ex.approval_2 = 1 and ex.approval_3 = 1 and ex.approval_4 = 1) as gastado
+from budgets as bu
+inner join cost_centers as cc on cc.id = bu.cost_center_id
+inner join book_accounts as ba on ba.id = bu.book_account_id
+inner join cycles as c on c.id = bu.cycle_id
+inner join users u on u.id = bu.user_id
+where bu.division_id in (select division_id from division_user where user_id = ".$user->id.") and ba.active = 1
+group by
+c.month
+order by c.id asc;");
+
+                $report_cost_center = DB::select("select cy.code as ciclo,
+ba.name as cuenta,
+cc.code as cod_centro,
+cc.name as centro,  b.amount as presupuesto,
+(select
+sum(e.total_amount*percent/100) as new_amount
+from expense_amounts as ea
+inner join expenses as e on e.id = ea.expense_id
+inner join expense_types as et on et.id = e.expense_type_id
+inner join cost_centers as ccc on ccc.id = ea.cost_center_id
+where ccc.id = cc.id and e.cycle_id = cy.id and et.book_account_id = ba.id and  e.approval_1 = 1 and e.approval_2 = 1  and e.approval_3 = 1  and e.approval_4 = 1) as gastado
+from budgets as b
+inner join cost_centers as cc on cc.id = b.cost_center_id
+inner join cycles as cy on cy.id = b.cycle_id
+inner join book_accounts as ba on ba.id = b.book_account_id
+where b.division_id in (select division_id from division_user where user_id = ".$user->id.")   and b.amount > 0.5 and ba.active = 1 and cy.code = '".$cycle_code."'
+order by cy.code, ba.name,cc.name;");
+
+                break;
+        }
 
         $book_accounts = BookAccount::where('active','=',true)->get();
 
+
         $cycles = Cycle::where('code','>=',$date)->take(12)->get();
 
-
         //select sum(total_amount) from expenses where user_id = 66;
-        return view('frontend.home', compact('total_amount', 'user','total_expenses','reports','book_accounts','cycles','budget_reports'));
+        return view('frontend.home', compact('total_amount', 'user','total_expenses','reports','book_accounts','cycles',
+            'budget_reports','report_cost_center','cycle_code','report_role','report_cost_center_total'));
     }
 
-    public function gastos()
+    /**
+     * @param Request $request
+     * @return \Illuminate\View\View
+     */
+    public function gastos(Request $request)
     {
         $expense_types = ExpenseType::all();
 
+        $date = date('Ym');
+
+        $cycle_code = $request->get('cycle_code', null, true);
+
+        $cycle_current = Cycle::where('code','>',$date)->firstOrFail();
+
+        $cycle_code = (is_null($cycle_code))?$cycle_current->code:$cycle_code;
+
+
+
+        $cycles = Cycle::where('code','>=',$date)->take(12)->get();
+
+        $cycle_actual = Cycle::where('code','=',$cycle_code)->firstOrFail();
+
         $user = Auth::user();
-        return view('frontend.gastos', compact('expense_types', 'user'));
+        return view('frontend.gastos', compact('expense_types', 'user','cycles','cycle_code','cycle_current','cycle_actual'));
     }
 
     /**

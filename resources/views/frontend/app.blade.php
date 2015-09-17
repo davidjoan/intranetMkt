@@ -38,7 +38,7 @@
     @show
 
 </head>
-<body class="skin-purple">
+<body class="skin-blue">
 <!-- Site wrapper -->
 <div class="wrapper">
 
@@ -119,7 +119,7 @@
             <!-- sidebar menu: : style can be found in sidebar.less -->
             <ul class="sidebar-menu">
                 <li class="header">MENU PRINCIPAL</li>
-                <li><a href="{{ url('/frontend/home') }}"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a></li>
+                <li><a href="{{ url('/frontend/home') }}"><i class="fa fa-fw fa-dashboard"></i> Tablero de Control</a></li>
                 <li><a href="{{ url('/frontend/gastos') }}"><i class="ion ion-fw ion-bag"></i> Registro de Gastos</a></li>
                 <li><a href="{{ url('/frontend/presupuestos') }}"><i class="fa fa-fw fa-money"></i> Presupuestos</a></li>
 

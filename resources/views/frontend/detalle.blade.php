@@ -202,7 +202,9 @@
 
             <div class="btn-group pull-right" style="padding-bottom: 5px;">
 
+                @if ($expense->approval_1 == '0' && $expense->approval_2 == '0')
                 <button type="button" class="btn btn-primary btn-flat" href="#" id="eliminar_gasto">Eliminar</button>
+                    @endif
 
             </div>
                 </section>
@@ -307,10 +309,6 @@
                                 <td><b>Monto: </b></td>
                                 <td>S/. {{{ $expense->total_amount }}}</td>
                             </tr>
-                            <tr>
-                                <td><b>Estimado: </b></td>
-                                <td>S/. {{{ $expense->estimated_amount }}}</td>
-                            </tr>
                         </table>
 
                         <!-- /.row - inside box -->
@@ -363,7 +361,7 @@
                             @if (in_array($expense->expense_type->id, array(10,11,12,13,14)))
                                 @foreach($expense->expense_type->file_formats as $file_format)
                                     <tr>
-                                        <td><b>{{ $file_format->name }} Original </b></td>
+                                        <td><b>{{ $file_format->description }} Original </b></td>
                                         <td><a class="btn btn-primary" href="/uploads/{{ $file_format->file }}" target="_blank">
                                                 <i class="fa fa-download"></i> Descargar {{ $file_format->name }}</a></td>
                                     </tr>
@@ -375,7 +373,7 @@
                             @if (in_array($expense->expense_type->id, array(16,17)))
                                 @foreach($expense->expense_type->file_formats as $file_format)
                                     <tr>
-                                        <td><b>{{ $file_format->name }} </b></td>
+                                        <td><b>{{ $file_format->description }} </b></td>
                                         <td><a class="btn btn-primary" href="/frontend/gastos/exportar_atencion_xls/{{ $expense->id }}/{{ $file_format->id }}">
                                                 <i class="fa fa-download"></i> Descargar {{ $file_format->name }}</a></td>
                                     </tr>
@@ -395,7 +393,7 @@
                             @if (in_array($expense->expense_type->id, array(1,2,3,4)))
                                 @foreach($expense->expense_type->file_formats as $file_format)
                                     <tr>
-                                        <td><b>{{ $file_format->name }} </b></td>
+                                        <td><b>{{ $file_format->description }} </b></td>
                                         <td><a class="btn btn-primary" href="/frontend/gastos/exportar_xls/{{ $expense->id }}/{{ $file_format->id }}">
                                                 <i class="fa fa-download"></i> Descargar {{ $file_format->name }}</a></td>
                                     </tr>
@@ -406,7 +404,7 @@
                             @if (in_array($expense->expense_type->id, array(5,6,8)))
                                 @foreach($expense->expense_type->file_formats as $file_format)
                                     <tr>
-                                        <td><b>{{ $file_format->name }} </b></td>
+                                        <td><b>{{ $file_format->description }} </b></td>
                                         <td><a class="btn btn-primary" href="/frontend/gastos/exportar_entretenimiento_xls/{{ $expense->id }}/{{ $file_format->id }}">
                                                 <i class="fa fa-download"></i> Descargar {{ $file_format->name }}</a></td>
                                     </tr>
@@ -416,7 +414,7 @@
 
                             @foreach($expense->expense_details as $expense_detail)
                                 <tr>
-                                    <td><b>{{ $expense_detail->file_format->name }} escaneado </b></td>
+                                    <td><b>{{ $expense_detail->file_format->description }} escaneado </b></td>
                                     <td><a class="btn btn-primary" href="/uploads/expense_details/{{ $expense_detail->filename }}" target="_blank">
                                             <i class="fa fa-download"></i> Descargar {{ $expense_detail->file_format->name }}</a></td>
                                 </tr>
@@ -503,7 +501,7 @@
                         <div class="box box-primary">
                             <div class="box-header">
                                 <i class="ion ion-clipboard"></i>
-                                <h3 class="box-title">{{ $file_format->name }}</h3>
+                                <h3 class="box-title">{{ $file_format->description }}</h3>
                                 <div class="box-tools pull-right">
 
                                     <ul class="pagination pagination-sm inline" id="note_pagination">
@@ -628,7 +626,7 @@
                         <div class="box box-primary">
                             <div class="box-header">
                                 <i class="ion ion-clipboard"></i>
-                                <h3 class="box-title">{{ $file_format->name }}</h3>
+                                <h3 class="box-title">{{ $file_format->description }}</h3>
                                 <div class="box-tools pull-right">
 
                                     <ul class="pagination pagination-sm inline" id="note_pagination">
@@ -762,7 +760,7 @@
                         <div class="box box-primary">
                             <div class="box-header">
                                 <i class="ion ion-clipboard"></i>
-                                <h3 class="box-title">{{ $file_format->name }}</h3>
+                                <h3 class="box-title">{{ $file_format->description }}</h3>
                                 <div class="box-tools pull-right">
 
                                     <ul class="pagination pagination-sm inline" id="note_pagination">
@@ -906,7 +904,7 @@
                     <div class="box box-primary">
                         <div class="box-header">
                             <i class="ion ion-clipboard"></i>
-                            <h3 class="box-title">{{ $file_format->name }}</h3>
+                            <h3 class="box-title">{{ $file_format->description }}</h3>
                             <div class="box-tools pull-right">
 
                                 <ul class="pagination pagination-sm inline" id="note_pagination">
@@ -1070,7 +1068,7 @@
 
                                     <div class="box box-primary">
                                         <div class="box-header with-border">
-                                            <h3 class="box-title">Subir {{ $file_format->name }} Escaneado</h3>
+                                            <h3 class="box-title">Subir {{ $file_format->description }} Escaneado</h3>
                                         </div><!-- /.box-header -->
                                         <!-- form start -->
                                         {!!  Form::open(array("url"=>"/frontend/upload_format","files"=>true,"role" => "form")) !!}
@@ -1145,20 +1143,18 @@
                                            value="{{ $expense->description }}" />
                             </div>
                             <div class="form-group">
-                                <label for="estimated_amount">Monto Estimado S/.</label>
+                                <label for="estimated_amount">Monto S/.</label>
                                 <div class="input-group">
                                     <span class="input-group-addon">S/.</span>
-                                    <input type="text" class="form-control" name="estimated_amount" id="estimated_amount"
+                                    <input type="text" class="form-control" name="total_amount" id="total_amount"
                                            required
-                                           value="{{ $expense->estimated_amount }}"
-                                           placeholder="Monto estimado"
-                                           data-error="Monto estimado Requerido."
+                                           value="{{ $expense->total_amount }}"
+                                           placeholder="Monto"
+                                           data-error="Monto Requerido."
                                             />
                                     <span class="input-group-addon">.00</span>
                                 </div>
                             </div>
-
-
                         </div>
 
                     <div class="modal-footer clearfix">

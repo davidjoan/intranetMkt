@@ -197,13 +197,13 @@
                             <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group">
-                            <label for="estimated_amount">Monto Estimado S/.</label>
+                            <label for="estimated_amount">Monto S/.</label>
                             <div class="input-group">
                                 <span class="input-group-addon">S/.</span>
-                                <input type="text" class="form-control" name="estimated_amount" id="estimated_amount"
+                                <input type="text" class="form-control" name="total_amount" id="total_amount"
                                        required
-                                       placeholder="Monto estimado"
-                                       data-error="Monto estimado Requerido."
+                                       placeholder="Monto"
+                                       data-error="Monto Requerido."
                                         />
                                 <span class="input-group-addon">.00</span>
                             </div>

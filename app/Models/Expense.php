@@ -15,6 +15,11 @@ class Expense extends Model {
         return $this->belongsTo('IntranetMkt\Models\ExpenseType');
     }
 
+    public function cycle()
+    {
+        return $this->belongsTo('IntranetMkt\Models\Cycle');
+    }
+
     public function user()
     {
         return $this->belongsTo('IntranetMkt\User');
@@ -59,7 +64,4 @@ class Expense extends Model {
     {
         return $this->hasMany('IntranetMkt\Models\ExpenseAmount', 'expense_id','id');
     }
-
-
-
 }

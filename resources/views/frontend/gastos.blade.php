@@ -17,6 +17,7 @@
 
         var user_id = {{ $user->id }};
         var role_id = {{ $user->role_id }};
+        var cycle_id = {{ $cycle_actual->id }};
 
 
         $(document).ready(function() {
@@ -27,8 +28,6 @@
                 return false;
             });
 
-
-
             var table = $('#example').dataTable({
                 'processing': true,
                 'serverSide': false,
@@ -36,11 +35,12 @@
                     'url': '/json/i18n/Spanish.json'
                 },
                 'ajax': {
-                    'url' : '/api/expenses?user_id='+user_id,
+                    'url' : '/api/expenses?user_id='+user_id+'&cycle_id='+cycle_id,
                     'dataSrc': '',
                     'type' : 'get'
                 },
                 'columns': [
+                    { 'data' : 'cycle.code' },
                     { 'data' : 'expense_type.description' },
                     { 'data' : 'code' },
                     { 'data' : 'division.code' },
@@ -58,8 +58,19 @@
                             return getWords(full.user.name);
                         }
                     },
-                    { 'data': 'total_amount' },
-                    { 'data': 'estimated_amount' },
+                    { 'data': 'total_amount',
+                        'mRender' : function(data,type,full){
+
+                            var intVal = function ( i ) {
+                                return typeof i === 'string' ?
+                                i.replace(/[\$,]/g, '')*1 :
+                                        typeof i === 'number' ?
+                                                i : 0;
+                            };
+                            return intVal(full.total_amount).toLocaleString();
+
+                        }
+                    },
                     { 'data': 'approval_1',
                         'mRender' : function(data,type,full){
                             return ((full.approval_1) == 1)?"<i class='fa fa-fw fa-check-circle-o'></i>":"<i class='fa fa-fw fa-circle-o'></i></i>";
@@ -88,12 +99,16 @@
 
             // table.fnFilter("Visitado",8);
 
-            $('#filter_category').change( function() {
-                table.fnFilter(this.value,4);
+            $('#filter_division').change( function() {
+                table.fnFilter(this.value,3);
             });
 
             $('#filter_expense_type').change( function() {
-                table.fnFilter(this.value,0);
+                table.fnFilter(this.value,1);
+            });
+
+            $('#filter_cycle').change( function() {
+                window.location.href = '/frontend/gastos?cycle_code='+this.value;
             });
 
             $('#example tbody').on( 'click', 'tr', function () {
@@ -102,21 +117,18 @@
 
             $('#aprobar').click( function () {
                 $( ".selected" ).each(function( index ) {
-                    console.log($( this ).children().eq(1).text() );
+                    console.log($( this ).children().eq(2).text() );
 
                     $.ajax({
                         type: "GET",
-                        url: "/frontend/aprobar/"+$( this ).children().eq(1).text(),
+                        url: "/frontend/aprobar/"+$( this ).children().eq(2).text(),
                         success: function(data) {
                             console.log(data);
                             if(data == 'ok'){
-                                toastr.success('Su Gasto '+$( this ).children().eq(1).text()+'se aprobo correctamente!');
+                                toastr.success('Su Gasto '+$( this ).children().eq(2).text()+'se aprobo correctamente!');
                             }else{
-                                toastr.success('Su Gasto '+$( this ).children().eq(1).text()+'no se aprobo porque no tiene V.V. anterior!');
-
+                                toastr.success('Su Gasto '+$( this ).children().eq(2).text()+'no se aprobo porque no tiene V.V. anterior!');
                             }
-
-
                         }
                     });
                 });
@@ -130,18 +142,17 @@
 
             $('#desaprobar').click( function () {
                 $( ".selected" ).each(function( index ) {
-                    console.log($( this ).children().eq(1).text() );
+                    console.log($( this ).children().eq(2).text() );
 
                     $.ajax({
                         type: "GET",
-                        url: "/frontend/desaprobar/"+$( this ).children().eq(1).text(),
+                        url: "/frontend/desaprobar/"+$( this ).children().eq(2).text(),
                         success: function(data) {
                              console.log(data);
                             if(data == 'ok'){
-                                toastr.success ('Su Gasto '+$( this ).children().eq(1).text()+'se desaprobo correctamente!');
+                                toastr.success ('Su Gasto '+$( this ).children().eq(2).text()+'se desaprobo correctamente!');
                             }else{
-                                toastr.error('Su Gasto '+$( this ).children().eq(1).text()+'no se desaprobo porque ya tiene V.V. posterior!');
-
+                                toastr.error('Su Gasto '+$( this ).children().eq(2).text()+'no se desaprobo porque ya tiene V.V. posterior!');
                             }
 
                         }
@@ -220,6 +231,22 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label>Ciclos</label>
+                                <select class="form-control filter_grid" id="filter_cycle">
+                                    <option value="">Todos</option>
+                                    @foreach($cycles as $cycle)
+                                        <option value="{{ $cycle->code }}"
+                                                @if ($cycle->code ==$cycle_code)
+                                                selected
+                                        @else
+                                                @endif
+                                                >{{ $cycle->code }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div><!-- /.box-body -->
             </div><!-- /.box -->
@@ -239,7 +266,7 @@
             </div>
 
         </div>
-</div>
+    </div>
 
     </div>
     <div class="row">
@@ -252,14 +279,14 @@
                     <table id="example" class="display table table-bordered table-striped center-table">
                         <thead>
                         <tr>
+                            <th>Ciclo</th>
                             <th>Tipo</th>
                             <th>Código</th>
                             <th>Divisón</th>
                             <th>Fecha</th>
                             <th>Motivo</th>
                             <th>Usuario</th>
-                            <th>Monto</th>
-                            <th>Estimado</th>
+                            <th>Monto(S/.)</th>
                             <th>SOL</th>
                             <th>VV1</th>
                             <th>VV2</th>

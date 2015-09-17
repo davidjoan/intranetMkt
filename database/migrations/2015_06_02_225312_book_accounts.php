@@ -100,6 +100,7 @@ class BookAccounts extends Migration {
             $table->integer('expense_id')->unsigned();
             $table->integer('cost_center_id')->unsigned();
             $table->decimal('percent',12,2)->default(0.0)->nullable();
+            $table->decimal('amount',12,2)->default(0.0)->nullable();
             $table->timestamps();
 
             $table->unique(array('expense_id','cost_center_id'));
