@@ -10,6 +10,9 @@ class BudgetTableSeeder extends \Illuminate\Database\Seeder {
 
     public function run(){
 
+        ini_set('memory_limit','10024M');
+        Eloquent::unguard();
+        DB::disableQueryLog();
         DB::table('budgets')->delete();
 
         Excel::load('/database/seeds/data/budget.csv', function($reader) {

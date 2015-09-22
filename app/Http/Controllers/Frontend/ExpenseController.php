@@ -75,7 +75,6 @@ class ExpenseController extends Controller {
         if(!(is_null($query_in) || $query_in == '')){
              $expenses->where('name','LIKE','%'.strtoupper($query_in).'%');
         }
-        $expenses->orderBy('created_at');
 
         return $expenses->get()->toJson();
 

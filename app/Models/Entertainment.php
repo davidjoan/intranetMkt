@@ -6,6 +6,8 @@ class Entertainment extends Model {
 
     protected $table = 'entertainments';
 
+    public $timestamps = false;
+
     protected $fillable = ['file_format_id', 'expense_id', 'consultor','entertainment_type', 'delivery_date',
         'place', 'qty_doctors', 'estimated_value', 'description', 'status'];
 

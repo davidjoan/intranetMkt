@@ -6,6 +6,8 @@ class ExpenseType extends Model {
 
     protected $table = 'expense_types';
 
+    public $timestamps = false;
+
     protected $fillable = ['book_account_id','code','name','description'];
 
     public function book_account()

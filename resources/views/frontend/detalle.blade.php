@@ -250,7 +250,7 @@
                             </tr>
                             <tr>
                                 <td><b>Fecha: </b></td>
-                                <td>{{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s',$expense->application_date)->format('d/m/Y') }}}</td>
+                                <td>{{{ \Carbon\Carbon::createFromFormat('Y-m-d',$expense->application_date)->format('d/m/Y') }}}</td>
                             </tr>
                             <tr>
                                 <td><b>Codigo: </b></td>
@@ -456,6 +456,7 @@
                                 <th>Centro de Costo</th>
                                 <th>Distribución</th>
                                 <th style="width: 40px">Porcentaje</th>
+                                <th style="width: 40px">Monto</th>
                                 <th></th>
                             </tr>
                             <?php $acomulado = 0 ?>
@@ -463,7 +464,7 @@
 
                             <tr>
                                 <td>
-                                    <?php  $acomulado += $expense_amount->percent ?>
+                                    <?php  $acomulado += $expense_amount->porcentaje ?>
                                         {{$expense_amount->cost_center->code }}</td>
                                 <td>{{ $expense_amount->cost_center->name }}</td>
                                 <td>
@@ -471,7 +472,8 @@
                                         <div class="progress-bar progress-bar-success" style="width: {{ $acomulado }}%"></div>
                                     </div>
                                 </td>
-                                <td><span class="badge bg-success">{{ $expense_amount->percent }}%</span></td>
+                                <td><span class="badge bg-success">{{ $expense_amount->porcentaje }}%</span></td>
+                                <td>{{ $expense_amount->amount }}</td>
                                 <td><div class='tools'>
                                         <i class='fa fa-trash-o' onClick='deleteExpenseAmount({{ $expense_amount->id }},{{ $expense_amount->expense_id }})'></i>
                                         </div>
@@ -1127,7 +1129,7 @@
                                     </div>
                                     <input type="text" class="form-control datepicker" name="application_date"
                                            id="application_date"
-                                           value="{{{ \Carbon\Carbon::createFromFormat("Y-m-d H:i:s",$expense->application_date)->format("d/m/Y") }}}"
+                                           value="{{{ \Carbon\Carbon::createFromFormat("Y-m-d",$expense->application_date)->format("d/m/Y") }}}"
                                            required />
                                 </div>
                             </div>

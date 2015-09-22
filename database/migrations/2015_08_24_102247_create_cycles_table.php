@@ -19,11 +19,11 @@ class CreateCyclesTable extends Migration {
 			$table->string('name',100);
 			$table->string('month',3);
 			$table->string('year',4);
-			$table->dateTime('start')->nullable();
-			$table->dateTime('end')->nullable();
+			$table->date('start')->nullable();
+			$table->date('end')->nullable();
 			$table->string('description',100)->nullable();
 			$table->boolean('active')->default(false);
-			$table->timestamps();
+			//$table->timestamps();
 		});
 	}
 

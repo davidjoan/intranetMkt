@@ -15,36 +15,33 @@ class BookAccounts extends Migration {
 
         Schema::create('file_formats', function(Blueprint $table)
         {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('code',10)->unique();
             $table->string('name',100);
             $table->string('file',200)->nullable();
             $table->string('description')->nullable();
-            $table->timestamps();
+            //$table->timestamps();
         });
 
 
         Schema::create('book_accounts', function(Blueprint $table)
         {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('code',10)->unique();
             $table->string('name',100);
             $table->string('description')->nullable();
             $table->boolean('active')->default(false);
-            $table->timestamps();
+            //$table->timestamps();
         });
 
         Schema::create('expense_types', function(Blueprint $table)
         {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('book_account_id',false, true)->nullable();
             $table->string('code',10)->unique();
             $table->string('name',100);
             $table->string('description')->nullable();
-            $table->timestamps();
+            //$table->timestamps();
 
             $table->foreign('book_account_id')->references('id')->on('book_accounts');
         });
@@ -52,7 +49,6 @@ class BookAccounts extends Migration {
 
         Schema::create('expense_type_file_format', function(Blueprint $table)
         {
-            $table->engine = 'InnoDB';
             $table->integer('expense_type_id')->unsigned();
             $table->integer('file_format_id')->unsigned();
 
@@ -62,14 +58,13 @@ class BookAccounts extends Migration {
 
         Schema::create('expenses', function(Blueprint $table)
         {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('expense_type_id',false, true)->nullable();
             $table->integer('user_id',false, true)->nullable();
             $table->integer('division_id',false, true)->nullable();
-            $table->dateTime('application_date')->nullable();
-            $table->dateTime('start')->nullable();
-            $table->dateTime('end')->nullable();
+            $table->date('application_date')->nullable();
+            $table->date('start')->nullable();
+            $table->date('end')->nullable();
             $table->string('code',20)->unique();
             $table->string('name',100);
             $table->string('description')->nullable();
@@ -86,7 +81,7 @@ class BookAccounts extends Migration {
             $table->decimal('total_amount',12,2)->default(0.0)->nullable();
             $table->decimal('estimated_amount',12,2)->default(0.0)->nullable();
             $table->boolean('active')->default(false);
-            $table->timestamps();
+            //$table->timestamps();
 
             $table->foreign('expense_type_id')->references('id')->on('expense_types');
             $table->foreign('user_id')->references('id')->on('users');
@@ -95,13 +90,12 @@ class BookAccounts extends Migration {
 
         Schema::create('expense_amounts', function(Blueprint $table)
         {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('expense_id')->unsigned();
             $table->integer('cost_center_id')->unsigned();
-            $table->decimal('percent',12,2)->default(0.0)->nullable();
+            $table->decimal('porcentaje',12,2)->default(0.0)->nullable();
             $table->decimal('amount',12,2)->default(0.0)->nullable();
-            $table->timestamps();
+            //$table->timestamps();
 
             $table->unique(array('expense_id','cost_center_id'));
 
@@ -111,14 +105,13 @@ class BookAccounts extends Migration {
 
         Schema::create('buy_orders', function(Blueprint $table)
         {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('file_format_id',false, true)->nullable();
             $table->string('cost_center',200)->nullable();
             $table->string('book_account',200)->nullable();
             $table->integer('expense_id',false, true)->nullable();
             $table->string('code',20)->unique();
-            $table->dateTime('delivery_date')->nullable();
+            $table->date('delivery_date')->nullable();
             $table->boolean('inventory')->default(false);
             $table->boolean('active')->default(false);
             $table->boolean('expenditure')->default(false);
@@ -127,7 +120,7 @@ class BookAccounts extends Migration {
             $table->decimal('estimated_value',12,2)->default(0.0)->nullable();
             $table->string('description',500)->nullable();
             $table->string('destination',500)->nullable();
-            $table->timestamps();
+            //$table->timestamps();
 
             $table->foreign('file_format_id')->references('id')->on('file_formats');
             $table->foreign('expense_id')->references('id')->on('expenses');

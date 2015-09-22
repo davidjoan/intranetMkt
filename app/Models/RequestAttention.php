@@ -6,6 +6,8 @@ class RequestAttention extends Model {
 
     protected $table = 'request_attentions';
 
+    public $timestamps = false;
+
     protected $fillable = ['file_format_id',
         'expense_id',
         'promotora', 'description', 'delivery_date', 'client_code', 'client',
@@ -20,6 +22,4 @@ class RequestAttention extends Model {
     {
         return $this->belongsTo('IntranetMkt\Models\FileFormat');
     }
-
-
 }

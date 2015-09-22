@@ -6,6 +6,8 @@ class MedicalCampaign extends Model {
 
     protected $table = 'medical_campaigns';
 
+    public $timestamps = false;
+
     protected $fillable = ['file_format_id', 'expense_id', 'consultor','medical_campaign_type', 'delivery_date',
         'place', 'cmp', 'doctor', 'estimated_value', 'description', 'status'];
 

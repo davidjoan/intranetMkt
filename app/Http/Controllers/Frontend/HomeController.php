@@ -69,7 +69,7 @@ class HomeController extends Controller{
         switch($user->role_id)
         {
             case 1: //SUPERVISOR
-                $reports = DB::select('
+                $reports = DB::select("
 select
 d.name as division,ba.code as cod_cuenta,ba.name as cuenta,u.name as usuario,c.code as ciclo,
 0 as presupuesto,
@@ -81,8 +81,8 @@ inner join users as u on u.id = e.user_id
 inner join cycles as c on c.id = e.cycle_id
 inner join division_user as du on du.user_id = u.id
 inner join divisions as d on d.id = du.division_id
-where u.id = '.$user->id.' and ba.active = 1  and e.approval_1 = 1 and c.code = '.$cycle_code.'
-group by d.name, ba.code, ba.name,u.name,c.code');
+where u.id = ".$user->id." and ba.active = 1  and e.approval_1 = 1 and c.code = ".$cycle_code."
+group by d.name, ba.code, ba.name,u.name,c.code");
 
 
                 $report_role = DB::select("select
@@ -96,11 +96,11 @@ inner join cycles as c on c.id = e.cycle_id
 inner join roles as r on r.id = u.role_id
 inner join expense_types as et on et.id = e.expense_type_id
 inner join divisions as d on d.id = e.division_id
-where  c.code = '".$cycle_code."' and e.user_id  = '.$user->id.'
+where  c.code = '$cycle_code' and e.user_id  = ".$user->id."
 group by d.name,
 c.code,
 u.name
-order by r.name asc;");
+order by u.name asc;");
 
 
                 break;
@@ -233,11 +233,11 @@ inner join cycles as c on c.id = e.cycle_id
 inner join roles as r on r.id = u.role_id
 inner join expense_types as et on et.id = e.expense_type_id
 inner join divisions as d on d.id = e.division_id
-where  c.code = '".$cycle_code."' and e.user_id  = '.$user->id.'
+where  c.code = '".$cycle_code."' and e.user_id  = ".$user->id."
 group by d.name,
 c.code,
 u.name
-order by r.name asc;");
+order by u.name asc;");
 
                 break;
             case 4:   //GERENTE DIVISION
@@ -597,11 +597,19 @@ order by cy.code, ba.name,cc.name;");
      */
     public function agregar_centro_costo($expense_id, $cost_center_id)
     {
+
+        $expensesAmounts = ExpenseAmount::where('expense_id','=',$expense_id)
+                            ->where('cost_center_id','=', $cost_center_id);
+
+        $expensesAmounts->delete();
+
         $expense_amount = new ExpenseAmount();
         $expense_amount->expense_id = $expense_id;
         $expense_amount->cost_center_id = $cost_center_id;
 
         $expense_amount->save();
+
+
 
         $expensesAmounts = ExpenseAmount::where('expense_id','=',$expense_id)->get();
 
@@ -613,11 +621,13 @@ order by cy.code, ba.name,cc.name;");
             if($key < ($cantidad-1)){
                 $percent = sprintf('%0.2f',100/$cantidad);
                 $acomulado = $acomulado+$percent;
-                $detail->percent = $percent;
+                $detail->porcentaje = $percent;
+                $detail->amount = $percent*$detail->expense->total_amount/100;
                 $detail->save();
 
             }else{
-                $detail->percent =100-$acomulado;
+                $detail->porcentaje =100-$acomulado;
+                $detail->amount = $detail->porcentaje*$detail->expense->total_amount/100;
                 $detail->save();
             }
         }
@@ -646,11 +656,13 @@ order by cy.code, ba.name,cc.name;");
             if($key < ($cantidad-1)){
                 $percent = sprintf('%0.2f',100/$cantidad);
                 $acomulado = $acomulado+$percent;
-                $detail->percent = $percent;
+                $detail->porcentaje = $percent;
+                $detail->amount = $percent*$detail->expense->total_amount/100;
                 $detail->save();
 
             }else{
-                $detail->percent =100-$acomulado;
+                $detail->porcentaje =100-$acomulado;
+                $detail->amount = $detail->porcentaje*$detail->expense->total_amount/100;
                 $detail->save();
             }
         }
@@ -912,12 +924,12 @@ order by cy.code, ba.name,cc.name;");
                 'buy_orders.delivery_date'
             )
             ->where('buy_orders.expense_id','=',$expense_id)
-            ->orderBy('buy_orders.created_at','desc')
+            ->orderBy('buy_orders.id','desc')
             ->get();
 
         $data = json_decode(json_encode((array) $routes), true);
 
-        Excel::load('/storage/app/'.$file_format->code.'.xls', function($file) use($expense, $data){
+        Excel::load('/storage/app/'.$file_format->file, function($file) use($expense, $data){
 
             $file->setActiveSheetIndex(0)->setCellValue('D8', $expense->user->name);
             $file->setActiveSheetIndex(0)->setCellValue('L8', $expense->application_date);
@@ -963,12 +975,12 @@ order by cy.code, ba.name,cc.name;");
                 'entertainments.estimated_value as monto'
             )
             ->where('entertainments.expense_id','=',$expense_id)
-            ->orderBy('entertainments.created_at','desc')
+            ->orderBy('entertainments.id','asc')
             ->get();
 
         $data = json_decode(json_encode((array) $routes), true);
 
-        Excel::load('/storage/app/'.$file_format->code.'.xls', function($file) use($expense, $data){
+        Excel::load('/storage/app/'.$file_format->file, function($file) use($expense, $data){
 
             $file->setActiveSheetIndex(0)->setCellValue('C4', $expense->expense_type->name);
 
@@ -1042,12 +1054,12 @@ order by cy.code, ba.name,cc.name;");
                 'medical_campaigns.estimated_value as monto'
             )
             ->where('medical_campaigns.expense_id','=',$expense_id)
-            ->orderBy('medical_campaigns.created_at','desc')
+            ->orderBy('medical_campaigns.id','asc')
             ->get();
 
         $data = json_decode(json_encode((array) $routes), true);
 
-        Excel::load('/storage/app/'.$file_format->code.'.xls', function($file) use($expense, $data){
+        Excel::load('/storage/app/'.$file_format->file, function($file) use($expense, $data){
 
             $file->setActiveSheetIndex(0)->setCellValue('C4', $expense->expense_type->name);
 
@@ -1093,12 +1105,12 @@ order by cy.code, ba.name,cc.name;");
                 'request_attentions.reason'
             )
             ->where('request_attentions.expense_id','=',$expense_id)
-            ->orderBy('request_attentions.created_at','desc')
+            ->orderBy('request_attentions.id','asc')
             ->get();
 
         $data = json_decode(json_encode((array) $routes), true);
 
-        Excel::load('/storage/app/'.$file_format->code.'.xls', function($file) use($expense, $data){
+        Excel::load('/storage/app/'.$file_format->file, function($file) use($expense, $data){
 
             $file->setActiveSheetIndex(0)->setCellValue('C4', $expense->expense_type->name);
 

@@ -8,9 +8,14 @@ class Division extends Model {
 
     protected $fillable = ['code','name', 'description'];
 
+    public $timestamps = false;
+
     public function users()
     {
         return $this->belongsToMany('IntranetMkt\User');
     }
+
+
+
 
 }

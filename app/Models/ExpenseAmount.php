@@ -6,7 +6,9 @@ class ExpenseAmount extends Model {
 
     protected $table = 'expense_amounts';
 
-    protected $fillable = ['cost_center_id','expense_id', 'percent', 'amount'];
+    public $timestamps = false;
+
+    protected $fillable = ['cost_center_id','expense_id', 'porcentaje', 'amount'];
 
 
     public function expense()

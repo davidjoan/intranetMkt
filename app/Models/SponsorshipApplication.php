@@ -6,6 +6,8 @@ class SponsorshipApplication extends Model {
 
     protected $table = 'sponsorship_applications';
 
+    public $timestamps = false;
+
     protected $fillable = ['file_format_id', 'expense_id', 'is_national', 'name',
         'specialty', 'city_of_residence', 'phone', 'email', 'is_government_employee',
         'hospital', 'role', 'is_seller', 'decision_is_in', 'member_of_social_medicine_id',

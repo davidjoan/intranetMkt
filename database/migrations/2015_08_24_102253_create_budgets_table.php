@@ -21,7 +21,7 @@ class CreateBudgetsTable extends Migration {
 			$table->integer('cycle_id',false, true)->nullable();
 			$table->integer('user_id',false, true)->nullable();
 			$table->decimal('amount',12,2)->default(0.0)->nullable();
-			$table->timestamps();
+			//$table->timestamps();
 
 			$table->foreign('division_id')->references('id')->on('divisions');
 			$table->foreign('cost_center_id')->references('id')->on('cost_centers');

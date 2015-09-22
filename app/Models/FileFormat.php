@@ -6,6 +6,8 @@ class FileFormat extends Model {
 
     protected $table = 'file_formats';
 
+    public $timestamps = false;
+
     protected $fillable = ['code','name','file','description'];
 
     public function expense_types()

@@ -75,11 +75,11 @@ class SponsorshipApplications extends Migration {
             $table->decimal('expense_11',12,2)->default(0.0)->nullable();
             $table->decimal('expense_12',12,2)->default(0.0)->nullable();
 
-            $table->dateTime('start')->nullable();
-            $table->dateTime('end')->nullable();
+            $table->date('start')->nullable();
+            $table->date('end')->nullable();
 
-            $table->dateTime('fly_start')->nullable();
-            $table->dateTime('fly_end')->nullable();
+            $table->date('fly_start')->nullable();
+            $table->date('fly_end')->nullable();
             $table->string('ticket_fly_start',200)->nullable();
             $table->string('ticket_fly_end',200)->nullable();
 
@@ -89,7 +89,7 @@ class SponsorshipApplications extends Migration {
             $table->string('hotel_description',200)->nullable();
 
             $table->string('description',500)->nullable();
-            $table->timestamps();
+            //$table->timestamps();
 
             $table->foreign('file_format_id')->references('id')->on('file_formats');
             $table->foreign('expense_id')->references('id')->on('expenses');
@@ -112,7 +112,7 @@ class SponsorshipApplications extends Migration {
             $table->string('email',200)->nullable();
 
             $table->string('description',500)->nullable();
-            $table->timestamps();
+            //$table->timestamps();
 
             $table->foreign('sponsorship_application_id')->references('id')->on('sponsorship_applications');
             $table->foreign('expense_id')->references('id')->on('expenses');

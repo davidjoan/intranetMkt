@@ -46,7 +46,7 @@ $(document).ready(function() {
             if (result) {
                 $.ajax({
                     type: "DELETE",
-                    url: "/api/expenses/"+expense_id+"?_token="+$('#token').val(),
+                    url: "/api/expenses/"+expense_id,
                     error: function (result) {
                         console.log(result.responseText);
                     },
@@ -121,7 +121,7 @@ $('#form_note').validator().on('submit', function (e) {
                 toastr.success('Se agrego el detalle correctamente!', '');
 
                 setTimeout(function(){
-                    window.location.href = '/frontend/detalle/'+expense_id;
+                   // window.location.href = '/frontend/detalle/'+expense_id;
                 }, 1000);
 
                 return false;
@@ -327,11 +327,16 @@ function displayAllNotes(list) {
 }
 
 function displayNote(index, element) {
-   // console.log(element);
+    //console.log(element);
     console.log(element.expense.expense_type_id);
     var itemHtml = null;
 
-    if(!($.inArray(element.expense.expense_type_id, new Array(1,2,3,4)) === -1))
+        var formatArrayA = [];
+        formatArrayA.push('1');
+        formatArrayA.push('2');
+        formatArrayA.push('3');
+        formatArrayA.push('4');
+    if(($.inArray(element.expense.expense_type_id, formatArrayA) > 0))
     {
         console.log('formato 1,2,3,4');
         itemHtml = ["<tr>",
@@ -386,7 +391,12 @@ function displayNote(index, element) {
 
     }
 
-    if(!($.inArray(element.expense.expense_type_id, new Array(5,6,8)) === -1))
+    var formatArrayB = [];
+        formatArrayB.push('5');
+        formatArrayB.push('6');
+        formatArrayB.push('8');
+      //  console.log(formatArrayB);
+    if(($.inArray(element.expense.expense_type_id,formatArrayB) > 0))
     {
         console.log('formato 5 y 6');
 
@@ -448,7 +458,12 @@ function displayNote(index, element) {
         ].join("\n");
     }
 
-    if(!($.inArray(element.expense.expense_type_id, new Array(7,9,15)) === -1))
+    var formatArrayC = [];
+        formatArrayC.push('7');
+        formatArrayC.push('9');
+        formatArrayC.push('15');
+
+    if(($.inArray(element.expense.expense_type_id, formatArrayC) > 0))
     {
         console.log('formato 7,9,15');
 
@@ -485,8 +500,11 @@ function displayNote(index, element) {
         ].join("\n");
     }
 
+        var formatArrayD = [];
+        formatArrayD.push('16');
+        formatArrayD.push('17');
 
-    if(!($.inArray(element.expense.expense_type_id, new Array(16,17)) === -1))
+    if(($.inArray(element.expense.expense_type_id, formatArrayD) > 0))
     {
         console.log('formato 16 y 17');
 

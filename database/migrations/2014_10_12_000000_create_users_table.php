@@ -14,7 +14,6 @@ class CreateUsersTable extends Migration {
 	{
         Schema::create('cost_centers', function(Blueprint $table)
         {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->integer('division_id',false, true)->nullable();
             $table->string('code',10);
@@ -23,28 +22,26 @@ class CreateUsersTable extends Migration {
             $table->string('manager',200)->nullable();
             $table->string('cost_center_type',10);
             $table->string('description')->nullable();
-            $table->timestamps();
+            //$table->timestamps();
         });
 
 
         Schema::create('roles', function(Blueprint $table)
         {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('code',10)->unique();
             $table->string('name',100);
             $table->string('description')->nullable();
-            $table->timestamps();
+          //  $table->timestamps();
         });
 
         Schema::create('divisions', function(Blueprint $table)
         {
-            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('code',20)->nullable();
             $table->string('name',100);
             $table->string('description')->nullable();
-            $table->timestamps();
+           // $table->timestamps();
         });
 
         Schema::create('users', function(Blueprint $table)
@@ -61,7 +58,7 @@ class CreateUsersTable extends Migration {
             $table->string('password', 255);
             $table->string('photo')->nullable();
             $table->rememberToken();
-            $table->timestamps();
+            //$table->timestamps();
 
             $table->foreign('role_id')->references('id')->on('roles');
             $table->foreign('supervisor_id')->references('id')->on('users');
@@ -72,7 +69,6 @@ class CreateUsersTable extends Migration {
 
         Schema::create('division_user', function(Blueprint $table)
         {
-            $table->engine = 'InnoDB';
             $table->integer('division_id')->unsigned();
             $table->integer('user_id')->unsigned();
 

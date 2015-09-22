@@ -18,7 +18,7 @@ class CreateServiceTypesTable extends Migration {
             $table->string('code',10)->unique();
             $table->string('name',100);
             $table->string('description')->nullable();
-            $table->timestamps();
+            //$table->timestamps();
 		});
 	}
 

@@ -6,6 +6,8 @@ class ExpenseDetail extends Model {
 
     protected $table = 'expense_details';
 
+    public $timestamps = false;
+
     protected $fillable = ['file_format_id','expense_id', 'filename','mime','original_filename'];
 
 

@@ -26,7 +26,7 @@ class CreateEventsTable extends Migration {
             $table->string('code',500)->nullable();
             $table->string('description',500)->nullable();
 
-			$table->timestamps();
+			//$table->timestamps();
 
 
             $table->foreign('file_format_id')->references('id')->on('file_formats');
