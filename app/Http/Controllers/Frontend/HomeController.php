@@ -12,6 +12,7 @@ use IntranetMkt\Http\Controllers\Controller;
 use IntranetMkt\Models\BookAccount;
 use IntranetMkt\Models\CostCenter;
 use IntranetMkt\Models\Cycle;
+use IntranetMkt\Models\Division;
 use IntranetMkt\Models\Expense;
 use IntranetMkt\Models\ExpenseAmount;
 use IntranetMkt\Models\ExpenseDetail;
@@ -855,9 +856,27 @@ order by cy.code, ba.name,cc.name;");
         return view('frontend.nuevo_gasto', compact('expense_types','user','cycles'));
     }
 
-    public function presupuestos()
+    public function presupuestos(Request $request)
     {
-        return view('frontend.presupuestos');
+
+        $date = date('Ym');
+
+        $cycle_code = $request->get('cycle_code', null, true);
+
+        $cycle_current = Cycle::where('code','>',$date)->firstOrFail();
+
+        $divisions = Division::get();
+
+        $cycle_code = (is_null($cycle_code))?$cycle_current->code:$cycle_code;
+
+
+
+        $cycles = Cycle::where('code','>=',$date)->take(12)->get();
+
+        $cycle_actual = Cycle::where('code','=',$cycle_code)->firstOrFail();
+        $user = Auth::user();
+
+        return view('frontend.presupuestos', compact( 'user','cycles','cycle_code','cycle_current','divisions','cycle_actual'));
     }
 
 

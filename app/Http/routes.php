@@ -26,6 +26,7 @@ Route::group(array('prefix' => 'api', 'middleware' => 'auth.basic'), function(){
     Route::resource('cost_centers', 'Frontend\CostCenterController');
     Route::resource('divisions', 'Frontend\DivisionController');
     Route::resource('expenses', 'Frontend\ExpenseController');
+    Route::resource('budgets', 'Frontend\BudgetController');
     Route::resource('expense_types', 'Frontend\ExpenseTypeController');
     Route::resource('file_formats', 'Frontend\FileFormatController');
     Route::resource('roles', 'Frontend\RoleController');
