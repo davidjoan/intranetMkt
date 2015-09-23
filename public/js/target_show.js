@@ -328,15 +328,10 @@ function displayAllNotes(list) {
 
 function displayNote(index, element) {
     //console.log(element);
-    console.log(element.expense.expense_type_id);
+    var expense_type_id = element.expense.expense_type_id;
     var itemHtml = null;
 
-        var formatArrayA = [];
-        formatArrayA.push('1');
-        formatArrayA.push('2');
-        formatArrayA.push('3');
-        formatArrayA.push('4');
-    if(($.inArray(element.expense.expense_type_id, formatArrayA) > 0))
+    if(expense_type_id == 1 || expense_type_id == 2 || expense_type_id == 3  || expense_type_id == 4)
     {
         console.log('formato 1,2,3,4');
         itemHtml = ["<tr>",
@@ -396,7 +391,7 @@ function displayNote(index, element) {
         formatArrayB.push('6');
         formatArrayB.push('8');
       //  console.log(formatArrayB);
-    if(($.inArray(element.expense.expense_type_id,formatArrayB) > 0))
+    if(expense_type_id == 5 || expense_type_id == 6 || expense_type_id == 8)
     {
         console.log('formato 5 y 6');
 
@@ -458,12 +453,8 @@ function displayNote(index, element) {
         ].join("\n");
     }
 
-    var formatArrayC = [];
-        formatArrayC.push('7');
-        formatArrayC.push('9');
-        formatArrayC.push('15');
 
-    if(($.inArray(element.expense.expense_type_id, formatArrayC) > 0))
+    if(expense_type_id == 7 || expense_type_id == 9 || expense_type_id == 15)
     {
         console.log('formato 7,9,15');
 
@@ -504,7 +495,7 @@ function displayNote(index, element) {
         formatArrayD.push('16');
         formatArrayD.push('17');
 
-    if(($.inArray(element.expense.expense_type_id, formatArrayD) > 0))
+    if(expense_type_id == 16 || expense_type_id == 17)
     {
         console.log('formato 16 y 17');
 
